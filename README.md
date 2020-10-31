@@ -1,2 +1,2 @@
 # Litdex.Security.RNG
- Individual module from Litdex
+This is an individual module containing the RNG set from [Litdex](https://github.com/Shiroechi/Litdex).
