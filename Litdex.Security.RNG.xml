@@ -1,0 +1,912 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Litdex.Security.RNG</name>
+    </assembly>
+    <members>
+        <member name="T:Litdex.Security.RNG.IRNG">
+            <summary>
+            Interface structure for Random Number Generator (RNG).
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns>The name of this RNG.</returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextBoolean">
+            <summary>
+            Generate <see cref="T:System.Boolean"/> value from generator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextByte">
+            <summary>
+            Generate <see cref="T:System.Byte"/> value from generator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextByte(System.Byte,System.Byte)">
+            <summary>
+            Generate <see cref="T:System.Byte"/> value between 
+            lower bound and upper bound from generator.
+            </summary>
+            <param name="lower">Lower bound.</param>
+            <param name="upper">Upper bound.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextBytes(System.Int32)">
+            <summary>
+            Generate random byte[] value from generator.
+            </summary>
+            <param name="length">Output length.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextInt">
+            <summary>
+            Generate <see cref="T:System.UInt32"/> value from generator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextInt(System.UInt32,System.UInt32)">
+            <summary>
+            Generate <see cref="T:System.UInt32"/> value between 
+            lower bound and upper bound from generator.
+            </summary>
+            <param name="lower">Lower bound.</param>
+            <param name="upper">Upper bound.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextLong">
+            <summary>
+            Generate <see cref="T:System.UInt64"/> value from generator. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextLong(System.UInt64,System.UInt64)">
+            <summary>
+            Generate <see cref="T:System.UInt64"/> value between 
+            lower bound and upper bound from generator. 
+            </summary>
+            <param name="lower">Lower bound.</param>
+            <param name="upper">Upper bound.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextDouble">
+            <summary>
+            Generate <see cref="T:System.Double"/> value from generator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.NextDouble(System.Double,System.Double)">
+            <summary>
+            Generate <see cref="T:System.Double"/> value between 
+            lower bound and upper bound from generator.
+            </summary>
+            <param name="lower">Lower bound.</param>
+            <param name="upper">Upper bound.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.JSF32">
+            <summary>
+            Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
+            
+            http://burtleburtle.net/bob/rand/smallprng.html
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.#ctor(System.UInt32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="seed">Your seed.</param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.Rotate(System.UInt32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="shift"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.JSF64">
+            <summary>
+            Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
+            
+            http://burtleburtle.net/bob/rand/smallprng.html
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.#ctor(System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="seed">Your seed.</param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.Rotate(System.UInt64,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="shift"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence">
+            <summary>
+            Improved version from Middle Square Method
+            invented by John Von Neumann. 
+            <list type="bullet">
+            <item>https://arxiv.org/abs/1704.00358</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.#ctor(System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="seed">Your seed.</param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator">
+            <summary>
+            Implemetation of Permuted Congruential Generator 
+            "Minimal C implementation" from 
+            http://www.pcg-random.org/download.html
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="seed">Seed.</param>
+            <param name="increment">Increment.</param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.SplitMix64">
+            <summary>
+            SplitMix64 PRNG Algorithm.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.#ctor(System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="seed"></param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Squares">
+            <summary>
+            Counter-based RNG based on <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>
+            
+            <list type="bullet">
+            	<item>https://arxiv.org/pdf/2004.06278v2.pdf</item>
+            	<item>https://arxiv.org/pdf/1704.00358v5.pdf</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.Next(System.UInt64,System.UInt64)">
+            <summary>
+            Generate next random number.
+            </summary>
+            <param name="ctr">Counter-based.</param>
+            <param name="key">Spesific key.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.WyRng">
+            <summary>
+            Based on Wyhash https://github.com/wangyi-fudan/wyhash
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus">
+            <summary>
+            Xoroshiro128plus PRNG is improved from Xoroshift128.
+            http://xoroshiro.di.unimi.it/xoroshiro128plus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Constructor with defined seed.
+            </summary>
+            <param name="seed1"></param>
+            <param name="seed2"></param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.NextJump">
+            <summary>
+            2^64 calls to NextLong(), it can be used to generate 2^64
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus">
+            <summary>
+            http://prng.di.unimi.it/xoroshiro128plusplus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Constructor with defined seed.
+            </summary>
+            <param name="seed1"></param>
+            <param name="seed2"></param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.NextJump">
+            <summary>
+            2^64 calls to NextLong(), it can be used to generate 2^64
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128starstar">
+            <summary>
+            New family of xoroshiro.
+            All general purpose generator.
+            http://vigna.di.unimi.it/xorshift/xoroshiro128starstar.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Constructor with defined seed.
+            </summary>
+            <param name="seed1"></param>
+            <param name="seed2"></param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextInt(System.Int32)">
+            <summary>
+            Generates the next pseudorandom number Xoroshiro128starstar PRNG 
+            integer value.
+            </summary>
+            <param name="bits"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextJump">
+            <summary>
+            2^64 calls to NextLong(), it can be used to generate 2^64
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plus">
+            <summary>
+            RNG from xoroshiro family.
+            http://vigna.di.unimi.it/xorshift/xoshiro256plus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^128 calls to next(); it can be used to generate 2^128
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plusplus">
+            <summary>
+            RNG from xoroshiro family.
+            http://prng.di.unimi.it/xoshiro256plusplus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^128 calls to next(); it can be used to generate 2^128
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256starstar">
+            <summary>
+            RNG from xoroshiro family.
+            http://vigna.di.unimi.it/xorshift/xoshiro256starstar.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^128 calls to next(); it can be used to generate 2^128
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plus">
+            <summary>
+            Xoshiro512+
+            http://xoshiro.di.unimi.it/xoshiro512plus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^256 calls to next(); it can be used to generate 2^256
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plusplus">
+            <summary>
+            Xoshiro512++
+            http://xoshiro.di.unimi.it/xoshiro512plusplus.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^256 calls to next(); it can be used to generate 2^256
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512starstar">
+            <summary>
+            Xoshiro512**
+            http://xoshiro.di.unimi.it/xoshiro512starstar.c
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.#ctor(System.UInt64[])">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.AlgorithmName">
+            <summary>
+            The name of the algorithm this generator implements.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Reseed">
+            <summary>
+            Seed with RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.NextJump">
+            <summary>
+            This is the jump function for the generator. It is equivalent
+            to 2^256 calls to next(); it can be used to generate 2^256
+            non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="T:Litdex.Security.RNG.Random32">
+            <summary>
+            Base class for 32 bit RNG.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns>32 bit random integer.</returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextBytes(System.Int32)">
+            <summary>
+            Generate random byte[] value from generator.
+            </summary>
+            <param name="length">Output length.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[])">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[],System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[])">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[],System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object})">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="T:Litdex.Security.RNG.Random64">
+            <summary>
+            Base class for 64 bit RNG.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Next">
+            <summary>
+            Generate next random number.
+            </summary>
+            <returns>64 bit random integer.</returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[])">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[],System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[])">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[],System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object})">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <param name="items">Set of items to choose.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <remarks>
+            More slower because need boxing/unboxing.
+            </remarks>
+            <typeparam name="T">Data type</typeparam>
+            <param name="items">Set of items to choose.</param>
+            <param name="count">The desired amount to select.</param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

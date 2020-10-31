@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Shiroechi</Authors>
+    <Company>Litdex</Company>
+    <Description>This is an individual module containing the RNG set from Litdex</Description>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
+    <PackageTags>Random RNG PRNG</PackageTags>
+    <NeutralLanguage>English</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Project\C#\Litdex\Litdex.Security.RNG\Litdex.Security.RNG.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
