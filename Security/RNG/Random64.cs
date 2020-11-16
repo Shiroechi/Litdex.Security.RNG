@@ -49,7 +49,7 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public virtual bool NextBoolean()
 		{
-			return this.NextInt() % 2 == 0;
+			return this.Next() >> 63 == 0;
 		}
 
 		/// <inheritdoc/>
@@ -187,7 +187,6 @@ namespace Litdex.Security.RNG
 		/// <remarks>
 		/// More slower because need boxing/unboxing.
 		/// </remarks>
-		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
 		/// <param name="count">The desired amount to select.</param>
 		/// <returns>Multiple random elements from the given sets.</returns>
