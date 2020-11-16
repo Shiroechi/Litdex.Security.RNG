@@ -17,20 +17,20 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Reseed">
             <summary>
-            Seed with RNGCryptoServiceProvider.
+            Seed with <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/>.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextBoolean">
             <summary>
             Generate <see cref="T:System.Boolean"/> value from generator.
             </summary>
-            <returns></returns>
+            <returns><see langword="true"/> or <see langword="false"/></returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte">
             <summary>
             Generate <see cref="T:System.Byte"/> value from generator.
             </summary>
-            <returns></returns>
+            <returns>Random <see cref="T:System.Byte"/></returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte(System.Byte,System.Byte)">
             <summary>
@@ -39,20 +39,22 @@
             </summary>
             <param name="lower">Lower bound.</param>
             <param name="upper">Upper bound.</param>
-            <returns></returns>
+            <returns><see cref="T:System.Byte"/> value between 
+            lower bound and upper bound.</returns>
+            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextBytes(System.Int32)">
             <summary>
             Generate random byte[] value from generator.
             </summary>
             <param name="length">Output length.</param>
-            <returns></returns>
+            <returns>Array of bytes.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt">
             <summary>
             Generate <see cref="T:System.UInt32"/> value from generator.
             </summary>
-            <returns></returns>
+            <returns>A 32-bit unsigned integer.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt(System.UInt32,System.UInt32)">
             <summary>
@@ -61,13 +63,15 @@
             </summary>
             <param name="lower">Lower bound.</param>
             <param name="upper">Upper bound.</param>
-            <returns></returns>
+            <returns><see cref="T:System.UInt32"/> value between 
+            lower bound and upper bound.</returns>
+            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong">
             <summary>
             Generate <see cref="T:System.UInt64"/> value from generator. 
             </summary>
-            <returns></returns>
+            <returns>A 64-bit unsigned integer.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong(System.UInt64,System.UInt64)">
             <summary>
@@ -76,13 +80,14 @@
             </summary>
             <param name="lower">Lower bound.</param>
             <param name="upper">Upper bound.</param>
-            <returns></returns>
+            <returns><see cref="T:System.UInt64"/> value lower bound and upper bound.</returns>
+            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble">
             <summary>
             Generate <see cref="T:System.Double"/> value from generator.
             </summary>
-            <returns></returns>
+            <returns>A 64-bit floating point.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble(System.Double,System.Double)">
             <summary>
@@ -91,7 +96,8 @@
             </summary>
             <param name="lower">Lower bound.</param>
             <param name="upper">Upper bound.</param>
-            <returns></returns>
+            <returns><see cref="T:System.Double"/> value between lower bound and upper bound.</returns>
+            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32">
             <summary>
@@ -112,29 +118,21 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Rotate(System.UInt32,System.Int32)">
             <summary>
-            
+            Rotate the bit.
             </summary>
-            <param name="value"></param>
-            <param name="shift"></param>
+            <param name="value">Number to rotate.</param>
+            <param name="shift">Bit to rotate.</param>
             <returns></returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF64">
             <summary>
@@ -155,29 +153,21 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Rotate(System.UInt64,System.Int32)">
             <summary>
-            
+            Rotate the bit.
             </summary>
-            <param name="value"></param>
-            <param name="shift"></param>
+            <param name="value">Number to rotate.</param>
+            <param name="shift">Bit to rotate.</param>
             <returns></returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence">
             <summary>
@@ -200,21 +190,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator">
             <summary>
@@ -236,21 +218,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.SplitMix64">
             <summary>
@@ -269,21 +243,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Squares">
             <summary>
@@ -300,6 +266,9 @@
             Constructor.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.Next">
+            <inheritdoc/>
+        </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.Next(System.UInt64,System.UInt64)">
             <summary>
             Generate next random number.
@@ -308,10 +277,36 @@
             <param name="key">Spesific key.</param>
             <returns></returns>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.Reseed">
+            <inheritdoc/>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.WyRng">
             <summary>
             Based on Wyhash https://github.com/wangyi-fudan/wyhash
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.#ctor(System.UInt64)">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.WyRng"/> instance.
+            </summary>
+            <param name="seed">Seed.</param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.Reseed">
+            <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus">
             <summary>
@@ -332,21 +327,13 @@
             <param name="seed2"></param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.NextJump">
             <summary>
@@ -372,21 +359,13 @@
             <param name="seed2"></param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.NextJump">
             <summary>
@@ -419,10 +398,7 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextInt(System.Int32)">
             <summary>
@@ -433,15 +409,10 @@
             <returns></returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextJump">
             <summary>
@@ -471,21 +442,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.NextJump">
             <summary>
@@ -516,21 +479,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.NextJump">
             <summary>
@@ -561,21 +516,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.NextJump">
             <summary>
@@ -606,21 +553,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.NextJump">
             <summary>
@@ -651,21 +590,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.NextJump">
             <summary>
@@ -696,21 +627,13 @@
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Next">
-            <summary>
-            Generate next random number.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.AlgorithmName">
-            <summary>
-            The name of the algorithm this generator implements.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Reseed">
-            <summary>
-            Seed with RNGCryptoServiceProvider.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.NextJump">
             <summary>
@@ -728,14 +651,43 @@
             <summary>
             Generate next random number.
             </summary>
-            <returns>32 bit random integer.</returns>
+            <returns>A 32-bit unsigned integer.</returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextBoolean">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextByte">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextByte(System.Byte,System.Byte)">
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.NextBytes(System.Int32)">
-            <summary>
-            Generate random byte[] value from generator.
-            </summary>
-            <param name="length">Output length.</param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextInt">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextInt(System.UInt32,System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextLong">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextLong(System.UInt64,System.UInt64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextDouble">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextDouble(System.Double,System.Double)">
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[])">
             <summary>
@@ -743,7 +695,7 @@
             </summary>
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[],System.Int32)">
             <summary>
@@ -752,7 +704,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[])">
             <summary>
@@ -762,7 +715,7 @@
             More slower because need boxing/unboxing.
             </remarks>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[],System.Int32)">
             <summary>
@@ -774,8 +727,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0})">
             <summary>
@@ -783,7 +736,7 @@
             </summary>
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
             <summary>
@@ -792,7 +745,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object})">
             <summary>
@@ -802,7 +756,7 @@
             More slower because need boxing/unboxing.
             </remarks>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
             <summary>
@@ -811,11 +765,10 @@
             <remarks>
             More slower because need boxing/unboxing.
             </remarks>
-            <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="T:Litdex.Security.RNG.Random64">
             <summary>
@@ -826,7 +779,43 @@
             <summary>
             Generate next random number.
             </summary>
-            <returns>64 bit random integer.</returns>
+            <returns>A 64-bit unsigned integer.</returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextBoolean">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextByte">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextByte(System.Byte,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextInt">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextInt(System.UInt32,System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextLong">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextLong(System.UInt64,System.UInt64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextDouble">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextDouble(System.Double,System.Double)">
+            <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[])">
             <summary>
@@ -834,7 +823,7 @@
             </summary>
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[],System.Int32)">
             <summary>
@@ -843,7 +832,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[])">
             <summary>
@@ -853,7 +843,7 @@
             More slower because need boxing/unboxing.
             </remarks>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[],System.Int32)">
             <summary>
@@ -865,8 +855,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0})">
             <summary>
@@ -874,7 +864,7 @@
             </summary>
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
             <summary>
@@ -883,7 +873,8 @@
             <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object})">
             <summary>
@@ -893,7 +884,7 @@
             More slower because need boxing/unboxing.
             </remarks>
             <param name="items">Set of items to choose.</param>
-            <returns></returns>
+            <returns>Random element from the given sets.</returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
             <summary>
@@ -902,11 +893,10 @@
             <remarks>
             More slower because need boxing/unboxing.
             </remarks>
-            <typeparam name="T">Data type</typeparam>
             <param name="items">Set of items to choose.</param>
             <param name="count">The desired amount to select.</param>
-            <returns></returns>
-            <returns></returns>
+            <returns>Multiple random elements from the given sets.</returns>
+            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
     </members>
 </doc>
