@@ -45,10 +45,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Protected Method
 
-		/// <summary>
-		/// Generate next random number.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		protected override ulong Next()
 		{
 			this._Output *= this._Output;
@@ -60,18 +57,13 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Public Method
 
-		/// <summary>
-		/// The name of the algorithm this generator implements.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
 			return "Middle Square Weyl Sequence";
 		}
 
-		/// <summary>
-		/// Seed with RNGCryptoServiceProvider.
-		/// </summary>
+		/// <inheritdoc/>
 		public override void Reseed()
 		{
 			using (var rng = new RNGCryptoServiceProvider())

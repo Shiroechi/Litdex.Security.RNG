@@ -44,12 +44,10 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			this._State = null;
 		}
+
 		#region Protected Method
 
-		/// <summary>
-		/// Generate next random number.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		protected override ulong Next()
 		{
 			var result = this._State[0] + this._State[2];
@@ -81,18 +79,13 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Public Method
 
-		/// <summary>
-		/// The name of the algorithm this generator implements.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
 			return "Xoshiro 512+";
 		}
 
-		/// <summary>
-		/// Seed with RNGCryptoServiceProvider.
-		/// </summary>
+		/// <inheritdoc/>
 		public override void Reseed()
 		{
 			var bytes = new byte[8];

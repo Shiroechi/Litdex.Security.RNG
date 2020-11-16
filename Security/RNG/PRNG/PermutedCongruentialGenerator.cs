@@ -46,10 +46,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Protected Method
 
-		/// <summary>
-		/// Generate next random number.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		protected override ulong Next()
 		{
 			var oldseed = this._Seed;
@@ -63,18 +60,13 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Public Method
 
-		/// <summary>
-		/// The name of the algorithm this generator implements.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
 			return "Minimal Permuted Congruential Generator";
 		}
 
-		/// <summary>
-		/// Seed with RNGCryptoServiceProvider.
-		/// </summary>
+		/// <inheritdoc/>
 		public override void Reseed()
 		{
 			var bytes = new byte[8];

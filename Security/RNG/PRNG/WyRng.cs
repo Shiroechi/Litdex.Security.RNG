@@ -16,6 +16,10 @@ namespace Litdex.Security.RNG.PRNG
 
         #region Constructor & Destructor
 
+        /// <summary>
+        /// Create <see cref="WyRng"/> instance.
+        /// </summary>
+        /// <param name="seed">Seed.</param>
         public WyRng(ulong seed = 0)
 		{
             if (seed != 0) 
@@ -28,6 +32,9 @@ namespace Litdex.Security.RNG.PRNG
 			}
 		}
 
+        /// <summary>
+        /// Destructor.
+        /// </summary>
         ~WyRng()
 		{
             this._Seed = 0;
@@ -37,6 +44,7 @@ namespace Litdex.Security.RNG.PRNG
 
         #region Protected Method
 
+        /// <inheritdoc/>
         protected override ulong Next()
         {
             this._Seed += 0xa0761d6478bd642f;
@@ -70,16 +78,18 @@ namespace Litdex.Security.RNG.PRNG
             return hi ^ lo;
 		}
 
-		#endregion Protected Method
+        #endregion Protected Method
 
-		#region Public Method
+        #region Public Method
 
-		public override string AlgorithmName()
+        /// <inheritdoc/>
+        public override string AlgorithmName()
 		{
             return "WyRng";
 		}
 
-		public override void Reseed()
+        /// <inheritdoc/>
+        public override void Reseed()
 		{
 			var bytes = new byte[8];
 			using (var rng = new RNGCryptoServiceProvider())
@@ -90,6 +100,5 @@ namespace Litdex.Security.RNG.PRNG
 		}
 
 		#endregion Public Method
-
 	}
 }

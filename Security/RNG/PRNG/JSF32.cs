@@ -44,10 +44,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Protected Method
 
-		/// <summary>
-		/// Generate next random number.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		protected override uint Next()
 		{
 			var e = this._Seed[0] - this.Rotate(this._Seed[1], 27);
@@ -60,10 +57,10 @@ namespace Litdex.Security.RNG.PRNG
 		}
 
 		/// <summary>
-		/// 
+		/// Rotate the bit.
 		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="shift"></param>
+		/// <param name="value">Number to rotate.</param>
+		/// <param name="shift">Bit to rotate.</param>
 		/// <returns></returns>
 		protected uint Rotate(uint value, int shift)
 		{
@@ -74,18 +71,13 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Public Method
 
-		/// <summary>
-		/// The name of the algorithm this generator implements.
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
 			return "JSF 32 bit";
 		}
 
-		/// <summary>
-		/// Seed with RNGCryptoServiceProvider.
-		/// </summary>
+		/// <inheritdoc/>
 		public override void Reseed()
 		{
 			uint seed;

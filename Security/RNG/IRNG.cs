@@ -1,4 +1,6 @@
-﻿namespace Litdex.Security.RNG
+﻿using System;
+
+namespace Litdex.Security.RNG
 {
 	/// <summary>
 	/// Interface structure for Random Number Generator (RNG).
@@ -12,20 +14,20 @@
 		string AlgorithmName();
 
 		/// <summary>
-		/// Seed with RNGCryptoServiceProvider.
+		/// Seed with <see cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>.
 		/// </summary>
 		void Reseed();
 
 		/// <summary>
 		/// Generate <see cref="bool"/> value from generator.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns><see langword="true"/> or <see langword="false"/></returns>
 		bool NextBoolean();
 
 		/// <summary>
 		/// Generate <see cref="byte"/> value from generator.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Random <see cref="byte"/></returns>
 		byte NextByte();
 
 		/// <summary>
@@ -34,20 +36,22 @@
 		/// </summary>
 		/// <param name="lower">Lower bound.</param>
 		/// <param name="upper">Upper bound.</param>
-		/// <returns></returns>
+		/// <returns><see cref="byte"/> value between 
+		/// lower bound and upper bound.</returns>
+		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		byte NextByte(byte lower, byte upper);
 
 		/// <summary>
 		/// Generate random byte[] value from generator.
 		/// </summary>
 		/// <param name="length">Output length.</param>
-		/// <returns></returns>
+		/// <returns>Array of bytes.</returns>
 		byte[] NextBytes(int length);
 
 		/// <summary>
 		/// Generate <see cref="uint"/> value from generator.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A 32-bit unsigned integer.</returns>
 		uint NextInt();
 
 		/// <summary>
@@ -56,13 +60,15 @@
 		/// </summary>
 		/// <param name="lower">Lower bound.</param>
 		/// <param name="upper">Upper bound.</param>
-		/// <returns></returns>
+		/// <returns><see cref="uint"/> value between 
+		/// lower bound and upper bound.</returns>
+		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		uint NextInt(uint lower, uint upper);
 
 		/// <summary>
 		/// Generate <see cref="ulong"/> value from generator. 
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A 64-bit unsigned integer.</returns>
 		ulong NextLong();
 
 		/// <summary>
@@ -71,13 +77,14 @@
 		/// </summary>
 		/// <param name="lower">Lower bound.</param>
 		/// <param name="upper">Upper bound.</param>
-		/// <returns></returns>
+		/// <returns><see cref="ulong"/> value lower bound and upper bound.</returns>
+		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		ulong NextLong(ulong lower, ulong upper);
 
 		/// <summary>
 		/// Generate <see cref="double"/> value from generator.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A 64-bit floating point.</returns>
 		double NextDouble();
 
 		/// <summary>
@@ -86,7 +93,8 @@
 		/// </summary>
 		/// <param name="lower">Lower bound.</param>
 		/// <param name="upper">Upper bound.</param>
-		/// <returns></returns>
+		/// <returns><see cref="double"/> value between lower bound and upper bound.</returns>
+		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		double NextDouble(double lower, double upper);
 	}
 }

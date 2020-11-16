@@ -36,6 +36,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Protected Method
 
+		/// <inheritdoc/>
 		protected override uint Next()
 		{
 			this._Counter++;
@@ -67,11 +68,13 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Public Method
 
+		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
 			return "Squares";
 		}
 
+		/// <inheritdoc/>
 		public override void Reseed()
 		{
 			ulong key;
