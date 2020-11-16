@@ -18,6 +18,18 @@ This is an individual module containing the RNG set from
 - [WyRNG](https://github.com/wangyi-fudan/wyhash)
 - [Xoroshiro](http://prng.di.unimi.it/)
 
+# How to use
+
+For detailed use read [How to use](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use)
+or [Documentation](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Documentation)
+
+The simple way to use
+
+```C#
+var rng = new Xoroshiro128plus();
+var randomInt = rng.NextInt();
+```
+
 # Donation
 
 Like this library? Please consider donation
