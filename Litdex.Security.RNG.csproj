@@ -1,16 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
-    <Description>This is an individual module containing the RNG set from Litdex</Description>
+    <Description>Add xml documentaion</Description>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
     <PackageTags>Random RNG PRNG</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
