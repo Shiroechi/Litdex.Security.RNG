@@ -27,33 +27,38 @@ namespace Litdex.Security.RNG
 		/// <summary>
 		/// Generate next random number.
 		/// </summary>
-		/// <returns>32 bit random integer.</returns>
+		/// <returns>A 32-bit unsigned integer.</returns>
 		protected abstract uint Next();
 
 		#endregion Protected Method
 
 		#region Public Method
 
+		/// <inheritdoc/>
 		public virtual string AlgorithmName()
 		{
 			return "Random32";
 		}
 
+		/// <inheritdoc/>
 		public virtual void Reseed()
 		{
 			//do nothing.
 		}
 
+		/// <inheritdoc/>
 		public virtual bool NextBoolean()
 		{
 			return this.NextInt() % 2 == 0;
 		}
 
+		/// <inheritdoc/>
 		public virtual byte NextByte()
 		{
 			return this.NextBytes(1)[0];
 		}
 
+		/// <inheritdoc/>
 		public virtual byte NextByte(byte lower, byte upper)
 		{
 			if (lower >= upper)
@@ -64,12 +69,8 @@ namespace Litdex.Security.RNG
 			byte diff = (byte)(upper - lower + 1);
 			return (byte)(lower + (this.NextByte() % diff));
 		}
-		
-		/// <summary>
-		/// Generate random byte[] value from generator.
-		/// </summary>
-		/// <param name="length">Output length.</param>
-		/// <returns></returns>
+
+		/// <inheritdoc/>
 		public virtual byte[] NextBytes(int length)
 		{
 			uint sample = 0;
@@ -87,11 +88,13 @@ namespace Litdex.Security.RNG
 			return data;
 		}
 
+		/// <inheritdoc/>
 		public virtual uint NextInt()
 		{
 			return this.Next();
 		}
 
+		/// <inheritdoc/>
 		public virtual uint NextInt(uint lower, uint upper)
 		{
 			if (lower >= upper)
@@ -103,6 +106,7 @@ namespace Litdex.Security.RNG
 			return lower + (this.Next() % diff);
 		}
 
+		/// <inheritdoc/>
 		public virtual ulong NextLong()
 		{
 			var bytes1 = BitConverter.GetBytes(this.Next());
@@ -136,6 +140,7 @@ namespace Litdex.Security.RNG
 			return BitConverter.ToUInt64(bytes, 0);
 		}
 
+		/// <inheritdoc/>
 		public virtual ulong NextLong(ulong lower, ulong upper)
 		{
 			if (lower >= upper)
@@ -147,12 +152,14 @@ namespace Litdex.Security.RNG
 			return lower + (this.NextLong() % diff);
 		}
 
+		/// <inheritdoc/>
 		public virtual double NextDouble()
 		{
 			return NextLong() * (1.0 / (1L << 53)); //java conversion method
 			//return (double)(NextLong() >> 11) * (1.0 / long.MaxValue);
 		}
 
+		/// <inheritdoc/>
 		public virtual double NextDouble(double lower, double upper)
 		{
 			if (lower >= upper)
@@ -169,7 +176,7 @@ namespace Litdex.Security.RNG
 		/// </summary>
 		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
-		/// <returns></returns>
+		/// <returns>Random element from the given sets.</returns>
 		public virtual T Choice<T>(T[] items)
 		{
 			return items[(int)this.NextInt(0, (uint)(items.Length - 1))];
@@ -181,7 +188,8 @@ namespace Litdex.Security.RNG
 		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
 		/// <param name="count">The desired amount to select.</param>
-		/// <returns></returns>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentException">Count is lower than 1 or more than size of items.</exception>
 		public virtual T[] Choice<T>(T[] items, int count)
 		{
 			var temp = new List<T>(items);
@@ -195,7 +203,7 @@ namespace Litdex.Security.RNG
 		/// More slower because need boxing/unboxing.
 		/// </remarks>
 		/// <param name="items">Set of items to choose.</param>
-		/// <returns></returns>
+		/// <returns>Random element from the given sets.</returns>
 		public virtual object Choice(object[] items)
 		{
 			return items[(int)this.NextInt(0, (uint)(items.Length - 1))];
@@ -210,8 +218,8 @@ namespace Litdex.Security.RNG
 		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
 		/// <param name="count">The desired amount to select.</param>
-		/// <returns></returns>
-		/// <returns></returns>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentException">Count is lower than 1 or more than size of items.</exception>
 		public virtual object[] Choice(object[] items, int count)
 		{
 			var temp = new List<object>(items);
@@ -223,7 +231,7 @@ namespace Litdex.Security.RNG
 		/// </summary>
 		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
-		/// <returns></returns>
+		/// <returns>Random element from the given sets.</returns>
 		public virtual T Choice<T> (List<T> items)
 		{
 			return items[(int)this.NextInt(0, (uint)(items.Count - 1))];
@@ -235,16 +243,17 @@ namespace Litdex.Security.RNG
 		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
 		/// <param name="count">The desired amount to select.</param>
-		/// <returns></returns>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentException">Count is lower than 1 or more than size of items.</exception>
 		public virtual List<T> Choice<T>(List<T> items, int count)
 		{
 			if (count > items.Count)
 			{
-				throw new Exception("Count can't greater than items length(" + items.Count + ")");
+				throw new ArgumentException($"Count can't greater than items length({ items.Count })", nameof(count));
 			}
 			else if (count < 1)
 			{
-				throw new Exception("Count can't lower than 1.");
+				throw new ArgumentException("Count can't lower than 1.", nameof(count));
 			}
 
 			var selected = new List<T>();
@@ -272,7 +281,7 @@ namespace Litdex.Security.RNG
 		/// More slower because need boxing/unboxing.
 		/// </remarks>
 		/// <param name="items">Set of items to choose.</param>
-		/// <returns></returns>
+		/// <returns>Random element from the given sets.</returns>
 		public virtual object Choice(List<object> items)
 		{
 			return items[(int)this.NextInt(0, (uint)(items.Count - 1))];
@@ -284,20 +293,19 @@ namespace Litdex.Security.RNG
 		/// <remarks>
 		/// More slower because need boxing/unboxing.
 		/// </remarks>
-		/// <typeparam name="T">Data type</typeparam>
 		/// <param name="items">Set of items to choose.</param>
 		/// <param name="count">The desired amount to select.</param>
-		/// <returns></returns>
-		/// <returns></returns>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentException">Count is lower than 1 or more than size of items.</exception>
 		public virtual List<object> Choice(List<object> items, int count)
 		{
 			if (count > items.Count)
 			{
-				throw new Exception("Count can't greater than items length(" + items.Count + ")");
+				throw new ArgumentException($"Count can't greater than items length({ items.Count })", nameof(count));
 			}
 			else if (count < 1)
 			{
-				throw new Exception("Count can't lower than 1.");
+				throw new ArgumentException("Count can't lower than 1.", nameof(count));
 			}
 
 			var selected = new List<object>();
