@@ -30,6 +30,8 @@ var rng = new Xoroshiro128plus();
 var randomInt = rng.NextInt();
 ```
 
+Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
+
 # Donation
 
 Like this library? Please consider donation
