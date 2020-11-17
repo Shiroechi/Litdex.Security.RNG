@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Litdex.Security.RNG
 {
@@ -96,5 +97,13 @@ namespace Litdex.Security.RNG
 		/// <returns><see cref="double"/> value between lower bound and upper bound.</returns>
 		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		double NextDouble(double lower, double upper);
+
+		T Choice<T>(T[] items);
+
+		T[] Choice<T>(T[] items, int select);
+
+		T Choice<T>(IList<T> items);
+
+		IList<T> Choice<T>(IList<T> items, int select);
 	}
 }
