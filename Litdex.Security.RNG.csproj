@@ -11,7 +11,8 @@
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
     <PackageTags>Random RNG PRNG</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <Version>1.1.1</Version>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
