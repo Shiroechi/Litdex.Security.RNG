@@ -9,7 +9,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// SplitMix64 PRNG Algorithm.
 	/// </summary>
 	public class SplitMix64 : Random64
-    {
+	{
 		#region Member
 
 		private ulong _Seed;
@@ -21,16 +21,16 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		/// <param name="seed"></param>
 		public SplitMix64(ulong seed = 0)
-        {
-            if (seed <= 0)
-            {
+		{
+			if (seed <= 0)
+			{
 				this.Reseed();
-            }
-            else
-            {
-                this._Seed = seed;
-            }
-        }
+			}
+			else
+			{
+				this._Seed = seed;
+			}
+		}
 		
 		/// <summary>
 		/// Destructor.

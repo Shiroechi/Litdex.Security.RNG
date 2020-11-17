@@ -7,7 +7,7 @@ namespace Litdex.Security.RNG
 	/// Interface structure for Random Number Generator (RNG).
 	/// </summary>
 	public interface IRNG
-    {
+	{
 		/// <summary>
 		/// The name of the algorithm this generator implements.
 		/// </summary>

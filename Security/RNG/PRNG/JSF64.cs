@@ -9,7 +9,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://burtleburtle.net/bob/rand/smallprng.html
 	/// </summary>
 	public class JSF64 : Random64
-    {
+	{
 		private ulong[] _Seed = new ulong[8];
 		
 		/// <summary>
