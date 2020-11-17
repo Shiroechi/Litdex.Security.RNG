@@ -64,6 +64,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Array of bytes.
 		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// The requested output size can't lower than 1.
+		/// </exception>
 		byte[] NextBytes(int length);
 
 		/// <summary>
@@ -156,6 +159,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// The items length or size can't be greater than int.MaxValue.
+		/// </exception>
 		T Choice<T>(T[] items);
 
 		/// <summary>
@@ -197,6 +203,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// The items length or size can't be greater than int.MaxValue.
+		/// </exception>
 		T Choice<T>(IList<T> items);
 
 		/// <summary>
