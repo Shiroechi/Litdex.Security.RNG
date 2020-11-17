@@ -9,7 +9,6 @@ namespace Litdex.Security.RNG
 	/// </summary>
 	public abstract class Random : IRNG
 	{
-
 		#region Public Method
 
 		/// <inheritdoc/>
