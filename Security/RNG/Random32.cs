@@ -34,6 +34,11 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public override byte[] NextBytes(int length)
 		{
+			if (length <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(length), $"The requested output size can't lower than 1.");
+			}
+
 			uint sample = 0;
 			var data = new byte[length];
 
