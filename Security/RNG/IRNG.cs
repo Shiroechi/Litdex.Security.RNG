@@ -98,12 +98,50 @@ namespace Litdex.Security.RNG
 		/// <exception cref="ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
 		double NextDouble(double lower, double upper);
 
+		/// <summary>
+		/// Select one element randomly.
+		/// </summary>
+		/// <typeparam name="T">Data type</typeparam>
+		/// <param name="items">Set of items to choose.</param>
+		/// <returns>Random element from the given sets.</returns>
 		T Choice<T>(T[] items);
 
+		/// <summary>
+		/// Select abritary element randomly.
+		/// </summary>
+		/// <typeparam name="T">Data type</typeparam>
+		/// <param name="items">Set of items to choose.</param>
+		/// <param name="select">The desired amount to select.</param>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>The number of elements to be retrieved is negative or less than 1.</item>
+		///		<item>The number of elements to be retrieved exceeds the items size.</item>
+		/// </list>
+		/// </exception>
 		T[] Choice<T>(T[] items, int select);
 
+		/// <summary>
+		/// Select one element randomly.
+		/// </summary>
+		/// <typeparam name="T">Data type</typeparam>
+		/// <param name="items">Set of items to choose.</param>
+		/// <returns>Random element from the given sets.</returns>
 		T Choice<T>(IList<T> items);
 
+		/// <summary>
+		/// Select abritary element randomly.
+		/// </summary>
+		/// <typeparam name="T">Data type</typeparam>
+		/// <param name="items">Set of items to choose.</param>
+		/// <param name="select">The desired amount to select.</param>
+		/// <returns>Multiple random elements from the given sets.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>The number of elements to be retrieved is negative or less than 1.</item>
+		///		<item>The number of elements to be retrieved exceeds the items size.</item>
+		/// </list>
+		/// </exception>
 		IList<T> Choice<T>(IList<T> items, int select);
 	}
 }
