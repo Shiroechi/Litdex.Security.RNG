@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Litdex.Security.RNG
-{
-/// <summary>
-/// Interface structure for Random Number Generator (RNG).
-/// </summary>
-public interface IRNG
-{
+namespace Litdex.Security.RNG {
+  /// <summary>
+  /// Interface structure for Random Number Generator (RNG).
+  /// </summary>
+  public interface IRNG {
     /// <summary>
     /// The name of the algorithm this generator implements.
     /// </summary>
@@ -17,7 +15,8 @@ public interface IRNG
     string AlgorithmName();
 
     /// <summary>
-    /// Seed with <see cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>.
+    /// Seed with <see
+    /// cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>.
     /// </summary>
     void Reseed();
 
@@ -176,7 +175,8 @@ public interface IRNG
     /// <exception cref="ArgumentOutOfRangeException">
     /// <list type="bullet">
     ///		<item>
-    ///		The number of elements to be retrieved is negative or less than 1.
+    ///		The number of elements to be retrieved is negative or less
+    ///than 1.
     ///		</item>
     ///		<item>
     ///		The number of elements to be retrieved exceeds the items size.
@@ -217,7 +217,8 @@ public interface IRNG
     /// <exception cref="ArgumentOutOfRangeException">
     /// <list type="bullet">
     ///		<item>
-    ///		The number of elements to be retrieved is negative or less than 1.
+    ///		The number of elements to be retrieved is negative or less
+    ///than 1.
     ///		</item>
     ///		<item>
     ///		The number of elements to be retrieved exceeds the items size.
@@ -225,5 +226,5 @@ public interface IRNG
     /// </list>
     /// </exception>
     T[] Choice<T>(IList<T> items, int select);
-}
+  }
 }

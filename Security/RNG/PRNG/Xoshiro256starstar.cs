@@ -1,101 +1,86 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG.PRNG
-{
-/// <summary>
-/// RNG from xoroshiro family.
-/// http://vigna.di.unimi.it/xorshift/xoshiro256starstar.c
-/// </summary>
-public class Xoshiro256starstar : Random64
-{
+namespace Litdex.Security.RNG.PRNG {
+  /// <summary>
+  /// RNG from xoroshiro family.
+  /// http://vigna.di.unimi.it/xorshift/xoshiro256starstar.c
+  /// </summary>
+  public class Xoshiro256starstar : Random64 {
     private ulong[] _State = null;
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    public Xoshiro256starstar()
-    {
-        this._State = new ulong[4];
-        this.Reseed();
+    public Xoshiro256starstar() {
+      this._State = new ulong[4];
+      this.Reseed();
     }
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    public Xoshiro256starstar(ulong[] seed)
-    {
-        this._State = new ulong[4];
-        if (seed.Length < 4)
-        {
-            throw new ArgumentException("The generator need 4 seed, your seed " + seed.Length);
-        }
+    public Xoshiro256starstar(ulong[] seed) {
+      this._State = new ulong[4];
+      if (seed.Length < 4) {
+        throw new ArgumentException("The generator need 4 seed, your seed " +
+                                    seed.Length);
+      }
 
-        for (var i = 0; i < 4; i++)
-        {
-            this._State[i] = seed[i];
-        }
+      for (var i = 0; i < 4; i++) {
+        this._State[i] = seed[i];
+      }
     }
 
     /// <summary>
     /// Destructor.
     /// </summary>
-    ~Xoshiro256starstar()
-    {
-        this._State = null;
-    }
+    ~Xoshiro256starstar() { this._State = null; }
 
-    #region Protected Method
+#region Protected Method
 
     /// <inheritdoc/>
-    protected override ulong Next()
-    {
-        var result = this.RotateLeft(this._State[1] * 5, 7) * 9;
+    protected override ulong Next() {
+      var result = this.RotateLeft(this._State[1] * 5, 7) * 9;
 
-        var t = this._State[1] << 17;
+      var t = this._State[1] << 17;
 
-        this._State[2] ^= this._State[0];
-        this._State[3] ^= this._State[1];
-        this._State[1] ^= this._State[2];
-        this._State[0] ^= this._State[3];
+      this._State[2] ^= this._State[0];
+      this._State[3] ^= this._State[1];
+      this._State[1] ^= this._State[2];
+      this._State[0] ^= this._State[3];
 
-        this._State[2] ^= t;
+      this._State[2] ^= t;
 
-        this._State[3] = this.RotateLeft(this._State[3], 45);
+      this._State[3] = this.RotateLeft(this._State[3], 45);
 
-        return result;
+      return result;
     }
 
-    protected ulong RotateLeft(ulong val, int shift)
-    {
-        return (val << shift) | (val >> (64 - shift));
+    protected ulong RotateLeft(ulong val, int shift) {
+      return (val << shift) | (val >> (64 - shift));
     }
 
-    #endregion Protected Method
+#endregion Protected Method
 
-    #region Public Method
+#region Public Method
 
     /// <inheritdoc/>
-    public override string AlgorithmName()
-    {
-        return "Xoshiro 256**";
-    }
+    public override string AlgorithmName() { return "Xoshiro 256**"; }
 
     /// <inheritdoc/>
-    public override void Reseed()
-    {
-        var bytes = new byte[8];
-        using (var rng = new RNGCryptoServiceProvider())
-        {
-            rng.GetNonZeroBytes(bytes);
-            this._State[0] = BitConverter.ToUInt64(bytes, 0);
-            rng.GetNonZeroBytes(bytes);
-            this._State[1] = BitConverter.ToUInt64(bytes, 0);
-            rng.GetNonZeroBytes(bytes);
-            this._State[2] = BitConverter.ToUInt64(bytes, 0);
-            rng.GetNonZeroBytes(bytes);
-            this._State[3] = BitConverter.ToUInt64(bytes, 0);
-        }
+    public override void Reseed() {
+      var bytes = new byte[8];
+      using(var rng = new RNGCryptoServiceProvider()) {
+        rng.GetNonZeroBytes(bytes);
+        this._State[0] = BitConverter.ToUInt64(bytes, 0);
+        rng.GetNonZeroBytes(bytes);
+        this._State[1] = BitConverter.ToUInt64(bytes, 0);
+        rng.GetNonZeroBytes(bytes);
+        this._State[2] = BitConverter.ToUInt64(bytes, 0);
+        rng.GetNonZeroBytes(bytes);
+        this._State[3] = BitConverter.ToUInt64(bytes, 0);
+      }
     }
 
     /// <summary>
@@ -103,39 +88,32 @@ public class Xoshiro256starstar : Random64
     /// to 2^128 calls to next(); it can be used to generate 2^128
     /// non-overlapping subsequences for parallel computations.
     /// </summary>
-    public void NextJump()
-    {
-        ulong[] JUMP = { 0x180ec6d33cfd0aba,
-                         0xd5a61266f0c9392c,
-                         0xa9582618e03fc9aa,
-                         0x39abdc4529b1661c
-                       };
+    public void NextJump() {
+      ulong[] JUMP = {0x180ec6d33cfd0aba, 0xd5a61266f0c9392c,
+                      0xa9582618e03fc9aa, 0x39abdc4529b1661c};
 
-        var s0 = 0UL;
-        var s1 = 0UL;
-        var s2 = 0UL;
-        var s3 = 0UL;
+      var s0 = 0UL;
+      var s1 = 0UL;
+      var s2 = 0UL;
+      var s3 = 0UL;
 
-        for (var i = 0; i < 4; i++)
-        {
-            for (var b = 0; b < 64; b++)
-            {
-                if ((JUMP[i] & ((1UL) << b)) != 0)
-                {
-                    s0 ^= this._State[0];
-                    s1 ^= this._State[1];
-                    s2 ^= this._State[2];
-                    s3 ^= this._State[3];
-                }
-                this.NextLong();
-            }
+      for (var i = 0; i < 4; i++) {
+        for (var b = 0; b < 64; b++) {
+          if ((JUMP[i] & ((1UL) << b)) != 0) {
+            s0 ^= this._State[0];
+            s1 ^= this._State[1];
+            s2 ^= this._State[2];
+            s3 ^= this._State[3];
+          }
+          this.NextLong();
         }
-        this._State[0] = s0;
-        this._State[1] = s1;
-        this._State[2] = s2;
-        this._State[3] = s3;
+      }
+      this._State[0] = s0;
+      this._State[1] = s1;
+      this._State[2] = s2;
+      this._State[3] = s3;
     }
 
-    #endregion Public Method
-}
+#endregion Public Method
+  }
 }
