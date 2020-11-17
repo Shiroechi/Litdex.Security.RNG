@@ -66,6 +66,9 @@
             <returns>
             Array of bytes.
             </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The requested output size can't lower than 1.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt">
             <summary>
@@ -158,6 +161,9 @@
             <returns>
             Random element from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The items length or size can't be greater than int.MaxValue.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[],System.Int32)">
             <summary>
@@ -199,6 +205,9 @@
             <returns>
             Random element from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The items length or size can't be greater than int.MaxValue.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
             <summary>
