@@ -40,7 +40,7 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte(System.Byte,System.Byte)">
             <summary>
-            Generate <see cref="T:System.Byte"/> value between 
+            Generate <see cref="T:System.Byte"/> value between
             lower bound and upper bound from generator.
             </summary>
             <param name="lower">
@@ -80,7 +80,7 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt(System.UInt32,System.UInt32)">
             <summary>
-            Generate <see cref="T:System.UInt32"/> value between 
+            Generate <see cref="T:System.UInt32"/> value between
             lower bound and upper bound from generator.
             </summary>
             <param name="lower">
@@ -98,7 +98,7 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong">
             <summary>
-            Generate <see cref="T:System.UInt64"/> value from generator. 
+            Generate <see cref="T:System.UInt64"/> value from generator.
             </summary>
             <returns>
             A 64-bit unsigned integer.
@@ -106,8 +106,8 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong(System.UInt64,System.UInt64)">
             <summary>
-            Generate <see cref="T:System.UInt64"/> value between 
-            lower bound and upper bound from generator. 
+            Generate <see cref="T:System.UInt64"/> value between
+            lower bound and upper bound from generator.
             </summary>
             <param name="lower">
             Lower bound or expected minimum value.
@@ -132,7 +132,7 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble(System.Double,System.Double)">
             <summary>
-            Generate <see cref="T:System.Double"/> value between 
+            Generate <see cref="T:System.Double"/> value between
             lower bound and upper bound from generator.
             </summary>
             <param name="lower">
@@ -239,7 +239,7 @@
         <member name="T:Litdex.Security.RNG.PRNG.JSF32">
             <summary>
             Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            
+
             http://burtleburtle.net/bob/rand/smallprng.html
             </summary>
         </member>
@@ -274,7 +274,7 @@
         <member name="T:Litdex.Security.RNG.PRNG.JSF64">
             <summary>
             Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            
+
             http://burtleburtle.net/bob/rand/smallprng.html
             </summary>
         </member>
@@ -309,7 +309,7 @@
         <member name="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence">
             <summary>
             Improved version from Middle Square Method
-            invented by John Von Neumann. 
+            invented by John Von Neumann.
             <list type="bullet">
             <item>https://arxiv.org/abs/1704.00358</item>
             </list>
@@ -337,8 +337,8 @@
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.PermutedCongruentialGenerator">
             <summary>
-            Implemetation of Permuted Congruential Generator 
-            "Minimal C implementation" from 
+            Implemetation of Permuted Congruential Generator
+            "Minimal C implementation" from
             http://www.pcg-random.org/download.html
             </summary>
         </member>
@@ -391,7 +391,7 @@
         <member name="T:Litdex.Security.RNG.PRNG.Squares">
             <summary>
             Counter-based RNG based on <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>
-            
+
             <list type="bullet">
             	<item>https://arxiv.org/pdf/2004.06278v2.pdf</item>
             	<item>https://arxiv.org/pdf/1704.00358v5.pdf</item>
@@ -539,7 +539,7 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextInt(System.Int32)">
             <summary>
-            Generates the next pseudorandom number Xoroshiro128starstar PRNG 
+            Generates the next pseudorandom number Xoroshiro128starstar PRNG
             integer value.
             </summary>
             <param name="bits"></param>
