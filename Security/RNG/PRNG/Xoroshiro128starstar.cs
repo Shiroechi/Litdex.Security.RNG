@@ -9,27 +9,27 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://vigna.di.unimi.it/xorshift/xoroshiro128starstar.c
 	/// </summary>
 	public class Xoroshiro128starstar : Random64
-    {
-        private ulong _State1, _State2;
+	{
+		private ulong _State1, _State2;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public Xoroshiro128starstar()
-        {
-            this.Reseed();
-        }
+		{
+			this.Reseed();
+		}
 
-        /// <summary>
-        /// Constructor with defined seed.
-        /// </summary>
-        /// <param name="seed1"></param>
-        /// <param name="seed2"></param>
-        public Xoroshiro128starstar(ulong seed1, ulong seed2)
-        {
+		/// <summary>
+		/// Constructor with defined seed.
+		/// </summary>
+		/// <param name="seed1"></param>
+		/// <param name="seed2"></param>
+		public Xoroshiro128starstar(ulong seed1, ulong seed2)
+		{
 			this._State1 = seed1;
 			this._State2 = seed2;
-        }
+		}
 
 		/// <summary>
 		/// Destructor.
@@ -47,11 +47,11 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			var s0 = this._State1;
 			var s1 = this._State2;
-			var result = RotateLeft(this._State1 * 5, 7) * 9;
+			var result = this.RotateLeft(this._State1 * 5, 7) * 9;
 
 			s1 ^= s0;
-			this._State1 = RotateLeft(s0, 24) ^ s1 ^ (s1 << 16); // a, b
-			this._State2 = RotateLeft(s1, 37); // c
+			this._State1 = this.RotateLeft(s0, 24) ^ s1 ^ (s1 << 16); // a, b
+			this._State2 = this.RotateLeft(s1, 37); // c
 
 			return result;
 		}
@@ -64,7 +64,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <returns></returns>
 		protected uint NextInt(int bits)
 		{
-			return (uint)(NextLong() >> (54 - bits));
+			return (uint)(this.NextLong() >> (54 - bits));
 		}
 
 		protected ulong RotateLeft(ulong val, int shift)
@@ -100,26 +100,26 @@ namespace Litdex.Security.RNG.PRNG
 		/// non-overlapping subsequences for parallel computations.
 		/// </summary>
 		public void NextJump()
-        {
-            ulong[] JUMP = { 0xDF900294D8F554A5, 0x170865DF4B3201FC };
-            ulong seed1 = 0, seed2 = 0;
+		{
+			ulong[] JUMP = { 0xDF900294D8F554A5, 0x170865DF4B3201FC };
+			ulong seed1 = 0, seed2 = 0;
 
-            for (var i = 0; i < 2; i++)
-            {
-                for (var b = 0; b < 64; b++)
-                {
-                    if ((JUMP[i] & (1UL << b)) != 0)
-                    {
-                        seed1 ^= JUMP[0];
-                        seed2 ^= JUMP[1];
-                    }
-                    NextLong();
-                }
-            }
+			for (var i = 0; i < 2; i++)
+			{
+				for (var b = 0; b < 64; b++)
+				{
+					if ((JUMP[i] & (1UL << b)) != 0)
+					{
+						seed1 ^= JUMP[0];
+						seed2 ^= JUMP[1];
+					}
+					this.NextLong();
+				}
+			}
 			this._State1 = seed1;
 			this._State2 = seed2;
-            Array.Clear(JUMP, 0, JUMP.Length);
-        }
+			Array.Clear(JUMP, 0, JUMP.Length);
+		}
 
 		#endregion Public Method
 	}

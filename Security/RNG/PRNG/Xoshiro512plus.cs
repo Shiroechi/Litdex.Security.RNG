@@ -8,7 +8,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://xoshiro.di.unimi.it/xoshiro512plus.c
 	/// </summary>
 	public class Xoshiro512plus : Random64
-    {
+	{
 		private ulong[] _State = null;
 
 		/// <summary>

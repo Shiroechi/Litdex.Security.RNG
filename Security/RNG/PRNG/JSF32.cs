@@ -9,7 +9,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://burtleburtle.net/bob/rand/smallprng.html
 	/// </summary>
 	public class JSF32 : Random32
-    {
+	{
 		private uint[] _Seed = new uint[4];
 
 		/// <summary>

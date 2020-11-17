@@ -8,28 +8,28 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://vigna.di.unimi.it/xorshift/xoshiro256plus.c
 	/// </summary>
 	public class Xoshiro256plus : Random64
-    {
-        private ulong[] _State = null;
+	{
+		private ulong[] _State = null;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public Xoshiro256plus()
-        {
+		{
 			this._State = new ulong[4];
 			this.Reseed();
-        }
+		}
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public Xoshiro256plus(ulong[] seed)
-        {
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public Xoshiro256plus(ulong[] seed)
+		{
 			this._State = new ulong[4];
 			if (seed.Length < 4)
-            {
+			{
 				throw new ArgumentException("The generator need 4 seed, your seed " + seed.Length);
-            }
+			}
 
 			for (var i = 0; i < 4; i++)
 			{
@@ -104,33 +104,33 @@ namespace Litdex.Security.RNG.PRNG
 		/// non-overlapping subsequences for parallel computations.
 		/// </summary>
 		public void NextJump()
-        {
-            ulong[] JUMP = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
+		{
+			ulong[] JUMP = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
 
-            var s0 = 0UL;
-            var s1 = 0UL;
-            var s2 = 0UL;
-            var s3 = 0UL;
+			var s0 = 0UL;
+			var s1 = 0UL;
+			var s2 = 0UL;
+			var s3 = 0UL;
 
-            for (var i = 0; i < 4; i++)
-            {
-                for (var b = 0; b < 64; b++)
-                {
-                    if ((JUMP[i] & ((1UL) << b)) != 0 )
-                    {
-                        s0 ^= this._State[0];
-                        s1 ^= this._State[1];
-                        s2 ^= this._State[2];
-                        s3 ^= this._State[3];
-                    }
-                    this.NextLong();
-                }
-            }
+			for (var i = 0; i < 4; i++)
+			{
+				for (var b = 0; b < 64; b++)
+				{
+					if ((JUMP[i] & ((1UL) << b)) != 0 )
+					{
+						s0 ^= this._State[0];
+						s1 ^= this._State[1];
+						s2 ^= this._State[2];
+						s3 ^= this._State[3];
+					}
+					this.NextLong();
+				}
+			}
 			this._State[0] = s0;
 			this._State[1] = s1;
 			this._State[2] = s2;
 			this._State[3] = s3;
-        }
+		}
 
 		#endregion Public
 	}

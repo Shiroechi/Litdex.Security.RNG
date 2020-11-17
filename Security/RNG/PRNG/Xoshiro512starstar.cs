@@ -8,7 +8,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// http://xoshiro.di.unimi.it/xoshiro512starstar.c
 	/// </summary>
 	public class Xoshiro512starstar : Random64
-    {
+	{
 		private ulong[] _State = null;
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var result = RotateLeft(this._State[1] * 5, 7) * 9;
+			var result = this.RotateLeft(this._State[1] * 5, 7) * 9;
 
 			var t = this._State[1] << 11;
 
@@ -65,7 +65,7 @@ namespace Litdex.Security.RNG.PRNG
 
 			this._State[6] ^= t;
 
-			this._State[7] = RotateLeft(this._State[7], 21);
+			this._State[7] = this.RotateLeft(this._State[7], 21);
 
 			return result;
 		}
