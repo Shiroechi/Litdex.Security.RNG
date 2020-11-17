@@ -8,20 +8,6 @@ namespace Litdex.Security.RNG
 	/// </summary>
 	public abstract class Random32 : IRNG
 	{
-		#region Constructor & Destructor
-
-		public Random32()
-		{
-
-		}
-
-		~Random32()
-		{
-
-		}
-
-		#endregion Constructor & Destructor
-
 		#region Protected Method
 
 		/// <summary>

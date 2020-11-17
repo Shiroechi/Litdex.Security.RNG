@@ -8,20 +8,6 @@ namespace Litdex.Security.RNG
 	/// </summary>
 	public abstract class Random64 : IRNG
 	{
-		#region Constructor & Destructor
-
-		public Random64()
-		{
-
-		}
-
-		~Random64()
-		{
-
-		}
-
-		#endregion Constructor & Destructor
-
 		#region Protected Method
 
 		/// <summary>
