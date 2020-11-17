@@ -13,7 +13,9 @@
             <summary>
             The name of the algorithm this generator implements.
             </summary>
-            <returns>The name of this RNG.</returns>
+            <returns>
+            The name of this RNG.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Reseed">
             <summary>
@@ -24,80 +26,206 @@
             <summary>
             Generate <see cref="T:System.Boolean"/> value from generator.
             </summary>
-            <returns><see langword="true"/> or <see langword="false"/></returns>
+            <returns>
+            <see langword="true"/> or <see langword="false"/>.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte">
             <summary>
             Generate <see cref="T:System.Byte"/> value from generator.
             </summary>
-            <returns>Random <see cref="T:System.Byte"/></returns>
+            <returns>
+            Random <see cref="T:System.Byte"/>.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte(System.Byte,System.Byte)">
             <summary>
             Generate <see cref="T:System.Byte"/> value between 
             lower bound and upper bound from generator.
             </summary>
-            <param name="lower">Lower bound.</param>
-            <param name="upper">Upper bound.</param>
-            <returns><see cref="T:System.Byte"/> value between 
-            lower bound and upper bound.</returns>
-            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
+            <param name="lower">
+            Lower bound or expected minimum value.
+            </param>
+            <param name="upper">
+            Upper bound or ecpected maximum value.
+            </param>
+            <returns>
+            <see cref="T:System.Byte"/> value between lower bound and upper bound.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Lower bound is greater than or equal to upper bound.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextBytes(System.Int32)">
             <summary>
             Generate random byte[] value from generator.
             </summary>
-            <param name="length">Output length.</param>
-            <returns>Array of bytes.</returns>
+            <param name="length">
+            Requested output length.
+            </param>
+            <returns>
+            Array of bytes.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt">
             <summary>
             Generate <see cref="T:System.UInt32"/> value from generator.
             </summary>
-            <returns>A 32-bit unsigned integer.</returns>
+            <returns>
+            A 32-bit unsigned integer.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt(System.UInt32,System.UInt32)">
             <summary>
             Generate <see cref="T:System.UInt32"/> value between 
             lower bound and upper bound from generator.
             </summary>
-            <param name="lower">Lower bound.</param>
-            <param name="upper">Upper bound.</param>
-            <returns><see cref="T:System.UInt32"/> value between 
-            lower bound and upper bound.</returns>
-            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
+            <param name="lower">
+            Lower bound or expected minimum value.
+            </param>
+            <param name="upper">
+            Upper bound or ecpected maximum value.
+            </param>
+            <returns>
+            <see cref="T:System.UInt32"/> value between lower bound and upper bound.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Lower bound is greater than or equal to upper bound.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong">
             <summary>
             Generate <see cref="T:System.UInt64"/> value from generator. 
             </summary>
-            <returns>A 64-bit unsigned integer.</returns>
+            <returns>
+            A 64-bit unsigned integer.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong(System.UInt64,System.UInt64)">
             <summary>
             Generate <see cref="T:System.UInt64"/> value between 
             lower bound and upper bound from generator. 
             </summary>
-            <param name="lower">Lower bound.</param>
-            <param name="upper">Upper bound.</param>
-            <returns><see cref="T:System.UInt64"/> value lower bound and upper bound.</returns>
-            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
+            <param name="lower">
+            Lower bound or expected minimum value.
+            </param>
+            <param name="upper">
+            Upper bound or ecpected maximum value.
+            </param>
+            <returns>
+            <see cref="T:System.UInt64"/> value lower bound and upper bound.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Lower bound is greater than or equal to upper bound.
+            </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble">
             <summary>
             Generate <see cref="T:System.Double"/> value from generator.
             </summary>
-            <returns>A 64-bit floating point.</returns>
+            <returns>
+            A 64-bit floating point.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble(System.Double,System.Double)">
             <summary>
             Generate <see cref="T:System.Double"/> value between 
             lower bound and upper bound from generator.
             </summary>
-            <param name="lower">Lower bound.</param>
-            <param name="upper">Upper bound.</param>
-            <returns><see cref="T:System.Double"/> value between lower bound and upper bound.</returns>
-            <exception cref="T:System.ArgumentException">Lower bound is greater than or equal to upper bound.</exception>
+            <param name="lower">
+            Lower bound or expected minimum value.
+            </param>
+            <param name="upper">
+            Upper bound or ecpected maximum value.
+            </param>
+            <returns>
+            <see cref="T:System.Double"/> value between lower bound and upper bound.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Lower bound is greater than or equal to upper bound.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[])">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <returns>
+            Random element from the given sets.
+            </returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[],System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <param name="select">
+            The desired amount to select.
+            </param>
+            <returns>
+            Multiple random elements from the given sets.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <list type="bullet">
+            	<item>
+            	The number of elements to be retrieved is negative or less than 1.
+            	</item>
+            	<item>
+            	The number of elements to be retrieved exceeds the items size.
+            	</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Select one element randomly.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <returns>
+            Random element from the given sets.
+            </returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            Select abritary element randomly.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <param name="select">
+            The desired amount to select.
+            </param>
+            <returns>
+            Multiple random elements from the given sets.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <list type="bullet">
+            	<item>
+            	The number of elements to be retrieved is negative or less than 1.
+            	</item>
+            	<item>
+            	The number of elements to be retrieved exceeds the items size.
+            	</item>
+            </list>
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32">
             <summary>
@@ -642,6 +770,59 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="T:Litdex.Security.RNG.Random">
+            <summary>
+            Base class of all random.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextBoolean">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextByte">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextByte(System.Byte,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextInt">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextInt(System.UInt32,System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextLong">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextLong(System.UInt64,System.UInt64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextDouble">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextDouble(System.Double,System.Double)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(``0[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(``0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.IList{``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:Litdex.Security.RNG.Random32">
             <summary>
             Base class for 32 bit RNG.
@@ -656,16 +837,7 @@
         <member name="M:Litdex.Security.RNG.Random32.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random32.Reseed">
-            <inheritdoc/>
-        </member>
         <member name="M:Litdex.Security.RNG.Random32.NextBoolean">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextByte">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextByte(System.Byte,System.Byte)">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.NextBytes(System.Int32)">
@@ -674,100 +846,8 @@
         <member name="M:Litdex.Security.RNG.Random32.NextInt">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextInt(System.UInt32,System.UInt32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Litdex.Security.RNG.Random32.NextLong">
             <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextLong(System.UInt64,System.UInt64)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextDouble">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.NextDouble(System.Double,System.Double)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[])">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice``1(``0[],System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[])">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Object[],System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object})">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random32.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
         <member name="T:Litdex.Security.RNG.Random64">
             <summary>
@@ -783,16 +863,7 @@
         <member name="M:Litdex.Security.RNG.Random64.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random64.Reseed">
-            <inheritdoc/>
-        </member>
         <member name="M:Litdex.Security.RNG.Random64.NextBoolean">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextByte">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextByte(System.Byte,System.Byte)">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.NextBytes(System.Int32)">
@@ -801,100 +872,8 @@
         <member name="M:Litdex.Security.RNG.Random64.NextInt">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextInt(System.UInt32,System.UInt32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Litdex.Security.RNG.Random64.NextLong">
             <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextLong(System.UInt64,System.UInt64)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextDouble">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.NextDouble(System.Double,System.Double)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[])">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice``1(``0[],System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[])">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Object[],System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice``1(System.Collections.Generic.List{``0},System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <typeparam name="T">Data type</typeparam>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object})">
-            <summary>
-            Select one element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <returns>Random element from the given sets.</returns>
-        </member>
-        <member name="M:Litdex.Security.RNG.Random64.Choice(System.Collections.Generic.List{System.Object},System.Int32)">
-            <summary>
-            Select abritary element randomly.
-            </summary>
-            <remarks>
-            More slower because need boxing/unboxing.
-            </remarks>
-            <param name="items">Set of items to choose.</param>
-            <param name="count">The desired amount to select.</param>
-            <returns>Multiple random elements from the given sets.</returns>
-            <exception cref="T:System.ArgumentException">Count is lower than 1 or more than size of items.</exception>
         </member>
     </members>
 </doc>
