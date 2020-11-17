@@ -1,4 +1,6 @@
-﻿namespace Litdex.Security.RNG
+﻿using System;
+
+namespace Litdex.Security.RNG
 {
 	/// <summary>
 	/// Base class for 64 bit RNG.
@@ -32,6 +34,11 @@
 		/// <inheritdoc/>
 		public override byte[] NextBytes(int length)
 		{
+			if (length <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(length), $"The requested output size can't lower than 1.");
+			}
+
 			ulong sample = 0;
 			var data = new byte[length];
 
