@@ -140,7 +140,7 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
-		public virtual IList<T> Choice<T>(IList<T> items, int select)
+		public virtual T[] Choice<T>(IList<T> items, int select)
 		{
 			return this.Choice(items.ToArray(), select);
 		}

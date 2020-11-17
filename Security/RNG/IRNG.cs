@@ -224,6 +224,6 @@ namespace Litdex.Security.RNG
 		///		</item>
 		/// </list>
 		/// </exception>
-		IList<T> Choice<T>(IList<T> items, int select);
+		T[] Choice<T>(IList<T> items, int select);
 	}
 }
