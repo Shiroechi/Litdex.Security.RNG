@@ -5,8 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
-    <Description>- Fix error in NextBytes
-- Change algorithm in NextBoolean</Description>
+    <Description></Description>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
