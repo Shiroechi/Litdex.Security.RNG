@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG.Security.RNG.PRNG
+namespace Litdex.Security.RNG
 {
 	/// <summary>
 	/// 32-bit arithmetic: Good for general purpose use.
