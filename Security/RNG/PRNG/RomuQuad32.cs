@@ -20,10 +20,18 @@ namespace Litdex.Security.RNG
 		/// <summary>
 		/// Create <see cref="RomuQuad32"/> instance.
 		/// </summary>
-		/// <param name="seed1">W state.</param>
-		/// <param name="seed2">X state.</param>
-		/// <param name="seed3">Y state.</param>
-		/// <param name="seed4">Z state.</param>
+		/// <param name="seed1">
+		/// W state.
+		/// </param>
+		/// <param name="seed2">
+		/// X state.
+		/// </param>
+		/// <param name="seed3">
+		/// Y state.
+		/// </param>
+		/// <param name="seed4">
+		/// Z state.
+		/// </param>
 		public RomuQuad32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint seed4 = 0)
 		{
 			this._W = seed1;
@@ -35,7 +43,12 @@ namespace Litdex.Security.RNG
 		/// <summary>
 		/// Create <see cref="RomuQuad32"/> instance.
 		/// </summary>
-		/// <param name="seed">A array of seed numbers.</param>
+		/// <param name="seed">
+		/// A array of seed numbers.
+		/// </param>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Seed need 4 numbers.
+		/// </exception>
 		public RomuQuad32(uint[] seed)
 		{
 			if (seed.Length < 4)
