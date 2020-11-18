@@ -19,7 +19,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region Constructor & Destructor
 
-		public Tychei(ulong seed = 0, uint idx = 0)
+		public Tychei(ulong seed = 0xFEEDFACECAFEF00D, uint idx = 0)
 		{
 			this.Init(seed, idx);
 			for (var i = 0; i < 20; i++)
