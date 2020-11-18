@@ -83,10 +83,10 @@ namespace Litdex.Security.RNG
 			uint zp = this._Z;
 
 			this._W = 3323815723 * zp; // a-mult
-			this._X = zp + ROTL(wp, 26); // b-rotl, c-add
+			this._X = zp + this.ROTL(wp, 26); // b-rotl, c-add
 			this._Y = yp - xp; // d-sub
 			this._Z = yp + wp; // e-add
-			this._Z = ROTL(this._Z, 9); // f-rotl
+			this._Z = this.ROTL(this._Z, 9); // f-rotl
 			return xp;
 		}
 

@@ -78,9 +78,9 @@ namespace Litdex.Security.RNG
 
 			this._X = 15241094284759029579u * zp; // a-mult
 			this._Y = yp - xp; // d-sub
-			this._Y = ROTL(this._Y, 12);
+			this._Y = this.ROTL(this._Y, 12);
 			this._Z = zp - yp; // e-add
-			this._Z = ROTL(this._Z, 44); // f-rotl
+			this._Z = this.ROTL(this._Z, 44); // f-rotl
 			return xp;
 		}
 

@@ -37,7 +37,7 @@ namespace Litdex.Security.RNG
 		{
 			uint result = this._Seed >> 16;
 			this._Seed *= 3611795771u;
-			this._Seed = ROTL(this._Seed, 12);
+			this._Seed = this.ROTL(this._Seed, 12);
 			return result;
 		}
 

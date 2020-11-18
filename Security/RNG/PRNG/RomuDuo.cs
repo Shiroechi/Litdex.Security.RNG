@@ -56,7 +56,7 @@ namespace Litdex.Security.RNG
 		{
 			ulong xp = this._X;
 			this._X = 15241094284759029579u * this._Y;
-			this._Y = ROTL(this._Y, 27) + ROTL(this._Y, 15) - xp;
+			this._Y = this.ROTL(this._Y, 27) + this.ROTL(this._Y, 15) - xp;
 			return xp;
 		}
 
