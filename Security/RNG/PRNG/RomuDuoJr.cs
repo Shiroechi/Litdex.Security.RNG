@@ -3,92 +3,92 @@ using System.Security.Cryptography;
 
 namespace Litdex.Security.RNG
 {
-	/// <summary>
-	/// The fastest generator using 64-bit arith., but not suited for huge jobs.
-	/// Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
-	/// </summary>
-	public class RomuDuoJr : Random64
-	{
-		#region Member
-		
-		private ulong _X;
-		private ulong _Y;
+/// <summary>
+/// The fastest generator using 64-bit arith., but not suited for huge jobs.
+/// Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
+/// </summary>
+public class RomuDuoJr : Random64
+{
+    #region Member
 
-		#endregion Member
+    private ulong _X;
+    private ulong _Y;
 
-		#region Constructor & Destructor
+    #endregion Member
 
-		public RomuDuoJr(ulong seed1 = 0, ulong seed2 = 0)
-		{
-			this._X = seed1;
-			this._Y = seed2;
-		}
+    #region Constructor & Destructor
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="seed"></param>
-		/// <exception cref="ArgumentOutOfRangeException">
-		/// Seed need 2 numbers.
-		/// </exception>
-		public RomuDuoJr(ulong[] seed)
-		{
-			if (seed.Length < 2)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), "Seed need 2 numbers.");
-			}
+    public RomuDuoJr(ulong seed1 = 0, ulong seed2 = 0)
+    {
+        this._X = seed1;
+        this._Y = seed2;
+    }
 
-			this._X = seed[0];
-			this._Y = seed[1];
-		}
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="seed"></param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Seed need 2 numbers.
+    /// </exception>
+    public RomuDuoJr(ulong[] seed)
+    {
+        if (seed.Length < 2)
+        {
+            throw new ArgumentOutOfRangeException(nameof(seed), "Seed need 2 numbers.");
+        }
 
-		~RomuDuoJr()
-		{
-			this._X = this._Y = 0;
-		}
+        this._X = seed[0];
+        this._Y = seed[1];
+    }
 
-		#endregion Constructor & Destructor
+    ~RomuDuoJr()
+    {
+        this._X = this._Y = 0;
+    }
 
-		#region Protected Method
+    #endregion Constructor & Destructor
 
-		/// <inheritdoc/>
-		protected override ulong Next()
-		{
-			ulong xp = this._X;
-			this._X = 15241094284759029579u * this._Y;
-			this._Y -= xp;
-			this._Y = this.ROTL(this._Y, 27);
-			return xp;
-		}
+    #region Protected Method
 
-		protected ulong ROTL(ulong d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (64 - lrot));
-		}
+    /// <inheritdoc/>
+    protected override ulong Next()
+    {
+        ulong xp = this._X;
+        this._X = 15241094284759029579u * this._Y;
+        this._Y -= xp;
+        this._Y = this.ROTL(this._Y, 27);
+        return xp;
+    }
 
-		#endregion Protected Method
+    protected ulong ROTL(ulong d, int lrot)
+    {
+        return (d << (lrot)) | (d >> (64 - lrot));
+    }
 
-		#region Public Method
+    #endregion Protected Method
 
-		/// <inheritdoc/>
-		public override string AlgorithmName()
-		{
-			return "Romu Duo Jr 64 bit";
-		}
+    #region Public Method
 
-		/// <inheritdoc/>
-		public override void Reseed()
-		{
-			using (var rng = new RNGCryptoServiceProvider())
-			{
-				var bytes = new byte[4];
-				rng.GetNonZeroBytes(bytes);
-				this._X = BitConverter.ToUInt32(bytes, 0);
-				rng.GetNonZeroBytes(bytes);
-				this._Y = BitConverter.ToUInt32(bytes, 0);
-			}
-		}
+    /// <inheritdoc/>
+    public override string AlgorithmName()
+    {
+        return "Romu Duo Jr 64 bit";
+    }
 
-		#endregion Public Method
-	}
+    /// <inheritdoc/>
+    public override void Reseed()
+    {
+        using (var rng = new RNGCryptoServiceProvider())
+        {
+            var bytes = new byte[4];
+            rng.GetNonZeroBytes(bytes);
+            this._X = BitConverter.ToUInt32(bytes, 0);
+            rng.GetNonZeroBytes(bytes);
+            this._Y = BitConverter.ToUInt32(bytes, 0);
+        }
+    }
+
+    #endregion Public Method
+}
 }
