@@ -8,7 +8,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// "Minimal C implementation" from 
 	/// http://www.pcg-random.org/download.html
 	/// </summary>
-	public class PermutedCongruentialGenerator : Random64
+	public class PCG32 : Random64
 	{
 		#region Member
 
@@ -22,7 +22,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		/// <param name="seed">Seed.</param>
 		/// <param name="increment">Increment.</param>
-		public PermutedCongruentialGenerator(ulong seed = 0, ulong increment = 0)
+		public PCG32(ulong seed = 0, ulong increment = 0)
 		{
 			if (seed <= 0 || increment <= 0) 
 			{
@@ -38,7 +38,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <summary>
 		/// Destructor.
 		/// </summary>
-		~PermutedCongruentialGenerator()
+		~PCG32()
 		{
 			this._Seed = 0;
 			this._Increment = 0;
@@ -63,7 +63,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Minimal Permuted Congruential Generator";
+			return "PCG32";
 		}
 
 		/// <inheritdoc/>
