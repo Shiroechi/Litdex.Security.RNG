@@ -145,6 +145,12 @@ namespace Litdex.Security.RNG
 			return this.Choice(items.ToArray(), select);
 		}
 
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return this.AlgorithmName();
+		}
+
 		#endregion Public Method
 	}
 }
