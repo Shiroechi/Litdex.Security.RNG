@@ -71,7 +71,6 @@ namespace Litdex.Security.RNG.PRNG
 
 		#region	Public Method
 
-
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
