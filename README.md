@@ -21,8 +21,10 @@ This is an individual module containing the RNG set from
 
 # How to use
 
-For detailed use read [How to use](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use)
-or [Documentation](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Documentation)
+For detailed use read
+[How to use](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use)
+or
+[Documentation](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Documentation)
 
 The simple way to use
 
@@ -31,7 +33,8 @@ var rng = new Xoroshiro128plus();
 var randomInt = rng.NextInt();
 ```
 
-Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
+Want to create your own RNG?? Then read
+[Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
 
 # Donation
 
