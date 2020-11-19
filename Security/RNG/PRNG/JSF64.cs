@@ -10,8 +10,14 @@ namespace Litdex.Security.RNG.PRNG
 	/// </summary>
 	public class JSF64 : Random64
 	{
-		private ulong[] _Seed = new ulong[8];
-		
+		#region Member
+
+		private uint[] _Seed = new uint[8];
+
+		#endregion Member
+
+		#region Constructor & Destructor
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -42,6 +48,8 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			this._Seed = null;
 		}
+
+		#endregion Constructor & Destructor
 
 		#region	Protected Method
 
