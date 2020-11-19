@@ -12,7 +12,7 @@ namespace Litdex.Security.RNG.PRNG
 	{
 		#region Member
 
-		private uint[] _Seed = new uint[8];
+		private ulong[] _Seed = new ulong[8];
 
 		#endregion Member
 
