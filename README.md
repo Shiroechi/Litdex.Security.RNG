@@ -10,6 +10,7 @@ This is an individual module containing the RNG set from
 
 # This package contains:
 
+- [GJrand](http://gjrand.sourceforge.net/)
 - [JSF](http://burtleburtle.net/bob/rand/smallprng.html)
 - [Middle Square Weyl Sequence](https://en.wikipedia.org/wiki/Middle-square_method)
 - [PCG](https://en.wikipedia.org/wiki/Permuted_congruential_generator)
