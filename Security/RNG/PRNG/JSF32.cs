@@ -10,7 +10,13 @@ namespace Litdex.Security.RNG.PRNG
 	/// </summary>
 	public class JSF32 : Random32
 	{
-		private uint[] _Seed = new uint[4];
+		#region Member
+
+		protected uint[] _Seed = new uint[4];
+
+		#endregion Member
+		
+		#region Constructor & Destructor
 
 		/// <summary>
 		/// Constructor.
@@ -24,7 +30,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Seed[0] = Convert.ToUInt32(0xF1EA5EED);
+				this._Seed[0] = 0xF1EA5EED;
 				this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
 
 				for (var i = 0; i < 20; i++)
@@ -42,6 +48,8 @@ namespace Litdex.Security.RNG.PRNG
 			this._Seed = null;
 		}
 
+		#endregion Constructor & Destructor
+
 		#region Protected Method
 
 		/// <inheritdoc/>
@@ -50,7 +58,6 @@ namespace Litdex.Security.RNG.PRNG
 			var e = this._Seed[0] - this.Rotate(this._Seed[1], 27);
 			this._Seed[0] = this._Seed[1] ^ this.Rotate(this._Seed[2], 17);
 			this._Seed[1] = this._Seed[2] + this._Seed[3];
-			//this.Seed[1] = this.Seed[2] + this.Rotate(this.Seed[3], 11);
 			this._Seed[2] = this._Seed[3] + e;
 			this._Seed[3] = e + this._Seed[0];
 			return this._Seed[3];
