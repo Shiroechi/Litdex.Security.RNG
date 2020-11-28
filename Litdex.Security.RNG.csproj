@@ -5,20 +5,16 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
-    <Description></Description>
+    <Description>A module containing the RNG set.</Description>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
     <PackageTags>Random RNG PRNG</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <RootNamespace>Litdex</RootNamespace>
-    <PackageReleaseNotes>Add new RNG algorithm
-- GJrand
-- Tyche
-- Romu 
-</PackageReleaseNotes>
+    <PackageReleaseNotes>Add missing namespace in Romu random.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
