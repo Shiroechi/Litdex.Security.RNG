@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// Great for general purpose work, including huge jobs.

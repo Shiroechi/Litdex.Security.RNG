@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// The fastest generator using 64-bit arith., but not suited for huge jobs.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// Might be faster than RomuTrio due to using fewer registers, but might struggle with massive jobs.
