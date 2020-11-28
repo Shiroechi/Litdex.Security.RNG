@@ -3,6 +3,9 @@
 This is an individual module containing the RNG set from
 [Litdex](https://github.com/Shiroechi/Litdex).
 
+# Badges
+[![CodeFactor](https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng/badge)](https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng)
+
 # Download
 
 [![Nuget](https://img.shields.io/nuget/v/litdex?label=Litdex)](https://www.nuget.org/packages/Litdex/)
