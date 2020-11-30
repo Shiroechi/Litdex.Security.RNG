@@ -14,9 +14,9 @@ namespace Litdex.Security.RNG.PRNG
 	{
 		#region Member
 
-		private ulong _Output = 0; //random output
-		private ulong _Sequence = 0; //Weyl sequence
-		private ulong _Increment = 0xB5AD4ECEDA1CE2A9; //odd constant
+		private ulong _Output = 0; // random output
+		private ulong _Sequence = 0; // Weyl sequence
+		private ulong _Increment = 0xB5AD4ECEDA1CE2A9; // odd constant
 
 		#endregion Member
 
