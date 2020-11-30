@@ -63,7 +63,9 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public override ulong NextLong()
 		{
-			return BitConverter.ToUInt64(this.NextBytes(8), 0);
+			ulong high = this.NextInt();
+			ulong low = this.NextInt();
+			return high << 32 | low;
 		}
 
 		#endregion Public Method
