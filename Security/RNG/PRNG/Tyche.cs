@@ -69,11 +69,11 @@ namespace Litdex.Security.RNG.PRNG
 			this._B ^= this._C;
 			this._B = this._B << 12 | this._B >> 20;
 
-			this._A += this._B ;
+			this._A += this._B;
 			this._D ^= this._A;
 			this._D = this._D << 8 | this._D >> 24;
 
-			this._C += this._D ;
+			this._C += this._D;
 			this._B ^= this._C;
 			this._B = this._B << 7 | this._B >> 25;
 		}
