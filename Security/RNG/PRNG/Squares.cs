@@ -55,15 +55,15 @@ namespace Litdex.Security.RNG.PRNG
 			z = y + key;
 			
 			// round 1
-			x = x * x + y; 
+			x = (x * x) + y; 
 			x = (x >> 32) | (x << 32);
 			
 			// round 2
-			x = x * x + z; 
+			x = (x * x) + z; 
 			x = (x >> 32) | (x << 32);
 
 			// round 3
-			x = x * x + y;
+			x = (x * x) + y;
 			x = (x >> 32) | (x << 32);
 
 			// round 4
