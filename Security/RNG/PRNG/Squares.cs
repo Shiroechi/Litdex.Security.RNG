@@ -7,13 +7,12 @@ namespace Litdex.Security.RNG.PRNG
 	/// Counter-based RNG based on <see cref="MiddleSquareWeylSequence"/>
 	/// 
 	/// <list type="bullet">
-	///		<item>https://arxiv.org/pdf/2004.06278v2.pdf</item>
-	///		<item>https://arxiv.org/pdf/1704.00358v5.pdf</item>
+	///		<item>https://arxiv.org/pdf/2004.06278.pdf</item>
 	/// </list>
 	/// </summary>
 	public class Squares : Random32
 	{
-		private ulong _Key = 0xc58efd154ce32f6d; //first key in key.h.
+		private ulong _Key = 0xc58efd154ce32f6d; // first key in key.h.
 		private ulong _Counter = 0;
 
 		/// <summary>
@@ -55,13 +54,20 @@ namespace Litdex.Security.RNG.PRNG
 			y = x = ctr * key; 
 			z = y + key;
 			
+			// round 1
 			x = x * x + y; 
 			x = (x >> 32) | (x << 32);
 			
+			// round 2
 			x = x * x + z; 
 			x = (x >> 32) | (x << 32);
-			
-			return (uint)((x * x + y) >> 32);
+
+			// round 3
+			x = x * x + y;
+			x = (x >> 32) | (x << 32);
+
+			// round 4
+			return (uint)((x * x) + z) >> 32;
 		}
 
 		#endregion Protected Method
