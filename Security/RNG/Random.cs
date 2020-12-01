@@ -97,6 +97,11 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public virtual T Choice<T>(T[] items)
 		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+			}
+
 			if (items.Length > int.MaxValue)
 			{
 				throw new ArgumentOutOfRangeException(nameof(items), $"The items length or size can't be greater than int.MaxValue or { int.MaxValue }.");
@@ -108,6 +113,11 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public virtual T[] Choice<T>(T[] items, int select)
 		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+			}
+
 			if (select < 0)
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved is negative or less than 1.");
