@@ -30,8 +30,9 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Seed = seed;
+				this._Seed = seed + increment;
 				this._Increment = increment;
+				this.Next();
 			}
 		}
 
@@ -77,6 +78,9 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Increment = BitConverter.ToUInt64(bytes, 0);
 			}
+
+			this._Seed += this._Increment;
+			this.Next();
 		}
 
 		#endregion Public Method
