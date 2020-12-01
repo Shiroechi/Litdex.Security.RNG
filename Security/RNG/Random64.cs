@@ -98,7 +98,7 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public override uint NextInt()
 		{
-			return (uint)this.Next();
+			return unchecked((uint)this.Next());
 		}
 
 		/// <inheritdoc/>
