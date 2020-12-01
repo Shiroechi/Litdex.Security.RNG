@@ -184,11 +184,7 @@ namespace Litdex.Security.RNG
 			while (selected.Count < select)
 			{
 				var index = this.NextInt(0, (uint)(items.Length - 1));
-
-				if (selected.Contains(items[index]) == false)
-				{
-					selected.Add(items[index]);
-				}
+				selected.Add(items[index]);
 			}
 
 			return selected.ToArray();
