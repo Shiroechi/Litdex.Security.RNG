@@ -59,6 +59,57 @@ namespace Litdex.Security.RNG
 			return lower + (this.NextInt() % diff);
 		}
 
+		/// <summary>
+		/// Lemire algorithm to generate <see cref="uint"/> value between 
+		/// lower bound and upper bound from generator.
+		/// </summary>
+		/// <remarks>
+		/// https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
+		/// </remarks>
+		/// <param name="lower">
+		/// Lower bound or expected minimum value.
+		/// </param>
+		/// <param name="upper">
+		/// Upper bound or ecpected maximum value.
+		/// </param>
+		/// <param name="unbias">
+		/// Determine using division for reduce bias.
+		/// </param>
+		/// <returns>
+		/// <see cref="uint"/> value between lower bound and upper bound.
+		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Lower bound is greater than or equal to upper bound.
+		/// </exception>
+		public virtual uint NextIntFast(uint lower, uint upper, bool unbias = false)
+		{
+			if (lower >= upper)
+			{
+				throw new ArgumentOutOfRangeException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
+			}
+
+			uint range = (upper - lower);
+			ulong random32bit = this.NextInt();
+			ulong multiresult = random32bit * range;
+			uint leftover = (uint)multiresult;
+
+			if (unbias)
+			{
+				if (leftover < range)
+				{
+					uint threshold = (uint)((int)-range % range);
+					while (leftover < threshold)
+					{
+						random32bit = this.NextInt();
+						multiresult = random32bit * range;
+						leftover = (uint)multiresult;
+					}
+				}
+			}
+			
+			return (uint)(multiresult >> 32) + lower;
+		}
+
 		/// <inheritdoc/>
 		public abstract ulong NextLong();
 
