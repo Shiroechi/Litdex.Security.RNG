@@ -207,6 +207,25 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
+		public virtual void Shuffle<T>(T[] items)
+		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+			}
+
+			T temp;
+
+			for (var i = items.Length - 1; i > 1; i--)
+			{
+				var index = this.NextLong(0, (ulong)i);
+				temp = items[i];
+				items[i] = items[index];
+				items[index] = temp;
+			}
+		}
+
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			return this.AlgorithmName();
