@@ -159,8 +159,11 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
-		/// The items length or size can't be greater than int.MaxValue.
+		///		The items length or size can't be greater than int.MaxValue.
 		/// </exception>
 		T Choice<T>(T[] items);
 
@@ -179,6 +182,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Multiple random elements from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <list type="bullet">
 		///		<item>
@@ -203,8 +209,11 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
-		/// The items length or size can't be greater than int.MaxValue.
+		///		The items length or size can't be greater than int.MaxValue.
 		/// </exception>
 		T Choice<T>(IList<T> items);
 
@@ -223,6 +232,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Multiple random elements from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <list type="bullet">
 		///		<item>
@@ -234,5 +246,6 @@ namespace Litdex.Security.RNG
 		/// </list>
 		/// </exception>
 		T[] Choice<T>(IList<T> items, int select);
+
 	}
 }
