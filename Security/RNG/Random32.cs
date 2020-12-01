@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#if NET5_0
-using System.Buffers.Binary;
-#endif
-
 namespace Litdex.Security.RNG
 {
 	/// <summary>
@@ -45,19 +41,19 @@ namespace Litdex.Security.RNG
 			}
 
 #if NET5_0
-			var chunk = new Span<byte>(new byte[4]);
+			var chunk = new System.Span<byte>(new byte[4]);
 			List<byte> output = new List<byte>(length);
 
 			while (length >= 4)
 			{
-				BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				System.Buffers.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
 				output.AddRange(chunk.ToArray());
 				length -= 4;
 			}
 
 			if (data != 0)
 			{
-				BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				System.Buffers.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
 				output.AddRange(chunk.Slice(0, length).ToArray());
 			}
 
