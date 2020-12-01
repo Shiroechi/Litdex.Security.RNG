@@ -247,5 +247,18 @@ namespace Litdex.Security.RNG
 		/// </exception>
 		T[] Choice<T>(IList<T> items, int select);
 
+		/// <summary>
+		/// Shuffle items with Fisher-Yates shuffle.
+		/// </summary>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to shuffle.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		void Shuffle<T>(T[] items);
 	}
 }
