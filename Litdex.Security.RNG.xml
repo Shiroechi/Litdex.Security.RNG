@@ -161,8 +161,11 @@
             <returns>
             Random element from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            The items length or size can't be greater than int.MaxValue.
+            	The items length or size can't be greater than int.MaxValue.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[],System.Int32)">
@@ -181,6 +184,9 @@
             <returns>
             Multiple random elements from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <list type="bullet">
             	<item>
@@ -205,8 +211,11 @@
             <returns>
             Random element from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            The items length or size can't be greater than int.MaxValue.
+            	The items length or size can't be greater than int.MaxValue.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
@@ -225,6 +234,9 @@
             <returns>
             Multiple random elements from the given sets.
             </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <list type="bullet">
             	<item>
@@ -234,6 +246,103 @@
             	The number of elements to be retrieved exceeds the items size.
             	</item>
             </list>
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Sample``1(``0[],System.Int32)">
+            <summary>
+            Select abritary distinct element randomly.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <param name="k">
+            The desired amount to select.
+            </param>
+            <returns>
+            Multiple random elements from the given sets.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <list type="bullet">
+            	<item>
+            	The number of elements to be retrieved is negative or less than 1.
+            	</item>
+            	<item>
+            	The number of elements to be retrieved exceeds the items size.
+            	</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.SampleAsync``1(``0[],System.Int32)">
+            <summary>
+            Select abritary distinct element randomly.
+            </summary>
+            <remarks>
+            Used for large data, objects or arrays.
+            </remarks>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to choose.
+            </param>
+            <param name="k">
+            The desired amount to select.
+            </param>
+            <returns>
+            Multiple random elements from the given sets.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <list type="bullet">
+            	<item>
+            	The number of elements to be retrieved is negative or less than 1.
+            	</item>
+            	<item>
+            	The number of elements to be retrieved exceeds the items size.
+            	</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Shuffle``1(``0[])">
+            <summary>
+            Shuffle items with Fisher-Yates shuffle.
+            </summary>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to shuffle.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.ShuffleAsync``1(``0[])">
+            <summary>
+            Shuffle items with Fisher-Yates shuffle.
+            </summary>
+            <remarks>
+            Used for large data, objects or arrays.
+            </remarks>
+            <typeparam name="T">
+            Data type
+            </typeparam>
+            <param name="items">
+            Set of items to shuffle.
+            </param>
+            <returns>
+            Shuffled items.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
             </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.GJrand64">
@@ -399,6 +508,251 @@
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.Reseed">
             <inheritdoc/>
         </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuDuo">
+            <summary>
+            Might be faster than RomuTrio due to using fewer registers, but might struggle with massive jobs.
+            Est. capacity = 2^61 bytes. Register pressure = 5. State size = 128 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.#ctor(System.UInt64[])">
+            <summary>
+            
+            </summary>
+            <param name="seed"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed need 2 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuDuoJr">
+            <summary>
+            The fastest generator using 64-bit arith., but not suited for huge jobs.
+            Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.#ctor(System.UInt64[])">
+            <summary>
+            
+            </summary>
+            <param name="seed"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed need 2 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuMono32">
+            <summary>
+            32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.
+            Fixed period of (2^32)-47. Must be seeded using the romuMono32_init function.
+            Capacity = 2^27 bytes. Register pressure = 2. State size = 32 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuQuad">
+            <summary>
+            More robust than anyone could need, but uses more registers than RomuTrio.
+            Est. capacity >= 2^90 bytes. Register pressure = 8 (high). State size = 256 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            </summary>
+            <param name="seed1">
+            W state.
+            </param>
+            <param name="seed2">
+            X state.
+            </param>
+            <param name="seed3">
+            Y state.
+            </param>
+            <param name="seed4">
+            Z state.
+            </param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.#ctor(System.UInt32[])">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad"/> instance.
+            </summary>
+            <param name="seed">
+            A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed need 4 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Finalize">
+            <summary>
+            Clear all seed.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuQuad32">
+            <summary>
+            32-bit arithmetic: Good for general purpose use.
+            Est. capacity >= 2^62 bytes. Register pressure = 7. State size = 128 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            </summary>
+            <param name="seed1">
+            W state.
+            </param>
+            <param name="seed2">
+            X state.
+            </param>
+            <param name="seed3">
+            Y state.
+            </param>
+            <param name="seed4">
+            Z state.
+            </param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.#ctor(System.UInt32[])">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            </summary>
+            <param name="seed">
+            A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed need 4 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Finalize">
+            <summary>
+            Clear all seed.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuTrio">
+            <summary>
+            Great for general purpose work, including huge jobs.
+            Est. capacity = 2^75 bytes. Register pressure = 6. State size = 192 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.#ctor(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> instance.
+            </summary>
+            <param name="seed1">
+            X state.
+            </param>
+            <param name="seed2">
+            Y state.
+            </param>
+            <param name="seed3">
+            Z state.
+            </param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.#ctor(System.UInt32[])">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> instance.
+            </summary>
+            <param name="seed">
+            A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed need 3 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Finalize">
+            <summary>
+            Clear all seed.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Reseed">
+            <inheritdoc/>
+        </member>
+        <member name="T:Litdex.Security.RNG.PRNG.RomuTrio32">
+            <summary>
+            32-bit arithmetic: Good for general purpose use, except for huge jobs.
+            Est. capacity >= 2^53 bytes. Register pressure = 5. State size = 96 bits.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.#ctor(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> instance.
+            </summary>
+            <param name="seed1">
+            X state.
+            </param>
+            <param name="seed2">
+            Y state.
+            </param>
+            <param name="seed3">
+            Z state.
+            </param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.#ctor(System.UInt32[])">
+            <summary>
+            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> instance.
+            </summary>
+            <param name="seed">
+            Rng seed.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Seed nedd 3 numbers.
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.AlgorithmName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.Reseed">
+            <inheritdoc/>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.SplitMix64">
             <summary>
             SplitMix64 PRNG Algorithm.
@@ -429,8 +783,7 @@
             Counter-based RNG based on <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>
             
             <list type="bullet">
-            	<item>https://arxiv.org/pdf/2004.06278v2.pdf</item>
-            	<item>https://arxiv.org/pdf/1704.00358v5.pdf</item>
+            	<item>https://arxiv.org/pdf/2004.06278.pdf</item>
             </list>
             </summary>
         </member>
@@ -867,251 +1220,6 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
-        <member name="T:Litdex.Security.RNG.RomuDuo">
-            <summary>
-            Might be faster than RomuTrio due to using fewer registers, but might struggle with massive jobs.
-            Est. capacity = 2^61 bytes. Register pressure = 5. State size = 128 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuo.#ctor(System.UInt64[])">
-            <summary>
-            
-            </summary>
-            <param name="seed"></param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 2 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuo.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuo.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuo.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuDuoJr">
-            <summary>
-            The fastest generator using 64-bit arith., but not suited for huge jobs.
-            Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuoJr.#ctor(System.UInt64[])">
-            <summary>
-            
-            </summary>
-            <param name="seed"></param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 2 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuoJr.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuoJr.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuDuoJr.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuMono32">
-            <summary>
-            32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.
-            Fixed period of (2^32)-47. Must be seeded using the romuMono32_init function.
-            Capacity = 2^27 bytes. Register pressure = 2. State size = 32 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuMono32.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuMono32.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuMono32.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuQuad">
-            <summary>
-            More robust than anyone could need, but uses more registers than RomuTrio.
-            Est. capacity >= 2^90 bytes. Register pressure = 8 (high). State size = 256 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuQuad32"/> instance.
-            </summary>
-            <param name="seed1">
-            W state.
-            </param>
-            <param name="seed2">
-            X state.
-            </param>
-            <param name="seed3">
-            Y state.
-            </param>
-            <param name="seed4">
-            Z state.
-            </param>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.#ctor(System.UInt32[])">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuQuad"/> instance.
-            </summary>
-            <param name="seed">
-            A array of seed numbers.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 4 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.Finalize">
-            <summary>
-            Clear all seed.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuQuad32">
-            <summary>
-            32-bit arithmetic: Good for general purpose use.
-            Est. capacity >= 2^62 bytes. Register pressure = 7. State size = 128 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuQuad32"/> instance.
-            </summary>
-            <param name="seed1">
-            W state.
-            </param>
-            <param name="seed2">
-            X state.
-            </param>
-            <param name="seed3">
-            Y state.
-            </param>
-            <param name="seed4">
-            Z state.
-            </param>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.#ctor(System.UInt32[])">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuQuad32"/> instance.
-            </summary>
-            <param name="seed">
-            A array of seed numbers.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 4 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.Finalize">
-            <summary>
-            Clear all seed.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuQuad32.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuTrio">
-            <summary>
-            Great for general purpose work, including huge jobs.
-            Est. capacity = 2^75 bytes. Register pressure = 6. State size = 192 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.#ctor(System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuTrio"/> instance.
-            </summary>
-            <param name="seed1">
-            X state.
-            </param>
-            <param name="seed2">
-            Y state.
-            </param>
-            <param name="seed3">
-            Z state.
-            </param>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.#ctor(System.UInt32[])">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuTrio"/> instance.
-            </summary>
-            <param name="seed">
-            A array of seed numbers.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 3 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.Finalize">
-            <summary>
-            Clear all seed.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="T:Litdex.Security.RNG.RomuTrio32">
-            <summary>
-            32-bit arithmetic: Good for general purpose use, except for huge jobs.
-            Est. capacity >= 2^53 bytes. Register pressure = 5. State size = 96 bits.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio32.#ctor(System.UInt32,System.UInt32,System.UInt32)">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuTrio32"/> instance.
-            </summary>
-            <param name="seed1">
-            X state.
-            </param>
-            <param name="seed2">
-            Y state.
-            </param>
-            <param name="seed3">
-            Z state.
-            </param>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio32.#ctor(System.UInt32[])">
-            <summary>
-            Create <see cref="T:Litdex.Security.RNG.RomuTrio32"/> instance.
-            </summary>
-            <param name="seed">
-            Rng seed.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed nedd 3 numbers.
-            </exception>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio32.Next">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio32.AlgorithmName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.RomuTrio32.Reseed">
-            <inheritdoc/>
-        </member>
         <member name="T:Litdex.Security.RNG.Random">
             <summary>
             Base class of all random.
@@ -1141,6 +1249,30 @@
         <member name="M:Litdex.Security.RNG.Random.NextInt(System.UInt32,System.UInt32)">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.Random.NextIntFast(System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            Lemire algorithm to generate <see cref="T:System.UInt32"/> value between 
+            lower bound and upper bound from generator.
+            </summary>
+            <remarks>
+            https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
+            </remarks>
+            <param name="lower">
+            Lower bound or expected minimum value.
+            </param>
+            <param name="upper">
+            Upper bound or ecpected maximum value.
+            </param>
+            <param name="unbias">
+            Determine using division for reduce bias.
+            </param>
+            <returns>
+            <see cref="T:System.UInt32"/> value between lower bound and upper bound.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Lower bound is greater than or equal to upper bound.
+            </exception>
+        </member>
         <member name="M:Litdex.Security.RNG.Random.NextLong">
             <inheritdoc/>
         </member>
@@ -1163,6 +1295,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Sample``1(``0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.SampleAsync``1(``0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Shuffle``1(``0[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.ShuffleAsync``1(``0[])">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.ToString">
