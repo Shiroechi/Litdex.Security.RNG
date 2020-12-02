@@ -20,6 +20,8 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public abstract void Reseed();
 
+		#region Basic
+
 		/// <inheritdoc/>
 		public abstract bool NextBoolean();
 
@@ -145,6 +147,10 @@ namespace Litdex.Security.RNG
 			return lower + (this.NextDouble() % diff);
 		}
 
+		#endregion Basic
+
+		#region Sequence
+
 		/// <inheritdoc/>
 		public virtual T Choice<T>(T[] items)
 		{
@@ -173,8 +179,7 @@ namespace Litdex.Security.RNG
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved is negative or less than 1.");
 			}
-
-			if (select > items.Length)
+			else if (select > items.Length)
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved exceeds the items size.");
 			}
@@ -262,6 +267,8 @@ namespace Litdex.Security.RNG
 				items[index] = temp;
 			}
 		}
+
+		#endregion Sequence
 
 		/// <inheritdoc/>
 		public override string ToString()
