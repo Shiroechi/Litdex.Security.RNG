@@ -150,7 +150,7 @@ namespace Litdex.Security.RNG
 		{
 			if (items.Length <= 0 || items == null)
 			{
-				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
 			}
 
 			if (items.Length > int.MaxValue)
@@ -166,7 +166,7 @@ namespace Litdex.Security.RNG
 		{
 			if (items.Length <= 0 || items == null)
 			{
-				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
 			}
 
 			if (select < 0)
@@ -203,11 +203,53 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
+		public virtual T[] Sample<T>(T[] items, int k)
+		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
+			}
+
+			if (k <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved is negative or less than 1.");
+			}
+			else if (k > items.Length)
+			{
+				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved exceeds the items size.");
+			}
+
+			T[] reservoir = new T[k];
+
+			for (var i = 0; i < k; i++)
+			{
+				reservoir[i] = items[i];
+			}
+
+			if (k == items.Length)
+			{
+				return reservoir;
+			}
+
+			for (var i = k; i < items.Length; i++)
+			{
+				int index = (int)this.NextInt(0, (uint)i);
+
+				if (index < k)
+				{
+					reservoir[index] = items[i];
+				}
+			}
+
+			return reservoir;
+		}
+
+		/// <inheritdoc/>
 		public virtual void Shuffle<T>(T[] items)
 		{
 			if (items.Length <= 0 || items == null)
 			{
-				throw new ArgumentNullException(nameof(items), $"The items is empty of null.");
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
 			}
 
 			T temp;
