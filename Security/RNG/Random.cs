@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
 {
@@ -250,6 +251,12 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
+		public virtual Task<T[]> SampleAsync<T>(T[] items, int k)
+		{
+			return Task.FromResult(this.Sample(items, k));
+		}
+
+		/// <inheritdoc/>
 		public virtual void Shuffle<T>(T[] items)
 		{
 			if (items.Length <= 0 || items == null)
@@ -266,6 +273,14 @@ namespace Litdex.Security.RNG
 				items[i] = items[index];
 				items[index] = temp;
 			}
+		}
+
+		/// <inheritdoc/>
+		public Task ShuffleAsync<T>(T[] items)
+		{
+			this.Shuffle(items);
+
+			return Task.CompletedTask;
 		}
 
 		#endregion Sequence

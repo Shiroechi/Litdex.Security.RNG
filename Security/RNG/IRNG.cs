@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
 {
@@ -284,6 +285,39 @@ namespace Litdex.Security.RNG
 		T[] Sample<T>(T[] items, int k);
 
 		/// <summary>
+		/// Select abritary distinct element randomly.
+		/// </summary>
+		/// <remarks>
+		/// Used for large data, objects or arrays.
+		/// </remarks>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to choose.
+		/// </param>
+		/// <param name="k">
+		/// The desired amount to select.
+		/// </param>
+		/// <returns>
+		/// Multiple random elements from the given sets.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>
+		///		The number of elements to be retrieved is negative or less than 1.
+		///		</item>
+		///		<item>
+		///		The number of elements to be retrieved exceeds the items size.
+		///		</item>
+		/// </list>
+		/// </exception>
+		Task<T[]> SampleAsync<T>(T[] items, int k);
+
+		/// <summary>
 		/// Shuffle items with Fisher-Yates shuffle.
 		/// </summary>
 		/// <typeparam name="T">
@@ -296,6 +330,26 @@ namespace Litdex.Security.RNG
 		///		The items is null, empty or not initialized. 
 		/// </exception>
 		void Shuffle<T>(T[] items);
+
+		/// <summary>
+		/// Shuffle items with Fisher-Yates shuffle.
+		/// </summary>
+		/// <remarks>
+		/// Used for large data, objects or arrays.
+		/// </remarks>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to shuffle.
+		/// </param>
+		/// <returns>
+		/// Shuffled items.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		Task ShuffleAsync<T>(T[] items);
 
 		#endregion Sequence
 	}
