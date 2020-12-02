@@ -91,7 +91,7 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
 			}
 
-			uint range = (upper - lower);
+			uint range = upper - lower;
 			ulong random32bit = this.NextInt();
 			ulong multiresult = random32bit * range;
 			uint leftover = (uint)multiresult;
