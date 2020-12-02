@@ -248,6 +248,36 @@ namespace Litdex.Security.RNG
 		T[] Choice<T>(IList<T> items, int select);
 
 		/// <summary>
+		/// Select abritary distinct element randomly.
+		/// </summary>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to choose.
+		/// </param>
+		/// <param name="k">
+		/// The desired amount to select.
+		/// </param>
+		/// <returns>
+		/// Multiple random elements from the given sets.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>
+		///		The number of elements to be retrieved is negative or less than 1.
+		///		</item>
+		///		<item>
+		///		The number of elements to be retrieved exceeds the items size.
+		///		</item>
+		/// </list>
+		/// </exception>
+		T[] Sample<T>(T[] items, int k);
+
+		/// <summary>
 		/// Shuffle items with Fisher-Yates shuffle.
 		/// </summary>
 		/// <typeparam name="T">
