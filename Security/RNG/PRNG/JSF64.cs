@@ -37,8 +37,7 @@ namespace Litdex.Security.RNG.PRNG
 				{
 					this.Next();
 				}
-			}
-			
+			}			
 		}
 
 		/// <summary>

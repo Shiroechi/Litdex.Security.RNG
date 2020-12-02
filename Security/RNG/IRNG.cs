@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
 {
@@ -20,6 +21,8 @@ namespace Litdex.Security.RNG
 		/// Seed with <see cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>.
 		/// </summary>
 		void Reseed();
+
+		#region Basic
 
 		/// <summary>
 		/// Generate <see cref="bool"/> value from generator.
@@ -147,6 +150,10 @@ namespace Litdex.Security.RNG
 		/// </exception>
 		double NextDouble(double lower, double upper);
 
+		#endregion Basic
+
+		#region Sequence
+
 		/// <summary>
 		/// Select one element randomly.
 		/// </summary>
@@ -159,8 +166,11 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
-		/// The items length or size can't be greater than int.MaxValue.
+		///		The items length or size can't be greater than int.MaxValue.
 		/// </exception>
 		T Choice<T>(T[] items);
 
@@ -179,6 +189,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Multiple random elements from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <list type="bullet">
 		///		<item>
@@ -203,8 +216,11 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Random element from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
-		/// The items length or size can't be greater than int.MaxValue.
+		///		The items length or size can't be greater than int.MaxValue.
 		/// </exception>
 		T Choice<T>(IList<T> items);
 
@@ -223,6 +239,9 @@ namespace Litdex.Security.RNG
 		/// <returns>
 		/// Multiple random elements from the given sets.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// <list type="bullet">
 		///		<item>
@@ -234,5 +253,104 @@ namespace Litdex.Security.RNG
 		/// </list>
 		/// </exception>
 		T[] Choice<T>(IList<T> items, int select);
+
+		/// <summary>
+		/// Select abritary distinct element randomly.
+		/// </summary>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to choose.
+		/// </param>
+		/// <param name="k">
+		/// The desired amount to select.
+		/// </param>
+		/// <returns>
+		/// Multiple random elements from the given sets.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>
+		///		The number of elements to be retrieved is negative or less than 1.
+		///		</item>
+		///		<item>
+		///		The number of elements to be retrieved exceeds the items size.
+		///		</item>
+		/// </list>
+		/// </exception>
+		T[] Sample<T>(T[] items, int k);
+
+		/// <summary>
+		/// Select abritary distinct element randomly.
+		/// </summary>
+		/// <remarks>
+		/// Used for large data, objects or arrays.
+		/// </remarks>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to choose.
+		/// </param>
+		/// <param name="k">
+		/// The desired amount to select.
+		/// </param>
+		/// <returns>
+		/// Multiple random elements from the given sets.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// <list type="bullet">
+		///		<item>
+		///		The number of elements to be retrieved is negative or less than 1.
+		///		</item>
+		///		<item>
+		///		The number of elements to be retrieved exceeds the items size.
+		///		</item>
+		/// </list>
+		/// </exception>
+		Task<T[]> SampleAsync<T>(T[] items, int k);
+
+		/// <summary>
+		/// Shuffle items with Fisher-Yates shuffle.
+		/// </summary>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to shuffle.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		void Shuffle<T>(T[] items);
+
+		/// <summary>
+		/// Shuffle items with Fisher-Yates shuffle.
+		/// </summary>
+		/// <remarks>
+		/// Used for large data, objects or arrays.
+		/// </remarks>
+		/// <typeparam name="T">
+		/// Data type
+		/// </typeparam>
+		/// <param name="items">
+		/// Set of items to shuffle.
+		/// </param>
+		/// <returns>
+		/// Shuffled items.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		The items is null, empty or not initialized. 
+		/// </exception>
+		Task ShuffleAsync<T>(T[] items);
+
+		#endregion Sequence
 	}
 }

@@ -30,8 +30,9 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Seed = seed;
+				this._Seed = seed + increment;
 				this._Increment = increment;
+				this.Next();
 			}
 		}
 
@@ -50,7 +51,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected override ulong Next()
 		{
 			var oldseed = this._Seed;
-			this._Seed = oldseed * 6364136223846793005 + (this._Increment | 1);
+			this._Seed = (oldseed * 6364136223846793005) + (this._Increment | 1);
 			var xorshifted = (uint)((oldseed >> 18) ^ oldseed) >> 27;
 			var rot = (uint)(oldseed >> 59);
 			return (xorshifted >> (int)rot) | (xorshifted << (int)((-rot) & 31));
@@ -77,6 +78,9 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Increment = BitConverter.ToUInt64(bytes, 0);
 			}
+
+			this._Seed += this._Increment;
+			this.Next();
 		}
 
 		#endregion Public Method

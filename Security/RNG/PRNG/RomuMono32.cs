@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Litdex.Security.RNG
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// 32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.

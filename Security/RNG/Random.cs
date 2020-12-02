@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
 {
@@ -19,6 +20,8 @@ namespace Litdex.Security.RNG
 
 		/// <inheritdoc/>
 		public abstract void Reseed();
+
+		#region Basic
 
 		/// <inheritdoc/>
 		public abstract bool NextBoolean();
@@ -59,6 +62,57 @@ namespace Litdex.Security.RNG
 			return lower + (this.NextInt() % diff);
 		}
 
+		/// <summary>
+		/// Lemire algorithm to generate <see cref="uint"/> value between 
+		/// lower bound and upper bound from generator.
+		/// </summary>
+		/// <remarks>
+		/// https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
+		/// </remarks>
+		/// <param name="lower">
+		/// Lower bound or expected minimum value.
+		/// </param>
+		/// <param name="upper">
+		/// Upper bound or ecpected maximum value.
+		/// </param>
+		/// <param name="unbias">
+		/// Determine using division for reduce bias.
+		/// </param>
+		/// <returns>
+		/// <see cref="uint"/> value between lower bound and upper bound.
+		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Lower bound is greater than or equal to upper bound.
+		/// </exception>
+		public virtual uint NextIntFast(uint lower, uint upper, bool unbias = false)
+		{
+			if (lower >= upper)
+			{
+				throw new ArgumentOutOfRangeException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
+			}
+
+			uint range = upper - lower;
+			ulong random32bit = this.NextInt();
+			ulong multiresult = random32bit * range;
+			uint leftover = (uint)multiresult;
+
+			if (unbias)
+			{
+				if (leftover < range)
+				{
+					uint threshold = (uint)((int)-range % range);
+					while (leftover < threshold)
+					{
+						random32bit = this.NextInt();
+						multiresult = random32bit * range;
+						leftover = (uint)multiresult;
+					}
+				}
+			}
+			
+			return (uint)(multiresult >> 32) + lower;
+		}
+
 		/// <inheritdoc/>
 		public abstract ulong NextLong();
 
@@ -94,9 +148,18 @@ namespace Litdex.Security.RNG
 			return lower + (this.NextDouble() % diff);
 		}
 
+		#endregion Basic
+
+		#region Sequence
+
 		/// <inheritdoc/>
 		public virtual T Choice<T>(T[] items)
 		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
+			}
+
 			if (items.Length > int.MaxValue)
 			{
 				throw new ArgumentOutOfRangeException(nameof(items), $"The items length or size can't be greater than int.MaxValue or { int.MaxValue }.");
@@ -108,12 +171,16 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public virtual T[] Choice<T>(T[] items, int select)
 		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
+			}
+
 			if (select < 0)
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved is negative or less than 1.");
 			}
-
-			if (select > items.Length)
+			else if (select > items.Length)
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved exceeds the items size.");
 			}
@@ -123,11 +190,7 @@ namespace Litdex.Security.RNG
 			while (selected.Count < select)
 			{
 				var index = this.NextInt(0, (uint)(items.Length - 1));
-
-				if (selected.Contains(items[index]) == false)
-				{
-					selected.Add(items[index]);
-				}
+				selected.Add(items[index]);
 			}
 
 			return selected.ToArray();
@@ -144,6 +207,83 @@ namespace Litdex.Security.RNG
 		{
 			return this.Choice(items.ToArray(), select);
 		}
+
+		/// <inheritdoc/>
+		public virtual T[] Sample<T>(T[] items, int k)
+		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
+			}
+
+			if (k <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved is negative or less than 1.");
+			}
+			else if (k > items.Length)
+			{
+				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved exceeds the items size.");
+			}
+
+			T[] reservoir = new T[k];
+
+			for (var i = 0; i < k; i++)
+			{
+				reservoir[i] = items[i];
+			}
+
+			if (k == items.Length)
+			{
+				return reservoir;
+			}
+
+			for (var i = k; i < items.Length; i++)
+			{
+				int index = (int)this.NextInt(0, (uint)i);
+
+				if (index < k)
+				{
+					reservoir[index] = items[i];
+				}
+			}
+
+			return reservoir;
+		}
+
+		/// <inheritdoc/>
+		public virtual Task<T[]> SampleAsync<T>(T[] items, int k)
+		{
+			return Task.FromResult(this.Sample(items, k));
+		}
+
+		/// <inheritdoc/>
+		public virtual void Shuffle<T>(T[] items)
+		{
+			if (items.Length <= 0 || items == null)
+			{
+				throw new ArgumentNullException(nameof(items), $"The items is empty or null.");
+			}
+
+			T temp;
+
+			for (var i = items.Length - 1; i > 1; i--)
+			{
+				var index = this.NextLong(0, (ulong)i);
+				temp = items[i];
+				items[i] = items[index];
+				items[index] = temp;
+			}
+		}
+
+		/// <inheritdoc/>
+		public Task ShuffleAsync<T>(T[] items)
+		{
+			this.Shuffle(items);
+
+			return Task.CompletedTask;
+		}
+
+		#endregion Sequence
 
 		/// <inheritdoc/>
 		public override string ToString()
