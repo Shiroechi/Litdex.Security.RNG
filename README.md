@@ -1,5 +1,10 @@
 # Litdex.Security.RNG
 
+Library that provide basic random generator function and was inspired from Python [random.py](https://github.com/python/cpython/blob/master/Lib/random.py).
+
+[Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) have already provide some basic random algorithm, so you can use it immediately rather than implement it yourself. But still [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) created with extensibility in mind, so you can implement your own *random generator* with this [library](https://github.com/Shiroechi/Litdex.Security.RNG).
+
+**Note** 
 This is an individual module containing the RNG set from
 [Litdex](https://github.com/Shiroechi/Litdex).
 
