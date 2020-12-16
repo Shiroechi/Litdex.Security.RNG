@@ -16,6 +16,8 @@ Library that provide basic random generator function and was inspired from Pytho
 
 # This package contains:
 
+Currently [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) support this algorithm:
+
 - [GJrand](http://gjrand.sourceforge.net/)
 - [JSF](http://burtleburtle.net/bob/rand/smallprng.html)
 - [Middle Square Weyl Sequence](https://en.wikipedia.org/wiki/Middle-square_method)
@@ -43,6 +45,10 @@ var randomInt = rng.NextInt();
 ```
 
 Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
+
+# Contribute
+
+Feel free to open new [issue](https://github.com/Shiroechi/Litdex.Security.RNG/issues/new) or [PR](https://github.com/Shiroechi/Litdex.Security.RNG/pulls).
 
 # Donation
 
