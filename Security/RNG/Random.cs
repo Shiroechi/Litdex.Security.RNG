@@ -131,9 +131,7 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public virtual double NextDouble()
 		{
-			// java conversion method
-			return this.NextLong() * (1.0 / (1L << 53));
-			//return (double)(NextLong() >> 11) * (1.0 / long.MaxValue);
+			return (this.NextLong() >> 11) * (1.0 / (1L << 53));
 		}
 
 		/// <inheritdoc/>
