@@ -8,8 +8,14 @@ namespace Litdex.Security.RNG
 	/// <summary>
 	/// Base class of all random.
 	/// </summary>
-	public abstract class Random : IRNG
+	public abstract class Random : IRNG, IDistribution
 	{
+		#region Member
+
+		protected double _NextGaussian = 0.0;
+
+		#endregion Member
+
 		#region Public Method
 
 		/// <inheritdoc/>
@@ -20,6 +26,14 @@ namespace Litdex.Security.RNG
 
 		/// <inheritdoc/>
 		public abstract void Reseed();
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return this.AlgorithmName();
+		}
+
+		#endregion Public Method
 
 		#region Basic
 
@@ -109,7 +123,7 @@ namespace Litdex.Security.RNG
 					}
 				}
 			}
-			
+
 			return (uint)(multiresult >> 32) + lower;
 		}
 
@@ -182,7 +196,7 @@ namespace Litdex.Security.RNG
 			{
 				throw new ArgumentOutOfRangeException(nameof(select), $"The number of elements to be retrieved exceeds the items size.");
 			}
-			
+
 			var selected = new List<T>();
 
 			while (selected.Count < select)
@@ -283,12 +297,37 @@ namespace Litdex.Security.RNG
 
 		#endregion Sequence
 
+		#region Distribution
+
 		/// <inheritdoc/>
-		public override string ToString()
+		public virtual double NextGaussian(double mean = 0, double std = 1)
 		{
-			return this.AlgorithmName();
+			if (double.IsNaN(mean))
+			{
+				throw new ArgumentOutOfRangeException(nameof(mean), "Mean can't NaN or Not a Number.");
+			}
+
+			if (std < 0.0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(std), "Standard deviation must greater or equal than 0.");
+			}
+
+			if (this._NextGaussian != 0)
+			{
+				return this._NextGaussian;
+			}
+			else
+			{
+				double x2pi = this.NextDouble() * 6.283185307179586;
+				double g2rad = Math.Sqrt(-2.0 * Math.Log(1.0 - this.NextDouble()));
+				double z = Math.Cos(x2pi) * g2rad;
+
+				this._NextGaussian = Math.Sin(x2pi) * g2rad;
+
+				return mean + (z * std);
+			}
 		}
 
-		#endregion Public Method
+		#endregion Distribution
 	}
 }
