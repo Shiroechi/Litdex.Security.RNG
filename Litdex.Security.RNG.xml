@@ -4,6 +4,25 @@
         <name>Litdex.Security.RNG</name>
     </assembly>
     <members>
+        <member name="T:Litdex.Security.RNG.IDistribution">
+            <summary>
+            Interface structure for distribution.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.IDistribution.NextGaussian(System.Double,System.Double)">
+            <summary>
+            Return gaussian distribution.
+            </summary>
+            <param name="mean">
+            	Mean value.
+            </param>
+            <param name="std">
+            	Standard deviation value.
+            </param>
+            <returns>
+            	Normal distribution.
+            </returns>
+        </member>
         <member name="T:Litdex.Security.RNG.IRNG">
             <summary>
             Interface structure for Random Number Generator (RNG).
@@ -1231,6 +1250,9 @@
         <member name="M:Litdex.Security.RNG.Random.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.Random.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Litdex.Security.RNG.Random.NextBoolean">
             <inheritdoc/>
         </member>
@@ -1309,7 +1331,7 @@
         <member name="M:Litdex.Security.RNG.Random.ShuffleAsync``1(``0[])">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random.ToString">
+        <member name="M:Litdex.Security.RNG.Random.NextGaussian(System.Double,System.Double)">
             <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.Random32">
