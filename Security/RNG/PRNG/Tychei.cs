@@ -51,7 +51,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="idx"></param>
 		protected void Init(ulong seed, uint idx)
 		{
-			this._A = (uint)(seed / uint.MaxValue); 
+			this._A = (uint)(seed / uint.MaxValue);
 			this._B = (uint)(seed % uint.MaxValue);
 			this._C = 2654435769;
 			this._D = idx ^ 1367130551;

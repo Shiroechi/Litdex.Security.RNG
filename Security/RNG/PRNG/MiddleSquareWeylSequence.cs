@@ -28,7 +28,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">Your seed.</param>
 		public MiddleSquareWeylSequence(ulong seed = 0)
 		{
-			if (seed == 0) 
+			if (seed == 0)
 			{
 				this.Reseed();
 			}

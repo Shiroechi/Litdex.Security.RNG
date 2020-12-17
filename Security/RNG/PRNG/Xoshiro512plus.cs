@@ -139,12 +139,12 @@ namespace Litdex.Security.RNG.PRNG
 				}
 			}
 
-			for (var i = 0; i < 8; i++) 
+			for (var i = 0; i < 8; i++)
 			{
 				this._State[i] = s[i];
 			}
 		}
-		
+
 		#endregion Public Method
 	}
 }

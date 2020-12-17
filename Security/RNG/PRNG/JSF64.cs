@@ -24,7 +24,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">Your seed.</param>
 		public JSF64(ulong seed = 0)
 		{
-			if (seed == 0) 
+			if (seed == 0)
 			{
 				this.Reseed();
 			}
@@ -37,7 +37,7 @@ namespace Litdex.Security.RNG.PRNG
 				{
 					this.Next();
 				}
-			}			
+			}
 		}
 
 		/// <summary>

@@ -116,7 +116,7 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				for (var b = 0; b < 64; b++)
 				{
-					if ((JUMP[i] & ((1UL) << b)) != 0 )
+					if ((JUMP[i] & ((1UL) << b)) != 0)
 					{
 						s0 ^= this._State[0];
 						s1 ^= this._State[1];

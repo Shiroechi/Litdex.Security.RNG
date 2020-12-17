@@ -105,7 +105,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		public void NextJump()
 		{
-			ulong[] JUMP = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 
+			ulong[] JUMP = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c,
 							 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
 
 			var s0 = 0UL;

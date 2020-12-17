@@ -15,7 +15,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected uint[] _Seed = new uint[4];
 
 		#endregion Member
-		
+
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -24,7 +24,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">Your seed.</param>
 		public JSF32(uint seed = 0)
 		{
-			if (seed == 0) 
+			if (seed == 0)
 			{
 				this.Reseed();
 			}
@@ -37,7 +37,7 @@ namespace Litdex.Security.RNG.PRNG
 				{
 					this.Next();
 				}
-			}			
+			}
 		}
 
 		/// <summary>
