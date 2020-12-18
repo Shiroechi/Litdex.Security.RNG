@@ -10,7 +10,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class RomuDuoJr : Random64
 	{
 		#region Member
-		
+
 		private ulong _X;
 		private ulong _Y;
 

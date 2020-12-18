@@ -67,7 +67,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected override uint Next()
 		{
 			uint xp = this._X;
-			uint yp = this._Y; 
+			uint yp = this._Y;
 			uint zp = this._Z;
 			this._X = 3323815723u * zp;
 			this._Y = yp - xp;

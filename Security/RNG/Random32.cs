@@ -71,9 +71,9 @@ namespace Litdex.Security.RNG
 				chunk[1] = (byte)(sample >> 8);
 				chunk[2] = (byte)(sample >> 16);
 				chunk[3] = (byte)(sample >> 24);
-				
+
 				output.AddRange(chunk);
-				
+
 				length -= 4;
 			}
 

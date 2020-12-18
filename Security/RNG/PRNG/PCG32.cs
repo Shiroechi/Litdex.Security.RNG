@@ -24,7 +24,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="increment">Increment.</param>
 		public PCG32(ulong seed = 0, ulong increment = 0)
 		{
-			if (seed <= 0 || increment <= 0) 
+			if (seed <= 0 || increment <= 0)
 			{
 				this.Reseed();
 			}

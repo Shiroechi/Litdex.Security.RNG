@@ -5,22 +5,18 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
-    <Description>A module containing the RNG set.</Description>
+    <Description>Library that provide basic random generator function.</Description>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
-    <PackageTags>Random RNG PRNG</PackageTags>
+    <PackageTags>Random RNG PRNG Splitmix Xoroshiro GJrand JSF PCG MSWS Squares Tyche Tychei</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <Version>2.2.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>2.3.0</Version>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
     <RootNamespace>Litdex</RootNamespace>
-    <PackageReleaseNotes>- Add missing namespace in Romu random.
-- Implement bew verion of squares RNG
-- Improve perfomace to generate UInt64(ulong) for random32
-- Improve perfomance for generatring byte array
-- New method, Shuffle.
-- New method, Sample.
-- Fix some issues.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Add new method, NestGaussian()
+- Fix problem in NextDouble()
+</PackageReleaseNotes>
     <Copyright>Shiroechi</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>

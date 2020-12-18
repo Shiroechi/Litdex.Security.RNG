@@ -23,7 +23,7 @@ namespace Litdex.Security.RNG.PRNG
 			this._C = seed3;
 			this._D = seed4;
 
-			for (var i = 0; i < 15; i++) 
+			for (var i = 0; i < 15; i++)
 			{
 				this.Advance();
 			}

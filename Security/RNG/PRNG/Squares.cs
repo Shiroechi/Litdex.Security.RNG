@@ -51,15 +51,15 @@ namespace Litdex.Security.RNG.PRNG
 		protected uint Next(ulong ctr, ulong key)
 		{
 			ulong x, y, z;
-			y = x = ctr * key; 
+			y = x = ctr * key;
 			z = y + key;
-			
+
 			// round 1
-			x = (x * x) + y; 
+			x = (x * x) + y;
 			x = (x >> 32) | (x << 32);
-			
+
 			// round 2
-			x = (x * x) + z; 
+			x = (x * x) + z;
 			x = (x >> 32) | (x << 32);
 
 			// round 3

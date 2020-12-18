@@ -31,7 +31,7 @@ namespace Litdex.Security.RNG.PRNG
 				this._Seed = seed;
 			}
 		}
-		
+
 		/// <summary>
 		/// Destructor.
 		/// </summary>

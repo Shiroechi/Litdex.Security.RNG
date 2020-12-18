@@ -22,7 +22,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">Seed.</param>
 		public WyRng(ulong seed = 0)
 		{
-			if (seed != 0) 
+			if (seed != 0)
 			{
 				this._Seed = seed;
 			}
