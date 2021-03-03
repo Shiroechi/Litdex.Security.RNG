@@ -19,13 +19,7 @@
 			}
 			else
 			{
-				this._Seed[0] = 0xF1EA5EED;
-				this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
-
-				for (var i = 0; i < 20; i++)
-				{
-					this.Next();
-				}
+				this.SetSeed(seed);
 			}
 		}
 
