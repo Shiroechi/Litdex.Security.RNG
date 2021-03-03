@@ -30,9 +30,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Seed = seed + increment;
-				this._Increment = increment;
-				this.Next();
+				this.SetSeed(seed, increment);
 			}
 		}
 
@@ -80,6 +78,16 @@ namespace Litdex.Security.RNG.PRNG
 			}
 
 			this._Seed += this._Increment;
+			this.Next();
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed = 0, ulong increment = 0)
+		{
+			this._Seed = seed + increment;
+			this._Increment = increment;
 			this.Next();
 		}
 
