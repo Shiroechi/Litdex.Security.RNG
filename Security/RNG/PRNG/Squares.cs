@@ -20,11 +20,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		public Squares(ulong ctr = 0, ulong key = 0)
 		{
-			this._Counter = ctr;
-			if (key != 0)
-			{
-				this._Key = key;
-			}
+			this.SetSeed(ctr, key);
 		}
 
 		~Squares()
@@ -83,15 +79,25 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override void Reseed()
 		{
-			ulong key;
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
-				key = BitConverter.ToUInt64(bytes, 0);
+				this._Key = BitConverter.ToUInt64(bytes, 0);
 			}
-			this._Key = key;
 			this._Counter = 0;
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong ctr = 0, ulong key = 0)
+		{
+			this._Counter = ctr;
+			if (key != 0)
+			{
+				this._Key = key;
+			}
 		}
 
 		#endregion Public Method
