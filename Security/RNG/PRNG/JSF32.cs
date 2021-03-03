@@ -5,8 +5,9 @@ namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-	/// 
+	/// <para>
 	/// http://burtleburtle.net/bob/rand/smallprng.html
+	/// </para>
 	/// </summary>
 	public class JSF32 : Random32
 	{
@@ -30,13 +31,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Seed[0] = 0xF1EA5EED;
-				this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
-
-				for (var i = 0; i < 20; i++)
-				{
-					this.Next();
-				}
+				this.SetSeed(seed);
 			}
 		}
 
@@ -95,6 +90,20 @@ namespace Litdex.Security.RNG.PRNG
 				seed = BitConverter.ToUInt32(bytes, 0);
 			}
 
+			this._Seed[0] = 0xF1EA5EED;
+			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
+
+			for (var i = 0; i < 20; i++)
+			{
+				this.Next();
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint seed)
+		{
 			this._Seed[0] = 0xF1EA5EED;
 			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
 
