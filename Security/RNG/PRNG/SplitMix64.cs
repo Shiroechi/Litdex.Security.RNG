@@ -73,6 +73,21 @@ namespace Litdex.Security.RNG.PRNG
 			this._Seed = BitConverter.ToUInt64(bytes, 0);
 		}
 
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed = 0)
+		{
+			if (seed <= 0)
+			{
+				this.Reseed();
+			}
+			else
+			{
+				this._Seed = seed;
+			}
+		}
+
 		#endregion Public Method
 	}
 }
