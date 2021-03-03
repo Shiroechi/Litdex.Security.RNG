@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.Security.Cryptography;
 
 namespace Litdex.Security.RNG.PRNG
