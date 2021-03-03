@@ -263,9 +263,12 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
-		public virtual Task<T[]> SampleAsync<T>(T[] items, int k)
+		public virtual async Task<T[]> SampleAsync<T>(T[] items, int k)
 		{
-			return Task.FromResult(this.Sample(items, k));
+			return await Task.Run(() =>
+			{
+				return Task.FromResult(this.Sample(items, k));
+			});
 		}
 
 		/// <inheritdoc/>
