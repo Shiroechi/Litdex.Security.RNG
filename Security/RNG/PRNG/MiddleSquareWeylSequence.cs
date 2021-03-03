@@ -34,8 +34,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Output = seed;
-				this._Sequence = seed;
+				this.SetSeed(seed);
 			}
 		}
 
