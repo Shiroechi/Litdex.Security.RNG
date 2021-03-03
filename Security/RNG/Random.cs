@@ -237,6 +237,11 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved exceeds the items size.");
 			}
 
+			if (k == items.Length)
+			{
+				return items;
+			}
+
 			T[] reservoir = new T[k];
 
 			for (var i = 0; i < k; i++)
@@ -244,14 +249,9 @@ namespace Litdex.Security.RNG
 				reservoir[i] = items[i];
 			}
 
-			if (k == items.Length)
-			{
-				return reservoir;
-			}
-
 			for (var i = k; i < items.Length; i++)
 			{
-				int index = (int)this.NextInt(0, (uint)i);
+				var index = (int)this.NextInt(0, (uint)i);
 
 				if (index < k)
 				{
