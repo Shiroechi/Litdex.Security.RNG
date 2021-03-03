@@ -22,14 +22,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">Seed.</param>
 		public WyRng(ulong seed = 0)
 		{
-			if (seed != 0)
-			{
-				this._Seed = seed;
-			}
-			else
-			{
-				this.Reseed();
-			}
+			this.SetSeed(seed);
 		}
 
 		/// <summary>
@@ -96,6 +89,21 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				rng.GetNonZeroBytes(bytes);
 				this._Seed = BitConverter.ToUInt64(bytes, 0);
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed)
+		{
+			if (seed != 0)
+			{
+				this._Seed = seed;
+			}
+			else
+			{
+				this.Reseed();
 			}
 		}
 
