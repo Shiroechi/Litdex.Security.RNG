@@ -20,7 +20,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		public RomuMono32(uint seed = 0)
 		{
-			this._Seed = (seed & 0x1fffffffu) + 1156979152u;  // Accepts 29 seed-bits.;
+			this.SetSeed(seed);
 		}
 
 		~RomuMono32()
@@ -65,6 +65,14 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Seed = BitConverter.ToUInt32(bytes, 0);
 			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint seed = 0)
+		{
+			this._Seed = (seed & 0x1fffffffu) + 1156979152u;  // Accepts 29 seed-bits.;
 		}
 
 		#endregion Public Method
