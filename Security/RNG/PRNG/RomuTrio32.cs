@@ -33,9 +33,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuTrio32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0)
 		{
-			this._X = seed1;
-			this._Y = seed2;
-			this._Z = seed3;
+			this.SetSeed(seed1, seed2, seed3);
 		}
 
 		/// <summary>
@@ -49,14 +47,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuTrio32(uint[] seed)
 		{
-			if (seed.Length < 3)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), "Seed nedd 3 numbers.");
-			}
-
-			this._X = seed[0];
-			this._Y = seed[1];
-			this._Z = seed[2];
+			this.SetSeed(seed);
 		}
 
 		#endregion Constructor & Destructor
@@ -105,6 +96,31 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Z = BitConverter.ToUInt32(bytes, 0);
 			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0)
+		{
+			this._X = seed1;
+			this._Y = seed2;
+			this._Z = seed3;
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint[] seed)
+		{
+			if (seed.Length < 3)
+			{
+				throw new ArgumentOutOfRangeException(nameof(seed), "Seed nedd 3 numbers.");
+			}
+
+			this._X = seed[0];
+			this._Y = seed[1];
+			this._Z = seed[2];
 		}
 
 		#endregion Public Method
