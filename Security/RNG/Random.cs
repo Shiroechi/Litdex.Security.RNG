@@ -280,7 +280,7 @@ namespace Litdex.Security.RNG
 
 			for (var i = items.Length - 1; i > 1; i--)
 			{
-				var index = this.NextLong(0, (ulong)i);
+				var index = this.NextInt(0, (uint)i);
 				temp = items[i];
 				items[i] = items[index];
 				items[index] = temp;
@@ -288,11 +288,12 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
-		public Task ShuffleAsync<T>(T[] items)
+		public async Task ShuffleAsync<T>(T[] items)
 		{
-			this.Shuffle(items);
-
-			return Task.CompletedTask;
+			await Task.Run(() =>
+			{
+				this.Shuffle(items);
+			});
 		}
 
 		#endregion Sequence
