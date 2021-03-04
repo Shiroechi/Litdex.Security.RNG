@@ -96,6 +96,48 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
+		public override void Fill(byte[] bytes)
+		{
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			ulong sample = 0;
+			int fill_idx = 0;
+			int length = bytes.Length;
+
+			while (length > 8)
+			{
+				sample = this.Next();
+
+				bytes[fill_idx] = (byte)sample;
+				bytes[fill_idx + 1] = (byte)(sample >> 8);
+				bytes[fill_idx + 2] = (byte)(sample >> 16);
+				bytes[fill_idx + 3] = (byte)(sample >> 24);
+				bytes[fill_idx + 4] = (byte)(sample >> 32);
+				bytes[fill_idx + 5] = (byte)(sample >> 40);
+				bytes[fill_idx + 6] = (byte)(sample >> 48);
+				bytes[fill_idx + 7] = (byte)(sample >> 56);
+
+				length -= 8;
+				fill_idx += 8;
+			}
+
+			if (length != 0)
+			{
+				sample = this.Next();
+
+				for (int i = 0; i < length; i++)
+				{
+					bytes[fill_idx] = (byte)sample;
+					sample >>= 8;
+					fill_idx++;
+				}
+			}
+		}
+
+		/// <inheritdoc/>
 		public override uint NextInt()
 		{
 			return unchecked((uint)this.Next());
