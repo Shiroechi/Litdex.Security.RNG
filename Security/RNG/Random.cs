@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
@@ -60,6 +61,9 @@ namespace Litdex.Security.RNG
 
 		/// <inheritdoc/>
 		public abstract byte[] NextBytes(int length);
+
+		/// <inheritdoc/>
+		public abstract void Fill(byte[] bytes);
 
 		/// <inheritdoc/>
 		public abstract uint NextInt();
