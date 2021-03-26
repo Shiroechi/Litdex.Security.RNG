@@ -89,6 +89,15 @@
             The requested output size can't lower than 1.
             </exception>
         </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Fill(System.Byte[])">
+            <summary>
+            Fill the array with random bytes.
+            </summary>
+            <param name="bytes">Array to fill with random bytes.</param>		/// 
+            <exception cref="T:System.ArgumentNullException">
+            Array length can't be lower than 1 or null.
+            </exception>
+        </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt">
             <summary>
             Generate <see cref="T:System.UInt32"/> value from generator.
@@ -378,11 +387,22 @@
         <member name="M:Litdex.Security.RNG.PRNG.GJrand64.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.GJrand64.SetSeed(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.GJrand64.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32">
             <summary>
             Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            
+            <para>
             http://burtleburtle.net/bob/rand/smallprng.html
+            </para>
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.#ctor(System.UInt32)">
@@ -413,6 +433,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF32.SetSeed(System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32t">
             <summary>
             Improved version of <see cref="T:Litdex.Security.RNG.PRNG.JSF32"/> with 3 rotate.
@@ -438,8 +463,9 @@
         <member name="T:Litdex.Security.RNG.PRNG.JSF64">
             <summary>
             Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            
+            <para>	/// 
             http://burtleburtle.net/bob/rand/smallprng.html
+            </para>
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.#ctor(System.UInt64)">
@@ -470,6 +496,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence">
             <summary>
             Improved version from Middle Square Method
@@ -499,6 +530,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.SetSeed(System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.PCG32">
             <summary>
             Implemetation of Permuted Congruential Generator 
@@ -527,6 +563,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.PCG32.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuDuo">
             <summary>
             Might be faster than RomuTrio due to using fewer registers, but might struggle with massive jobs.
@@ -550,6 +591,16 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.Reseed">
             <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuDuoJr">
             <summary>
@@ -575,6 +626,16 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuMono32">
             <summary>
             32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.
@@ -590,6 +651,11 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.Reseed">
             <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.SetSeed(System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuQuad">
             <summary>
@@ -639,6 +705,16 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.SetSeed(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.SetSeed(System.UInt32[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuQuad32">
             <summary>
             32-bit arithmetic: Good for general purpose use.
@@ -687,6 +763,16 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.SetSeed(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.SetSeed(System.UInt32[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuTrio">
             <summary>
             Great for general purpose work, including huge jobs.
@@ -732,6 +818,16 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.SetSeed(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.SetSeed(System.UInt32[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuTrio32">
             <summary>
             32-bit arithmetic: Good for general purpose use, except for huge jobs.
@@ -772,6 +868,16 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.SetSeed(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.SetSeed(System.UInt32[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.SplitMix64">
             <summary>
             SplitMix64 PRNG Algorithm.
@@ -796,6 +902,11 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Reseed">
             <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.SetSeed(System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Squares">
             <summary>
@@ -828,6 +939,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.Squares.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Squares.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Tyche">
             <summary>
             <see cref="T:Litdex.Security.RNG.PRNG.Tyche"/> is based on ChaCha's quarter-round.
@@ -853,6 +969,11 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.Reseed">
             <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Tyche.SetSeed(System.UInt64,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Tychei">
             <summary>
@@ -880,6 +1001,11 @@
         <member name="M:Litdex.Security.RNG.PRNG.Tychei.Reseed">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Tychei.SetSeed(System.UInt64,System.UInt32)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.WyRng">
             <summary>
             Based on Wyhash https://github.com/wangyi-fudan/wyhash
@@ -904,6 +1030,11 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.WyRng.Reseed">
             <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.WyRng.SetSeed(System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus">
             <summary>
@@ -938,6 +1069,11 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus">
             <summary>
             http://prng.di.unimi.it/xoroshiro128plusplus.c
@@ -968,6 +1104,11 @@
             <summary>
             2^64 calls to NextLong(), it can be used to generate 2^64
             non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128starstar">
@@ -1017,6 +1158,11 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.SetSeed(System.UInt64,System.UInt64)">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plus">
             <summary>
             RNG from xoroshiro family.
@@ -1052,6 +1198,11 @@
             This is the jump function for the generator. It is equivalent
             to 2^128 calls to next(); it can be used to generate 2^128
             non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plusplus">
@@ -1091,6 +1242,11 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256starstar">
             <summary>
             RNG from xoroshiro family.
@@ -1126,6 +1282,11 @@
             This is the jump function for the generator. It is equivalent
             to 2^128 calls to next(); it can be used to generate 2^128
             non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plus">
@@ -1165,6 +1326,11 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plusplus">
             <summary>
             Xoshiro512++
@@ -1200,6 +1366,11 @@
             This is the jump function for the generator. It is equivalent
             to 2^256 calls to next(); it can be used to generate 2^256
             non-overlapping subsequences for parallel computations.
+            </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512starstar">
@@ -1239,6 +1410,11 @@
             non-overlapping subsequences for parallel computations.
             </summary>
         </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.SetSeed(System.UInt64[])">
+            <summary>
+            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+        </member>
         <member name="T:Litdex.Security.RNG.Random">
             <summary>
             Base class of all random.
@@ -1263,6 +1439,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.NextBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Fill(System.Byte[])">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.NextInt">
@@ -1354,6 +1533,9 @@
         <member name="M:Litdex.Security.RNG.Random32.NextBytes(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Litdex.Security.RNG.Random32.Fill(System.Byte[])">
+            <inheritdoc/>
+        </member>
         <member name="M:Litdex.Security.RNG.Random32.NextInt">
             <inheritdoc/>
         </member>
@@ -1378,6 +1560,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.NextBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.Fill(System.Byte[])">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.NextInt">
