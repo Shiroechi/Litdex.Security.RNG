@@ -25,16 +25,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		public Xoshiro512plus(ulong[] seed)
 		{
-			this._State = new ulong[8];
-			if (seed.Length < 8)
-			{
-				throw new ArgumentException("The generator need 8 seed, your seed " + seed.Length);
-			}
-
-			for (int i = 0; i < 8; i++)
-			{
-				this._State[i] = seed[i];
-			}
+			this.SetSeed(seed);
 		}
 
 		/// <summary>
@@ -142,6 +133,23 @@ namespace Litdex.Security.RNG.PRNG
 			for (var i = 0; i < 8; i++)
 			{
 				this._State[i] = s[i];
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong[] seed)
+		{
+			this._State = new ulong[8];
+			if (seed.Length < 8)
+			{
+				throw new ArgumentException("The generator need 8 seed, your seed " + seed.Length);
+			}
+
+			for (int i = 0; i < 8; i++)
+			{
+				this._State[i] = seed[i];
 			}
 		}
 

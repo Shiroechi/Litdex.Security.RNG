@@ -26,8 +26,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed2"></param>
 		public Xoroshiro128plus(ulong seed1, ulong seed2)
 		{
-			this._State1 = seed1;
-			this._State2 = seed2;
+			this.SetSeed(seed1, seed2);
 		}
 
 		#region Protected Method
@@ -99,6 +98,15 @@ namespace Litdex.Security.RNG.PRNG
 			this._State1 = seed1;
 			this._State2 = seed2;
 			Array.Clear(JUMP, 0, JUMP.Length);
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed1, ulong seed2)
+		{
+			this._State1 = seed1;
+			this._State2 = seed2;
 		}
 
 		#endregion Public

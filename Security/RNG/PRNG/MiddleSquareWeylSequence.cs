@@ -34,8 +34,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 			else
 			{
-				this._Output = seed;
-				this._Sequence = seed;
+				this.SetSeed(seed);
 			}
 		}
 
@@ -57,7 +56,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected override ulong Next()
 		{
 			this._Output *= this._Output;
-			this._Output += (this._Sequence += this._Increment);
+			this._Output += this._Sequence += this._Increment;
 			return this._Output = (this._Output >> 32) | (this._Output << 32);
 		}
 
@@ -82,6 +81,15 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Output = BitConverter.ToUInt64(bytes, 0);
 			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed)
+		{
+			this._Output = seed;
+			this._Sequence = seed;
 		}
 
 		#endregion Public Method

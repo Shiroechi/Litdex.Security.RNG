@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace Litdex.Security.RNG
 {
@@ -90,6 +91,44 @@ namespace Litdex.Security.RNG
 
 			return output.ToArray();
 #endif
+		}
+
+		/// <inheritdoc/>
+		public override void Fill(byte[] bytes)
+		{
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			ulong sample = 0;
+			int fill_idx = 0;
+			int length = bytes.Length;
+
+			while (length > 8)
+			{
+				sample = this.Next();
+
+				bytes[fill_idx] = (byte)sample;
+				bytes[fill_idx + 1] = (byte)(sample >> 8);
+				bytes[fill_idx + 2] = (byte)(sample >> 16);
+				bytes[fill_idx + 3] = (byte)(sample >> 24);
+
+				length -= 4;
+				fill_idx += 4;
+			}
+
+			if (length != 0)
+			{
+				sample = this.Next();
+
+				for (int i = 0; i < length; i++)
+				{
+					bytes[fill_idx] = (byte)sample;
+					sample >>= 8;
+					fill_idx++;
+				}
+			}
 		}
 
 		/// <inheritdoc/>

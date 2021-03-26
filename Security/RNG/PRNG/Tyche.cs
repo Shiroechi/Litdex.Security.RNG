@@ -20,11 +20,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		public Tyche(ulong seed = 0, uint idx = 0)
 		{
-			this.Init(seed, idx);
-			for (var i = 0; i < 20; i++)
-			{
-				this.Mix();
-			}
+			this.SetSeed(seed, idx);
 		}
 
 		~Tyche()
@@ -98,6 +94,18 @@ namespace Litdex.Security.RNG.PRNG
 				this.Init(BitConverter.ToUInt32(bytes, 0), 0);
 			}
 
+			for (var i = 0; i < 20; i++)
+			{
+				this.Mix();
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed = 0, uint idx = 0)
+		{
+			this.Init(seed, idx);
 			for (var i = 0; i < 20; i++)
 			{
 				this.Mix();

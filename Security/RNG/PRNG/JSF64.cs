@@ -5,14 +5,15 @@ namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	/// Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-	/// 
+	/// <para>	/// 
 	/// http://burtleburtle.net/bob/rand/smallprng.html
+	/// </para>
 	/// </summary>
 	public class JSF64 : Random64
 	{
 		#region Member
 
-		private ulong[] _Seed = new ulong[8];
+		private ulong[] _Seed = new ulong[4];
 
 		#endregion Member
 
@@ -95,6 +96,20 @@ namespace Litdex.Security.RNG.PRNG
 				seed = BitConverter.ToUInt64(bytes, 0);
 			}
 
+			this._Seed[0] = 0xF1EA5EED;
+			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
+
+			for (var i = 0; i < 20; i++)
+			{
+				this.Next();
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed)
+		{
 			this._Seed[0] = 0xF1EA5EED;
 			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
 

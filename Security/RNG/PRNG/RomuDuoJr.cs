@@ -20,8 +20,7 @@ namespace Litdex.Security.RNG.PRNG
 
 		public RomuDuoJr(ulong seed1 = 0, ulong seed2 = 0)
 		{
-			this._X = seed1;
-			this._Y = seed2;
+			this.SetSeed(seed1, seed2);
 		}
 
 		/// <summary>
@@ -33,13 +32,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuDuoJr(ulong[] seed)
 		{
-			if (seed.Length < 2)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), "Seed need 2 numbers.");
-			}
-
-			this._X = seed[0];
-			this._Y = seed[1];
+			this.SetSeed(seed);
 		}
 
 		~RomuDuoJr()
@@ -87,6 +80,29 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Y = BitConverter.ToUInt32(bytes, 0);
 			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed1 = 0, ulong seed2 = 0)
+		{
+			this._X = seed1;
+			this._Y = seed2;
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong[] seed)
+		{
+			if (seed.Length < 2)
+			{
+				throw new ArgumentOutOfRangeException(nameof(seed), "Seed need 2 numbers.");
+			}
+
+			this._X = seed[0];
+			this._Y = seed[1];
 		}
 
 		#endregion Public Method

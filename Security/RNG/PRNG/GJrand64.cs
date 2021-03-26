@@ -18,38 +18,12 @@ namespace Litdex.Security.RNG.PRNG
 
 		public GJrand64(ulong seed1 = 0xCAFEF00DBEEF5EED, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
 		{
-			this._A = seed1;
-			this._B = seed2;
-			this._C = seed3;
-			this._D = seed4;
-
-			for (var i = 0; i < 15; i++)
-			{
-				this.Advance();
-			}
+			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
 		public GJrand64(ulong[] seed)
 		{
-			if (seed.Length < 4)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), "Seed length ");
-			}
-
-			if (seed.Length < 4)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need 4 numbers.");
-			}
-
-			this._A = seed[0];
-			this._B = seed[1];
-			this._C = seed[2];
-			this._D = seed[3];
-
-			for (var i = 0; i < 15; i++)
-			{
-				this.Advance();
-			}
+			this.SetSeed(seed);
 		}
 
 		~GJrand64()
@@ -113,6 +87,48 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._D = BitConverter.ToUInt64(bytes, 0);
 			}
+
+			for (var i = 0; i < 15; i++)
+			{
+				this.Advance();
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong seed1, ulong seed2, ulong seed3, ulong seed4)
+		{
+			this._A = seed1;
+			this._B = seed2;
+			this._C = seed3;
+			this._D = seed4;
+
+			for (var i = 0; i < 15; i++)
+			{
+				this.Advance();
+			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(ulong[] seed)
+		{
+			if (seed.Length < 4)
+			{
+				throw new ArgumentOutOfRangeException(nameof(seed), "Seed length ");
+			}
+
+			if (seed.Length < 4)
+			{
+				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need 4 numbers.");
+			}
+
+			this._A = seed[0];
+			this._B = seed[1];
+			this._C = seed[2];
+			this._D = seed[3];
 
 			for (var i = 0; i < 15; i++)
 			{

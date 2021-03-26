@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Litdex.Security.RNG
@@ -60,6 +61,9 @@ namespace Litdex.Security.RNG
 
 		/// <inheritdoc/>
 		public abstract byte[] NextBytes(int length);
+
+		/// <inheritdoc/>
+		public abstract void Fill(byte[] bytes);
 
 		/// <inheritdoc/>
 		public abstract uint NextInt();
@@ -237,6 +241,11 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(k), $"The number of elements to be retrieved exceeds the items size.");
 			}
 
+			if (k == items.Length)
+			{
+				return items;
+			}
+
 			T[] reservoir = new T[k];
 
 			for (var i = 0; i < k; i++)
@@ -244,14 +253,9 @@ namespace Litdex.Security.RNG
 				reservoir[i] = items[i];
 			}
 
-			if (k == items.Length)
-			{
-				return reservoir;
-			}
-
 			for (var i = k; i < items.Length; i++)
 			{
-				int index = (int)this.NextInt(0, (uint)i);
+				var index = (int)this.NextInt(0, (uint)i);
 
 				if (index < k)
 				{
@@ -263,9 +267,12 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
-		public virtual Task<T[]> SampleAsync<T>(T[] items, int k)
+		public virtual async Task<T[]> SampleAsync<T>(T[] items, int k)
 		{
-			return Task.FromResult(this.Sample(items, k));
+			return await Task.Run(() =>
+			{
+				return Task.FromResult(this.Sample(items, k));
+			});
 		}
 
 		/// <inheritdoc/>
@@ -280,7 +287,7 @@ namespace Litdex.Security.RNG
 
 			for (var i = items.Length - 1; i > 1; i--)
 			{
-				var index = this.NextLong(0, (ulong)i);
+				var index = this.NextInt(0, (uint)i);
 				temp = items[i];
 				items[i] = items[index];
 				items[index] = temp;
@@ -288,11 +295,12 @@ namespace Litdex.Security.RNG
 		}
 
 		/// <inheritdoc/>
-		public Task ShuffleAsync<T>(T[] items)
+		public async Task ShuffleAsync<T>(T[] items)
 		{
-			this.Shuffle(items);
-
-			return Task.CompletedTask;
+			await Task.Run(() =>
+			{
+				this.Shuffle(items);
+			});
 		}
 
 		#endregion Sequence

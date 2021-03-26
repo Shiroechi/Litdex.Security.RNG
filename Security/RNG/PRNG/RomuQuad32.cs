@@ -34,10 +34,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuQuad32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint seed4 = 0)
 		{
-			this._W = seed1;
-			this._X = seed2;
-			this._Y = seed3;
-			this._Z = seed4;
+			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
 		/// <summary>
@@ -51,15 +48,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuQuad32(uint[] seed)
 		{
-			if (seed.Length < 4)
-			{
-				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need 4 numbers.");
-			}
-
-			this._W = seed[0];
-			this._X = seed[1];
-			this._Y = seed[2];
-			this._Z = seed[3];
+			this.SetSeed(seed);
 		}
 
 		/// <summary>
@@ -120,6 +109,33 @@ namespace Litdex.Security.RNG.PRNG
 				rng.GetNonZeroBytes(bytes);
 				this._Z = BitConverter.ToUInt32(bytes, 0);
 			}
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint seed4 = 0)
+		{
+			this._W = seed1;
+			this._X = seed2;
+			this._Y = seed3;
+			this._Z = seed4;
+		}
+
+		/// <summary>
+		/// Set <see cref="RNG"/> seed manually.
+		/// </summary>
+		public void SetSeed(uint[] seed)
+		{
+			if (seed.Length < 4)
+			{
+				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need 4 numbers.");
+			}
+
+			this._W = seed[0];
+			this._X = seed[1];
+			this._Y = seed[2];
+			this._Z = seed[3];
 		}
 
 		#endregion Public Method
