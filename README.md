@@ -2,9 +2,9 @@
 
 Library that provide basic random generator function and was inspired from Python [random.py](https://github.com/python/cpython/blob/master/Lib/random.py).
 
-[Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) have already provide some basic random algorithm, so you can use it immediately rather than implement it yourself. But still [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) created with extensibility in mind, so you can implement your own *random generator* with this [library](https://github.com/Shiroechi/Litdex.Security.RNG).
+[Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) have already provide some basic random algorithm, so you can use it immediately rather than implement it yourself. But, still [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG) created with extensibility in mind, so you can implement your own *random generator* with this [library](https://github.com/Shiroechi/Litdex.Security.RNG).
 
-**Note:** This is library also included in [Litdex](https://github.com/Shiroechi/Litdex).
+**Note:** This is sub-modlue of [Litdex](https://github.com/Shiroechi/Litdex).
 
 [![CodeFactor](https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng)
 

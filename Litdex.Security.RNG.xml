@@ -6,12 +6,12 @@
     <members>
         <member name="T:Litdex.Security.RNG.IDistribution">
             <summary>
-            Interface structure for distribution.
+            	Interface structure for distribution.
             </summary>
         </member>
-        <member name="M:Litdex.Security.RNG.IDistribution.NextGaussian(System.Double,System.Double)">
+        <member name="M:Litdex.Security.RNG.IDistribution.NextGaussian(System.Double,System.Double,System.Boolean)">
             <summary>
-            Return gaussian distribution.
+            	Generate gaussian distribution.
             </summary>
             <param name="mean">
             	Mean value.
@@ -19,175 +19,194 @@
             <param name="std">
             	Standard deviation value.
             </param>
+            <param name="threadSafe">
+            	By default <see langword="false"/>. Set <see langword="true"/> for thread safe but more slower.
+            </param>
             <returns>
-            	Normal distribution.
+            	A 64 bit floating point number normal distribution.
+            </returns>
+        </member>
+        <member name="M:Litdex.Security.RNG.IDistribution.NextGamma(System.Double,System.Double)">
+            <summary>
+            	Generate gamma distribution from 2 numbers.
+            </summary>
+            <param name="alpha">
+            	Alpha uniform number.
+            </param>
+            <param name="beta">
+            	Beta uniform number.
+            </param>
+            <returns>
+            	Gamma distribution.
             </returns>
         </member>
         <member name="T:Litdex.Security.RNG.IRNG">
             <summary>
-            Interface structure for Random Number Generator (RNG).
+            	Interface structure for Random Number Generator (RNG).
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.AlgorithmName">
             <summary>
-            The name of the algorithm this generator implements.
+            	The name of the algorithm this generator implements.
             </summary>
             <returns>
-            The name of this RNG.
+            	The name of RNG.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Reseed">
             <summary>
-            Seed with <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/>.
+            	Seed with <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/>.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextBoolean">
             <summary>
-            Generate <see cref="T:System.Boolean"/> value from generator.
+            	Generate <see cref="T:System.Boolean"/> value from generator.
             </summary>
             <returns>
-            <see langword="true"/> or <see langword="false"/>.
+            	<see langword="true"/> or <see langword="false"/>.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte">
             <summary>
-            Generate <see cref="T:System.Byte"/> value from generator.
+            	Generate <see cref="T:System.Byte"/> value from generator.
             </summary>
             <returns>
-            Random <see cref="T:System.Byte"/>.
+            	Random <see cref="T:System.Byte"/>.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextByte(System.Byte,System.Byte)">
             <summary>
-            Generate <see cref="T:System.Byte"/> value between 
-            lower bound and upper bound from generator.
+            	Generate <see cref="T:System.Byte"/> value between 
+            	lower bound and upper bound from generator.
             </summary>
             <param name="lower">
-            Lower bound or expected minimum value.
+            	Lower bound or expected minimum value.
             </param>
             <param name="upper">
-            Upper bound or ecpected maximum value.
+            	Upper bound or ecpected maximum value.
             </param>
             <returns>
-            <see cref="T:System.Byte"/> value between lower bound and upper bound.
+            	<see cref="T:System.Byte"/> value between lower bound and upper bound.
             </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Lower bound is greater than or equal to upper bound.
+            <exception cref="T:System.ArgumentException">
+            	Lower bound is greater than or equal to upper bound.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextBytes(System.Int32)">
             <summary>
-            Generate random byte[] value from generator.
+            	Generate array of random bytes from generator.
             </summary>
             <param name="length">
-            Requested output length.
+            	Requested output length.
             </param>
             <returns>
-            Array of bytes.
+            	Array of bytes.
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            The requested output size can't lower than 1.
+            	The requested output size can't lower than 1.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Fill(System.Byte[])">
             <summary>
-            Fill the array with random bytes.
+            	Fill the array with random bytes.
             </summary>
-            <param name="bytes">Array to fill with random bytes.</param>		/// 
+            <param name="bytes">
+            	Array to fill with random bytes.
+            </param>
             <exception cref="T:System.ArgumentNullException">
-            Array length can't be lower than 1 or null.
+            	Array length can't be lower than 1 or null.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt">
             <summary>
-            Generate <see cref="T:System.UInt32"/> value from generator.
+            	Generate <see cref="T:System.UInt32"/> value from generator.
             </summary>
             <returns>
-            A 32-bit unsigned integer.
+            	A 32-bit unsigned integer.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextInt(System.UInt32,System.UInt32)">
             <summary>
-            Generate <see cref="T:System.UInt32"/> value between 
-            lower bound and upper bound from generator.
+            	Generate <see cref="T:System.UInt32"/> value between 
+            	lower bound and upper bound from generator.
             </summary>
             <param name="lower">
-            Lower bound or expected minimum value.
+            	Lower bound or expected minimum value.
             </param>
             <param name="upper">
-            Upper bound or ecpected maximum value.
+            	Upper bound or ecpected maximum value.
             </param>
             <returns>
-            <see cref="T:System.UInt32"/> value between lower bound and upper bound.
+            	<see cref="T:System.UInt32"/> value between lower bound and upper bound.
             </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Lower bound is greater than or equal to upper bound.
+            <exception cref="T:System.ArgumentException">
+            	Lower bound is greater than or equal to upper bound.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong">
             <summary>
-            Generate <see cref="T:System.UInt64"/> value from generator. 
+            	Generate <see cref="T:System.UInt64"/> value from generator. 
             </summary>
             <returns>
-            A 64-bit unsigned integer.
+            	A 64-bit unsigned integer.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextLong(System.UInt64,System.UInt64)">
             <summary>
-            Generate <see cref="T:System.UInt64"/> value between 
-            lower bound and upper bound from generator. 
+            	Generate <see cref="T:System.UInt64"/> value between 
+            	lower bound and upper bound from generator. 
             </summary>
             <param name="lower">
-            Lower bound or expected minimum value.
+            	Lower bound or expected minimum value.
             </param>
             <param name="upper">
-            Upper bound or ecpected maximum value.
+            	Upper bound or ecpected maximum value.
             </param>
             <returns>
-            <see cref="T:System.UInt64"/> value lower bound and upper bound.
+            	<see cref="T:System.UInt64"/> value lower bound and upper bound.
             </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Lower bound is greater than or equal to upper bound.
+            <exception cref="T:System.ArgumentException">
+            	Lower bound is greater than or equal to upper bound.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble">
             <summary>
-            Generate <see cref="T:System.Double"/> value from generator.
+            	Generate <see cref="T:System.Double"/> value from generator.
             </summary>
             <returns>
-            A 64-bit floating point.
+            	A 64-bit floating point number.
             </returns>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.NextDouble(System.Double,System.Double)">
             <summary>
-            Generate <see cref="T:System.Double"/> value between 
-            lower bound and upper bound from generator.
+            	Generate <see cref="T:System.Double"/> value between 
+            	lower bound and upper bound from generator.
             </summary>
             <param name="lower">
-            Lower bound or expected minimum value.
+            	Lower bound or expected minimum value.
             </param>
             <param name="upper">
-            Upper bound or ecpected maximum value.
+            	Upper bound or ecpected maximum value.
             </param>
             <returns>
-            <see cref="T:System.Double"/> value between lower bound and upper bound.
+            	<see cref="T:System.Double"/> value between lower bound and upper bound.
             </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Lower bound is greater than or equal to upper bound.
+            <exception cref="T:System.ArgumentException">
+            	Lower bound is greater than or equal to upper bound.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[])">
             <summary>
-            Select one element randomly.
+            	Select one element randomly from the given set.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <returns>
-            Random element from the given sets.
+            	Random element from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
@@ -198,46 +217,40 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Choice``1(``0[],System.Int32)">
             <summary>
-            Select abritary element randomly.
+            	Select abritary element randomly.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <param name="select">
-            The desired amount to select.
+            	The desired amount to select.
             </param>
             <returns>
-            Multiple random elements from the given sets.
+            	Multiple random elements from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
             </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            <list type="bullet">
-            	<item>
             	The number of elements to be retrieved is negative or less than 1.
-            	</item>
-            	<item>
             	The number of elements to be retrieved exceeds the items size.
-            	</item>
-            </list>
             </exception>
         </member>
-        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.ICollection{``0})">
             <summary>
-            Select one element randomly.
+            	Select one element randomly.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <returns>
-            Random element from the given sets.
+            	Random element from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
@@ -246,108 +259,120 @@
             	The items length or size can't be greater than int.MaxValue.
             </exception>
         </member>
-        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
+        <member name="M:Litdex.Security.RNG.IRNG.Choice``1(System.Collections.Generic.ICollection{``0},System.Int32)">
             <summary>
-            Select abritary element randomly.
+            	Select abritary element randomly.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <param name="select">
-            The desired amount to select.
+            	The desired amount to select.
             </param>
             <returns>
-            Multiple random elements from the given sets.
+            	Multiple random elements from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
             </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            <list type="bullet">
-            	<item>
             	The number of elements to be retrieved is negative or less than 1.
-            	</item>
-            	<item>
             	The number of elements to be retrieved exceeds the items size.
-            	</item>
-            </list>
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Sample``1(``0[],System.Int32)">
             <summary>
-            Select abritary distinct element randomly.
+            	Select abritary distinct element randomly.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <param name="k">
-            The desired amount to select.
+            	The desired amount to select.
             </param>
             <returns>
-            Multiple random elements from the given sets.
+            	Multiple random elements from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
             </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            <list type="bullet">
-            	<item>
+            <exception cref="T:System.ArgumentException">
             	The number of elements to be retrieved is negative or less than 1.
-            	</item>
-            	<item>
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
             	The number of elements to be retrieved exceeds the items size.
-            	</item>
-            </list>
+            </exception>
+        </member>
+        <member name="M:Litdex.Security.RNG.IRNG.Sample``1(System.Collections.Generic.ICollection{``0},System.Int32)">
+            <summary>
+            	Select abritary distinct element randomly.
+            </summary>
+            <typeparam name="T">
+            	The type of objects in array.
+            </typeparam>
+            <param name="items">
+            	A set of items to select.
+            </param>
+            <param name="k">
+            	The desired amount to select.
+            </param>
+            <returns>
+            	Multiple random elements from the given set.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            	The items is null, empty or not initialized. 
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	The number of elements to be retrieved is negative or less than 1.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	The number of elements to be retrieved exceeds the items size.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.SampleAsync``1(``0[],System.Int32)">
             <summary>
-            Select abritary distinct element randomly.
+            	Select abritary distinct element randomly.
             </summary>
             <remarks>
-            Used for large data, objects or arrays.
+            	Used for large data, objects or arrays.
             </remarks>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to choose.
+            	A set of items to select.
             </param>
             <param name="k">
-            The desired amount to select.
+            	The desired amount to select.
             </param>
             <returns>
-            Multiple random elements from the given sets.
+            	Multiple random elements from the given set.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
             </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            <list type="bullet">
-            	<item>
+            <exception cref="T:System.ArgumentException">
             	The number of elements to be retrieved is negative or less than 1.
-            	</item>
-            	<item>
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
             	The number of elements to be retrieved exceeds the items size.
-            	</item>
-            </list>
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.Shuffle``1(``0[])">
             <summary>
-            Shuffle items with Fisher-Yates shuffle.
+            	Shuffle items in place with Fisher-Yates shuffle.
             </summary>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to shuffle.
+            	A set of items to shuffle.
             </param>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
@@ -355,19 +380,19 @@
         </member>
         <member name="M:Litdex.Security.RNG.IRNG.ShuffleAsync``1(``0[])">
             <summary>
-            Shuffle items with Fisher-Yates shuffle.
+            	Shuffle items with Fisher-Yates shuffle.
             </summary>
             <remarks>
-            Used for large data, objects or arrays.
+            	Used for large data, objects or arrays.
             </remarks>
             <typeparam name="T">
-            Data type
+            	The type of objects in array.
             </typeparam>
             <param name="items">
-            Set of items to shuffle.
+            	A set of items to shuffle.
             </param>
             <returns>
-            Shuffled items.
+            	Shuffled items.
             </returns>
             <exception cref="T:System.ArgumentNullException">
             	The items is null, empty or not initialized. 
@@ -375,8 +400,33 @@
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.GJrand64">
             <summary>
-            Implementation of David Blackman's GJrand PRNG(s)
+            	Implementation of David Blackman's GJrand PRNG(s)
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.GJrand64.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.GJrand64"/> object.
+            </summary>
+            <param name="seed1">
+            	First seed.
+            </param>
+            <param name="seed2">
+            	Second seed.
+            </param>
+            <param name="seed3">
+            	Third seed.
+            </param>
+            <param name="seed4">
+            	Fourth seed.
+            </param>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.GJrand64.#ctor(System.UInt64[])">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.GJrand64"/> object.
+            </summary>
+            <param name="seed">
+            	Array of 64 bit unsigned integer with minimum length of 4. 
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.GJrand64.Next">
             <inheritdoc/>
@@ -389,31 +439,33 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.GJrand64.SetSeed(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.GJrand64.SetSeed(System.UInt64[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32">
             <summary>
-            Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            <para>
-            http://burtleburtle.net/bob/rand/smallprng.html
-            </para>
+            	Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
             </summary>
+            <remarks>
+            	Source: http://burtleburtle.net/bob/rand/smallprng.html
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.#ctor(System.UInt32)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.JSF32"/> object.
             </summary>
-            <param name="seed">Your seed.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Next">
@@ -421,11 +473,16 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.Rotate(System.UInt32,System.Int32)">
             <summary>
-            Rotate the bit.
+            	Rotate the bit.
             </summary>
-            <param name="value">Number to rotate.</param>
-            <param name="shift">Bit to rotate.</param>
-            <returns></returns>
+            <param name="value">
+            	Number to rotate.</param>
+            <param name="shift">
+            	Bit to rotate.
+            </param>
+            <returns>
+            	Left rotate of the <paramref name="value"/>.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.AlgorithmName">
             <inheritdoc/>
@@ -435,23 +492,28 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32.SetSeed(System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF32t">
             <summary>
-            Improved version of <see cref="T:Litdex.Security.RNG.PRNG.JSF32"/> with 3 rotate.
+            	Improved version of <see cref="T:Litdex.Security.RNG.PRNG.JSF32"/> with 3 rotate.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32t.#ctor(System.UInt32)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.JSF32t"/> object.
             </summary>
-            <param name="seed">Your seed.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32t.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF32t.Next">
@@ -462,21 +524,23 @@
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.JSF64">
             <summary>
-            Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
-            <para>	/// 
-            http://burtleburtle.net/bob/rand/smallprng.html
-            </para>
+            	Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.
             </summary>
+            <remarks>
+            	Source: http://burtleburtle.net/bob/rand/smallprng.html
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.#ctor(System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.JSF64"/> object.
             </summary>
-            <param name="seed">Your seed.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Next">
@@ -484,11 +548,17 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.Rotate(System.UInt64,System.Int32)">
             <summary>
-            Rotate the bit.
+            	Rotate the bit.
             </summary>
-            <param name="value">Number to rotate.</param>
-            <param name="shift">Bit to rotate.</param>
-            <returns></returns>
+            <param name="value">
+            	Number to rotate.
+            </param>
+            <param name="shift">
+            	Bit to rotate.
+            </param>
+            <returns>
+            	
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.AlgorithmName">
             <inheritdoc/>
@@ -498,27 +568,31 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence">
             <summary>
-            Improved version from Middle Square Method
-            invented by John Von Neumann. 
-            <list type="bullet">
-            <item>https://arxiv.org/abs/1704.00358</item>
-            </list>
+            	Improved version from Middle Square Method, invented by John Von Neumann.
             </summary>
+            <remarks>
+            	Source: https://arxiv.org/abs/1704.00358
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.#ctor(System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>  object.
             </summary>
-            <param name="seed">Your seed.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.Next">
@@ -532,26 +606,34 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.SetSeed(System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.PCG32">
             <summary>
-            Implemetation of Permuted Congruential Generator 
-            "Minimal C implementation" from 
-            http://www.pcg-random.org/download.html
+            	Implemetation of Permuted Congruential Generator by O'Neill.
             </summary>
+            <remarks>
+            	Source: http://www.pcg-random.org/download.html
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.#ctor(System.UInt64,System.UInt64)">
             <summary>
-            Default constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.PCG32"/> object.
             </summary>
-            <param name="seed">Seed.</param>
-            <param name="increment">Increment.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="increment">
+            	Increment step.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.Next">
@@ -565,22 +647,44 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.PCG32.SetSeed(System.UInt64,System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="increment">
+            	Increment step.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuDuo">
             <summary>
-            Might be faster than RomuTrio due to using fewer registers, but might struggle with massive jobs.
-            Est. capacity = 2^61 bytes. Register pressure = 5. State size = 128 bits.
+            	Romu random variations, might be faster than <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> due to using fewer registers, but might struggle with massive jobs.
+            	Est. capacity = 2^61 bytes. Register pressure = 5. State size = 128 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuDuo"/> object.
+            </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.#ctor(System.UInt64[])">
             <summary>
-            
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuDuo"/> object.
             </summary>
-            <param name="seed"></param>
+            <param name="seed">
+            	RNG seed numbers.
+            </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 2 numbers.
+            	Seed need 2 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.Next">
@@ -594,27 +698,55 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.SetSeed(System.UInt64,System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuo.SetSeed(System.UInt64[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seeds.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	Seed need at least 2 numbers.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuDuoJr">
             <summary>
-            The fastest generator using 64-bit arith., but not suited for huge jobs.
-            Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
+            	Romu random variations, the fastest generator using 64-bit arith., but not suited for huge jobs.
+            	Est. capacity = 2^51 bytes. Register pressure = 4. State size = 128 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuDuoJr"/> object.
+            </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.#ctor(System.UInt64[])">
             <summary>
-            
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuDuoJr"/> object.
             </summary>
-            <param name="seed"></param>
+            <param name="seed">
+            	RNG seed numbers.
+            </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 2 numbers.
+            	Seed need 2 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.Next">
@@ -623,25 +755,23 @@
         <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.SetSeed(System.UInt64,System.UInt64)">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.RomuDuoJr.SetSeed(System.UInt64[])">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuMono32">
             <summary>
-            32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.
-            Fixed period of (2^32)-47. Must be seeded using the romuMono32_init function.
-            Capacity = 2^27 bytes. Register pressure = 2. State size = 32 bits.
+            	Romu random variations, 32-bit arithmetic: Suitable only up to 2^26 output-values. Outputs 16-bit numbers.
+            	Fixed period of (2^32)-47. Must be seeded using the romuMono32_init function.
+            	Capacity = 2^27 bytes. Register pressure = 2. State size = 32 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.#ctor(System.UInt32)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuMono32"/> object.
+            </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.Next">
             <inheritdoc/>
@@ -654,46 +784,52 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuMono32.SetSeed(System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuQuad">
             <summary>
-            More robust than anyone could need, but uses more registers than RomuTrio.
-            Est. capacity >= 2^90 bytes. Register pressure = 8 (high). State size = 256 bits.
+            	Romu random variations, more robust than anyone could need, but uses more registers than RomuTrio.
+            	Est. capacity >= 2^90 bytes. Register pressure = 8 (high). State size = 256 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad"/> object.
             </summary>
             <param name="seed1">
-            W state.
+            	W state.
             </param>
             <param name="seed2">
-            X state.
+            	X state.
             </param>
             <param name="seed3">
-            Y state.
+            	Y state.
             </param>
             <param name="seed4">
-            Z state.
+            	Z state.
             </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.#ctor(System.UInt32[])">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad"/> object.
             </summary>
             <param name="seed">
-            A array of seed numbers.
+            	A array of seed numbers.
             </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 4 numbers.
+            	Seed need 4 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Finalize">
             <summary>
-            Clear all seed.
+            	Clear all seed.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.Next">
@@ -707,51 +843,75 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.SetSeed(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	W state.
+            </param>
+            <param name="seed2">
+            	X state.
+            </param>
+            <param name="seed3">
+            	Y state.
+            </param>
+            <param name="seed4">
+            	Z state.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad.SetSeed(System.UInt32[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            	Array of seed is null or empty.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	Seed need 4 numbers.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuQuad32">
             <summary>
-            32-bit arithmetic: Good for general purpose use.
-            Est. capacity >= 2^62 bytes. Register pressure = 7. State size = 128 bits.
+            	Romu random variations, 32-bit arithmetic: Good for general purpose use.
+            	Est. capacity >= 2^62 bytes. Register pressure = 7. State size = 128 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> object.
             </summary>
             <param name="seed1">
-            W state.
+            	W state.
             </param>
             <param name="seed2">
-            X state.
+            	X state.
             </param>
             <param name="seed3">
-            Y state.
+            	Y state.
             </param>
             <param name="seed4">
-            Z state.
+            	Z state.
             </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.#ctor(System.UInt32[])">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad32"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuQuad"/> object.
             </summary>
             <param name="seed">
-            A array of seed numbers.
+            	A array of seed numbers.
             </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 4 numbers.
+            	Seed need 4 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Finalize">
             <summary>
-            Clear all seed.
+            	Clear all seed.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.Next">
@@ -767,46 +927,70 @@
             <summary>
             Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	W state.
+            </param>
+            <param name="seed2">
+            	X state.
+            </param>
+            <param name="seed3">
+            	Y state.
+            </param>
+            <param name="seed4">
+            	Z state.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuQuad32.SetSeed(System.UInt32[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            	Array of seed is null or empty.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	Seed need 4 numbers.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuTrio">
             <summary>
-            Great for general purpose work, including huge jobs.
-            Est. capacity = 2^75 bytes. Register pressure = 6. State size = 192 bits.
+            	Romu random variations, great for general purpose work, including huge jobs.
+            	Est. capacity = 2^75 bytes. Register pressure = 6. State size = 192 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.#ctor(System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> object.
             </summary>
             <param name="seed1">
-            X state.
+            	X state.
             </param>
             <param name="seed2">
-            Y state.
+            	Y state.
             </param>
             <param name="seed3">
-            Z state.
+            	Z state.
             </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.#ctor(System.UInt32[])">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio"/> object.
             </summary>
             <param name="seed">
-            A array of seed numbers.
+            	A array of seed numbers.
             </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed need 3 numbers.
+            	Seed need 3 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Finalize">
             <summary>
-            Clear all seed.
+            	Clear all seed.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.Next">
@@ -820,43 +1004,61 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.SetSeed(System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	X state.
+            </param>
+            <param name="seed2">
+            	Y state.
+            </param>
+            <param name="seed3">
+            	Z state.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio.SetSeed(System.UInt32[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	Seed need 3 numbers.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.RomuTrio32">
             <summary>
-            32-bit arithmetic: Good for general purpose use, except for huge jobs.
-            Est. capacity >= 2^53 bytes. Register pressure = 5. State size = 96 bits.
+            	Romu random variations, 32-bit arithmetic: Good for general purpose use, except for huge jobs.
+            	Est. capacity >= 2^53 bytes. Register pressure = 5. State size = 96 bits.
             </summary>
+            <remarks>
+            	Source: https://www.romu-random.org/
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.#ctor(System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> object.
             </summary>
             <param name="seed1">
-            X state.
+            	X state.
             </param>
             <param name="seed2">
-            Y state.
+            	Y state.
             </param>
             <param name="seed3">
-            Z state.
+            	Z state.
             </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.#ctor(System.UInt32[])">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.RomuTrio32"/> object.
             </summary>
             <param name="seed">
-            Rng seed.
+            	A array of seed numbers.
             </param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Seed nedd 3 numbers.
+            	Seed need 3 numbers.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.Next">
@@ -870,28 +1072,45 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.SetSeed(System.UInt32,System.UInt32,System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	X state.
+            </param>
+            <param name="seed2">
+            	Y state.
+            </param>
+            <param name="seed3">
+            	Z state.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.RomuTrio32.SetSeed(System.UInt32[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	A array of seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	Seed need 3 numbers.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.SplitMix64">
             <summary>
-            SplitMix64 PRNG Algorithm.
+            	SplitMix64 PRNG Algorithm.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.#ctor(System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.SplitMix64"/> object.
             </summary>
-            <param name="seed"></param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.Next">
@@ -905,33 +1124,47 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.SplitMix64.SetSeed(System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Squares">
             <summary>
-            Counter-based RNG based on <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>
-            
-            <list type="bullet">
-            	<item>https://arxiv.org/pdf/2004.06278.pdf</item>
-            </list>
+            	Counter-based RNG based on <see cref="T:Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence"/>.
             </summary>
+            <remarks>
+            	Source: https://arxiv.org/pdf/2004.06278.pdf
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.#ctor(System.UInt64,System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Squares"/> object.
             </summary>
+            <param name="ctr">
+            	Counter start number.
+            </param>
+            <param name="key">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.Next">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.Next(System.UInt64,System.UInt64)">
             <summary>
-            Generate next random number.
+            	Generate next random number.
             </summary>
-            <param name="ctr">Counter-based.</param>
-            <param name="key">Spesific key.</param>
-            <returns></returns>
+            <param name="ctr">
+            	Counter-based number.
+            </param>
+            <param name="key">
+            	RNG seed.
+            </param>
+            <returns>
+            	
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.AlgorithmName">
             <inheritdoc/>
@@ -941,27 +1174,48 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Squares.SetSeed(System.UInt64,System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="ctr">
+            	Counter-based number.
+            </param>
+            <param name="key">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Tyche">
             <summary>
-            <see cref="T:Litdex.Security.RNG.PRNG.Tyche"/> is based on ChaCha's quarter-round.
+            	<see cref="T:Litdex.Security.RNG.PRNG.Tyche"/> is based on ChaCha's quarter-round.
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Tyche.#ctor(System.UInt64,System.UInt32)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Tyche"/> object.
+            </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="idx">
+            	Unique key.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.Next">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.Init(System.UInt64,System.UInt32)">
             <summary>
-            Initialzied internal state.
+            	Initialzied internal state.
             </summary>
-            <param name="seed"></param>
-            <param name="idx"></param>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="idx">
+            	Unique key.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.Mix">
             <summary>
-            Update internal state based on quater round function of ChaCha stream chiper.
+            	Update internal state based on quater round function of ChaCha stream chiper.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.AlgorithmName">
@@ -972,54 +1226,58 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tyche.SetSeed(System.UInt64,System.UInt32)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="idx">
+            	Unique key.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Tychei">
             <summary>
-            Inverse <see cref="T:Litdex.Security.RNG.PRNG.Tyche"/>.
+            	Inverse <see cref="T:Litdex.Security.RNG.PRNG.Tyche"/>.
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Tychei.#ctor(System.UInt64,System.UInt32)">
+            <summary>
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Tychei"/> object.
+            </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
+            <param name="idx">
+            	unique key.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tychei.Next">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Tychei.Init(System.UInt64,System.UInt32)">
+        <member name="M:Litdex.Security.RNG.PRNG.Tychei.Mix">
             <summary>
-            Initialzied internal state.
-            </summary>
-            <param name="seed"></param>
-            <param name="idx"></param>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Tychei.Mix_i">
-            <summary>
-            Update internal state based on quater round function of ChaCha stream chiper.
+            	Update internal state based on quater round function of ChaCha stream chiper.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Tychei.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Tychei.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Tychei.SetSeed(System.UInt64,System.UInt32)">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.WyRng">
             <summary>
-            Based on Wyhash https://github.com/wangyi-fudan/wyhash
+            	Based on Wyhash https://github.com/wangyi-fudan/wyhash
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.WyRng.#ctor(System.UInt64)">
             <summary>
-            Create <see cref="T:Litdex.Security.RNG.PRNG.WyRng"/> instance.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.WyRng"/> object.
             </summary>
-            <param name="seed">Seed.</param>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.WyRng.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.WyRng.Next">
@@ -1033,26 +1291,30 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.WyRng.SetSeed(System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus">
             <summary>
-            Xoroshiro128plus PRNG is improved from Xoroshift128.
-            http://xoroshiro.di.unimi.it/xoroshiro128plus.c
+            	Xoroshiro128plus PRNG is improved from Xoroshift128.
             </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.#ctor">
-            <summary>
-            Constructor.
-            </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoroshiro128plus.c
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.#ctor(System.UInt64,System.UInt64)">
             <summary>
-            Constructor with defined seed.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus"/> object.
             </summary>
-            <param name="seed1"></param>
-            <param name="seed2"></param>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.Next">
             <inheritdoc/>
@@ -1065,31 +1327,39 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.NextJump">
             <summary>
-            2^64 calls to NextLong(), it can be used to generate 2^64
-            non-overlapping subsequences for parallel computations.
+            	2^64 calls to NextLong(), it can be used to generate 2^64
+            	non-overlapping subsequences for parallel computations.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plus.SetSeed(System.UInt64,System.UInt64)">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus">
             <summary>
-            http://prng.di.unimi.it/xoroshiro128plusplus.c
+            	Variations of <see cref="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus"/>.
             </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.#ctor">
-            <summary>
-            Constructor.
-            </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoroshiro128plusplus.c
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.#ctor(System.UInt64,System.UInt64)">
             <summary>
-            Constructor with defined seed.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus"/> object.
             </summary>
-            <param name="seed1"></param>
-            <param name="seed2"></param>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Next">
             <inheritdoc/>
@@ -1097,91 +1367,67 @@
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.NextJump">
-            <summary>
-            2^64 calls to NextLong(), it can be used to generate 2^64
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus.SetSeed(System.UInt64,System.UInt64)">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoroshiro128starstar">
             <summary>
-            New family of xoroshiro.
-            All general purpose generator.
-            http://vigna.di.unimi.it/xorshift/xoroshiro128starstar.c
+            	Variations of <see cref="T:Litdex.Security.RNG.PRNG.Xoroshiro128plus"/>.
             </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.#ctor">
-            <summary>
-            Constructor.
-            </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoroshiro128starstar.c
+            </remarks>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.#ctor(System.UInt64,System.UInt64)">
             <summary>
-            Constructor with defined seed.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoroshiro128plusplus"/> object.
             </summary>
-            <param name="seed1"></param>
-            <param name="seed2"></param>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Finalize">
-            <summary>
-            Destructor.
-            </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Next">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextInt(System.Int32)">
-            <summary>
-            Generates the next pseudorandom number Xoroshiro128starstar PRNG 
-            integer value.
-            </summary>
-            <param name="bits"></param>
-            <returns></returns>
-        </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.NextJump">
-            <summary>
-            2^64 calls to NextLong(), it can be used to generate 2^64
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoroshiro128starstar.SetSeed(System.UInt64,System.UInt64)">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plus">
             <summary>
-            RNG from xoroshiro family.
-            http://vigna.di.unimi.it/xorshift/xoshiro256plus.c
+            	(XOR/shift/rotate) all-purpose generators.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro256plus.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plus"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plus"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.Next">
@@ -1195,35 +1441,78 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.NextJump">
             <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^128 calls to next(); it can be used to generate 2^128
-            non-overlapping subsequences for parallel computations.
+            	This is the jump function for the generator. It is equivalent
+            	to 2^128 calls to next(); it can be used to generate 2^128
+            	non-overlapping subsequences for parallel computations.
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.SetSeed(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plus.SetSeed(System.UInt64[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            	Array of seed is null or empty.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	Seed length lower than 4.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256plusplus">
             <summary>
-            RNG from xoroshiro family.
-            http://prng.di.unimi.it/xoshiro256plusplus.c
+            	Variations of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plus"/>.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro256plusplus.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plusplus"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plusplus"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Next">
@@ -1232,40 +1521,42 @@
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.NextJump">
-            <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^128 calls to next(); it can be used to generate 2^128
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256plusplus.SetSeed(System.UInt64[])">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro256starstar">
             <summary>
-            RNG from xoroshiro family.
-            http://vigna.di.unimi.it/xorshift/xoshiro256starstar.c
+            	Variations of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256plus"/>.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro256starstar.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256starstar"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro256starstar"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Finalize">
             <summary>
-            Destructor.
+            	Destructor.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Next">
@@ -1274,40 +1565,54 @@
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.NextJump">
-            <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^128 calls to next(); it can be used to generate 2^128
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro256starstar.SetSeed(System.UInt64[])">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plus">
             <summary>
-            Xoshiro512+
-            http://xoshiro.di.unimi.it/xoshiro512plus.c
+            	(XOR/shift/rotate) all-purpose generators.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro512plus.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plus"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
+            <param name="seed5">
+            	Fifth RNG seed.
+            </param>
+            <param name="seed6">
+            	Sixth RNG seed.
+            </param>
+            <param name="seed7">
+            	Seventh RNG seed.
+            </param>
+            <param name="seed8">
+            	Eighth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plus"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Finalize">
             <summary>
-            Destructor
+            	Destructor
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.Next">
@@ -1321,35 +1626,102 @@
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.NextJump">
             <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^256 calls to next(); it can be used to generate 2^256
-            non-overlapping subsequences for parallel computations.
+            	This is the jump function for the generator. It is equivalent
+            	to 2^256 calls to next(); it can be used to generate 2^256
+            	non-overlapping subsequences for parallel computations.
             </summary>
+        </member>
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.SetSeed(System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
+            <param name="seed5">
+            	Fifth RNG seed.
+            </param>
+            <param name="seed6">
+            	Sixth RNG seed.
+            </param>
+            <param name="seed7">
+            	Seventh RNG seed.
+            </param>
+            <param name="seed8">
+            	Eighth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plus.SetSeed(System.UInt64[])">
             <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
+            	Set <see cref="N:Litdex.Security.RNG"/> seed manually.
             </summary>
+            <param name="seed">
+            	RNG seed numbers.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            	Array of seed is null or empty.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	Seed length lower than 8.
+            </exception>
         </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512plusplus">
             <summary>
-            Xoshiro512++
-            http://xoshiro.di.unimi.it/xoshiro512plusplus.c
+            	Vartions of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plus"/>.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro512plusplus.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Default constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plusplus"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
+            <param name="seed5">
+            	Fifth RNG seed.
+            </param>
+            <param name="seed6">
+            	Sixth RNG seed.
+            </param>
+            <param name="seed7">
+            	Seventh RNG seed.
+            </param>
+            <param name="seed8">
+            	Eighth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plusplus"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Finalize">
             <summary>
-            Destructor
+            	Destructor
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Next">
@@ -1358,40 +1730,54 @@
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.NextJump">
-            <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^256 calls to next(); it can be used to generate 2^256
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512plusplus.SetSeed(System.UInt64[])">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.PRNG.Xoshiro512starstar">
             <summary>
-            Xoshiro512**
-            http://xoshiro.di.unimi.it/xoshiro512starstar.c
+            	Vartions of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512plus"/>.
             </summary>
+            <remarks>
+            	Source: https://prng.di.unimi.it/xoshiro512starstar.c
+            </remarks>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.#ctor">
+        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.#ctor(System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
             <summary>
-            Default constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512starstar"/> object.
             </summary>
+            <param name="seed1">
+            	First RNG seed.
+            </param>
+            <param name="seed2">
+            	Second RNG seed.
+            </param>
+            <param name="seed3">
+            	Third RNG seed.
+            </param>
+            <param name="seed4">
+            	Fourth RNG seed.
+            </param>
+            <param name="seed5">
+            	Fifth RNG seed.
+            </param>
+            <param name="seed6">
+            	Sixth RNG seed.
+            </param>
+            <param name="seed7">
+            	Seventh RNG seed.
+            </param>
+            <param name="seed8">
+            	Eighth RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.#ctor(System.UInt64[])">
             <summary>
-            Constructor.
+            	Create an instance of <see cref="T:Litdex.Security.RNG.PRNG.Xoshiro512starstar"/> object.
             </summary>
+            <param name="seed">
+            	RNG seed.
+            </param>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Finalize">
             <summary>
-            Destructor
+            	Destructor
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Next">
@@ -1400,24 +1786,9 @@
         <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.AlgorithmName">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.Reseed">
-            <inheritdoc/>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.NextJump">
-            <summary>
-            This is the jump function for the generator. It is equivalent
-            to 2^256 calls to next(); it can be used to generate 2^256
-            non-overlapping subsequences for parallel computations.
-            </summary>
-        </member>
-        <member name="M:Litdex.Security.RNG.PRNG.Xoshiro512starstar.SetSeed(System.UInt64[])">
-            <summary>
-            Set <see cref="N:Litdex.Security.RNG"/> seed manually.
-            </summary>
-        </member>
         <member name="T:Litdex.Security.RNG.Random">
             <summary>
-            Base class of all random.
+            	Base class of all random.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.Random.AlgorithmName">
@@ -1452,26 +1823,26 @@
         </member>
         <member name="M:Litdex.Security.RNG.Random.NextIntFast(System.UInt32,System.UInt32,System.Boolean)">
             <summary>
-            Lemire algorithm to generate <see cref="T:System.UInt32"/> value between 
-            lower bound and upper bound from generator.
+            	Lemire algorithm to generate <see cref="T:System.UInt32"/> value between 
+            	lower bound and upper bound from generator.
             </summary>
             <remarks>
-            https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
+            	https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
             </remarks>
             <param name="lower">
-            Lower bound or expected minimum value.
+            	Lower bound or expected minimum value.
             </param>
             <param name="upper">
-            Upper bound or ecpected maximum value.
+            	Upper bound or ecpected maximum value.
             </param>
             <param name="unbias">
-            Determine using division for reduce bias.
+            	Determine using division for reduce bias.
             </param>
             <returns>
-            <see cref="T:System.UInt32"/> value between lower bound and upper bound.
+            	<see cref="T:System.UInt32"/> value between lower bound and upper bound.
             </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Lower bound is greater than or equal to upper bound.
+            <exception cref="T:System.ArgumentException">
+            	Lower bound is greater than or equal to upper bound.
             </exception>
         </member>
         <member name="M:Litdex.Security.RNG.Random.NextLong">
@@ -1492,13 +1863,16 @@
         <member name="M:Litdex.Security.RNG.Random.Choice``1(``0[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.ICollection{``0})">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.IList{``0},System.Int32)">
+        <member name="M:Litdex.Security.RNG.Random.Choice``1(System.Collections.Generic.ICollection{``0},System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.Sample``1(``0[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.Sample``1(System.Collections.Generic.ICollection{``0},System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random.SampleAsync``1(``0[],System.Int32)">
@@ -1510,24 +1884,32 @@
         <member name="M:Litdex.Security.RNG.Random.ShuffleAsync``1(``0[])">
             <inheritdoc/>
         </member>
-        <member name="M:Litdex.Security.RNG.Random.NextGaussian(System.Double,System.Double)">
+        <member name="M:Litdex.Security.RNG.Random.NextGaussian(System.Double,System.Double,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random.NextGamma(System.Double,System.Double)">
             <inheritdoc/>
         </member>
         <member name="T:Litdex.Security.RNG.Random32">
             <summary>
-            Base class for 32 bit RNG.
+            	Base class for 32 bit RNG.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.Next">
             <summary>
-            Generate next random number.
+            	Generate next random number.
             </summary>
-            <returns>A 32-bit unsigned integer.</returns>
+            <returns>
+            	A 32-bit unsigned integer.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.AlgorithmName">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.NextBoolean">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random32.NextByte">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random32.NextBytes(System.Int32)">
@@ -1544,19 +1926,24 @@
         </member>
         <member name="T:Litdex.Security.RNG.Random64">
             <summary>
-            Base class for 64 bit RNG.
+            	Base class for 64 bit RNG.
             </summary>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.Next">
             <summary>
-            Generate next random number.
+            	Generate next random number.
             </summary>
-            <returns>A 64-bit unsigned integer.</returns>
+            <returns>
+            	A 64-bit unsigned integer.
+            </returns>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.AlgorithmName">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.NextBoolean">
+            <inheritdoc/>
+        </member>
+        <member name="M:Litdex.Security.RNG.Random64.NextByte">
             <inheritdoc/>
         </member>
         <member name="M:Litdex.Security.RNG.Random64.NextBytes(System.Int32)">
