@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
@@ -11,16 +11,18 @@
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
     <PackageTags>Random RNG PRNG Splitmix Xoroshiro GJrand JSF PCG MSWS Squares Tyche Tychei Romu</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <Version>2.4.0</Version>
-    <AssemblyVersion>2.4.0.0</AssemblyVersion>
+    <Version>2.5.0</Version>
+    <AssemblyVersion>2.5.0.0</AssemblyVersion>
     <RootNamespace>Litdex</RootNamespace>
-    <PackageReleaseNotes>- Change async logic in ShuffleAsync and SampleAsync.
-- Add new method `SetSeed` to manually set seed without creating new instance.
-- Add new method `Fill` to fill empty array with random byte.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Add .NET 5 framework
+- Change some method parameter to ICollection&lt;T&gt;
+- Refactor some code and comment
+- Fix some bugs</PackageReleaseNotes>
     <Copyright>Shiroechi</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
+    <FileVersion>2.5.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
