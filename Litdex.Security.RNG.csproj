@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
     <Description>Library that provide basic random generator function.</Description>
@@ -17,7 +17,8 @@
     <PackageReleaseNotes>- Add .NET 5 framework
 - Change some method parameter to ICollection&lt;T&gt;
 - Refactor some code and comment
-- Fix some bugs</PackageReleaseNotes>
+- Fix some bugs
+- New method for IDistribution</PackageReleaseNotes>
     <Copyright>Shiroechi</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
