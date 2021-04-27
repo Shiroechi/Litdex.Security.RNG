@@ -54,14 +54,14 @@ namespace Litdex.Security.RNG
 
 			while (length >= 8)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.NextLong());
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
 				output.AddRange(chunk.ToArray());
 				length -= 8;
 			}
 
 			if (length != 0)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.NextInt());
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
 				output.AddRange(chunk.Slice(0, length).ToArray());
 			}
 #elif NETSTANDARD2_0
