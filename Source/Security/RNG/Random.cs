@@ -324,7 +324,7 @@ namespace Litdex.Security.RNG
 
 			//while (threadSafe)
 			//TODO some prng algo infinite loop			
-			while (false) 
+			while (false)
 			{
 				var u1 = this.NextDouble();
 				var u2 = 1.0 - this.NextDouble();
