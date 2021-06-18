@@ -49,19 +49,33 @@ namespace Litdex.Security.RNG
 			}
 
 			var output = new List<byte>(length);
-#if NET5_0
+#if NET5_0_OR_GREATER
 			var chunk = new System.Span<byte>(new byte[4]);
 
 			while (length >= 4)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(chunk, this.Next());
+				}
 				output.AddRange(chunk.ToArray());
 				length -= 4;
 			}
 
 			if (length != 0)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(chunk, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(chunk, this.Next());
+				}
 				output.AddRange(chunk.Slice(0, length).ToArray());
 			}
 #elif NETSTANDARD2_0
@@ -72,10 +86,20 @@ namespace Litdex.Security.RNG
 			{
 				sample = this.Next();
 
-				chunk[0] = (byte)sample;
-				chunk[1] = (byte)(sample >> 8);
-				chunk[2] = (byte)(sample >> 16);
-				chunk[3] = (byte)(sample >> 24);
+				if (BitConverter.IsLittleEndian)
+				{
+					chunk[3] = (byte)sample;
+					chunk[2] = (byte)(sample >> 8);
+					chunk[1] = (byte)(sample >> 16);
+					chunk[0] = (byte)(sample >> 24);
+				}
+				else
+				{
+					chunk[0] = (byte)sample;
+					chunk[1] = (byte)(sample >> 8);
+					chunk[2] = (byte)(sample >> 16);
+					chunk[3] = (byte)(sample >> 24);
+				}
 
 				output.AddRange(chunk);
 
@@ -88,8 +112,15 @@ namespace Litdex.Security.RNG
 
 				for (var i = 0; i < length; i++)
 				{
-					output.Add((byte)sample);
-					sample >>= 8;
+					if (BitConverter.IsLittleEndian)
+					{
+						output.Add((byte)(sample >> (24 - (i * 8))));
+					}
+					else
+					{
+						output.Add((byte)sample);
+						sample >>= 8;
+					}
 				}
 			}
 #endif
@@ -112,10 +143,20 @@ namespace Litdex.Security.RNG
 			{
 				sample = this.Next();
 
-				bytes[fill_idx] = (byte)sample;
-				bytes[fill_idx + 1] = (byte)(sample >> 8);
-				bytes[fill_idx + 2] = (byte)(sample >> 16);
-				bytes[fill_idx + 3] = (byte)(sample >> 24);
+				if (BitConverter.IsLittleEndian)
+				{
+					bytes[fill_idx + 3] = (byte)sample;
+					bytes[fill_idx + 2] = (byte)(sample >> 8);
+					bytes[fill_idx + 1] = (byte)(sample >> 16);
+					bytes[fill_idx] = (byte)(sample >> 24);
+				}
+				else
+				{
+					bytes[fill_idx] = (byte)sample;
+					bytes[fill_idx + 1] = (byte)(sample >> 8);
+					bytes[fill_idx + 2] = (byte)(sample >> 16);
+					bytes[fill_idx + 3] = (byte)(sample >> 24);
+				}
 
 				length -= 4;
 				fill_idx += 4;
@@ -127,8 +168,15 @@ namespace Litdex.Security.RNG
 
 				for (var i = 0; i < length; i++)
 				{
-					bytes[fill_idx] = (byte)sample;
-					sample >>= 8;
+					if (BitConverter.IsLittleEndian)
+					{
+						bytes[fill_idx] = (byte)(sample >> (24 - (i * 8)));
+					}
+					else
+					{
+						bytes[fill_idx] = (byte)sample;
+						sample >>= 8;
+					}
 					fill_idx++;
 				}
 			}

@@ -49,19 +49,33 @@ namespace Litdex.Security.RNG
 			}
 
 			var output = new List<byte>(length);
-#if NET5_0
+#if NET5_0_OR_GREATER
 			var chunk = new System.Span<byte>(new byte[8]);
 
 			while (length >= 8)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(chunk, this.Next());
+				}
 				output.AddRange(chunk.ToArray());
 				length -= 8;
 			}
 
 			if (length != 0)
 			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(chunk, this.Next());
+				}
 				output.AddRange(chunk.Slice(0, length).ToArray());
 			}
 #elif NETSTANDARD2_0
@@ -72,14 +86,28 @@ namespace Litdex.Security.RNG
 			{
 				sample = this.Next();
 
-				chunk[0] = (byte)sample;
-				chunk[1] = (byte)(sample >> 8);
-				chunk[2] = (byte)(sample >> 16);
-				chunk[3] = (byte)(sample >> 24);
-				chunk[4] = (byte)(sample >> 32);
-				chunk[5] = (byte)(sample >> 40);
-				chunk[6] = (byte)(sample >> 48);
-				chunk[7] = (byte)(sample >> 56);
+				if (BitConverter.IsLittleEndian)
+				{
+					chunk[7] = (byte)sample;
+					chunk[6] = (byte)(sample >> 8);
+					chunk[5] = (byte)(sample >> 16);
+					chunk[4] = (byte)(sample >> 24);
+					chunk[3] = (byte)(sample >> 32);
+					chunk[2] = (byte)(sample >> 40);
+					chunk[1] = (byte)(sample >> 48);
+					chunk[0] = (byte)(sample >> 56);
+				}
+				else
+				{
+					chunk[0] = (byte)sample;
+					chunk[1] = (byte)(sample >> 8);
+					chunk[2] = (byte)(sample >> 16);
+					chunk[3] = (byte)(sample >> 24);
+					chunk[4] = (byte)(sample >> 32);
+					chunk[5] = (byte)(sample >> 40);
+					chunk[6] = (byte)(sample >> 48);
+					chunk[7] = (byte)(sample >> 56);
+				}
 
 				output.AddRange(chunk);
 
@@ -92,8 +120,16 @@ namespace Litdex.Security.RNG
 
 				for (var i = 0; i < length; i++)
 				{
-					output.Add((byte)sample);
-					sample >>= 8;
+					if (BitConverter.IsLittleEndian)
+					{
+						output.Add((byte)(sample >> (56 - (i * 8))));
+						sample >>= 8;
+					}
+					else
+					{
+						output.Add((byte)sample);
+						sample >>= 8;
+					}
 				}
 			}
 #endif
@@ -116,14 +152,28 @@ namespace Litdex.Security.RNG
 			{
 				sample = this.Next();
 
-				bytes[fill_idx] = (byte)sample;
-				bytes[fill_idx + 1] = (byte)(sample >> 8);
-				bytes[fill_idx + 2] = (byte)(sample >> 16);
-				bytes[fill_idx + 3] = (byte)(sample >> 24);
-				bytes[fill_idx + 4] = (byte)(sample >> 32);
-				bytes[fill_idx + 5] = (byte)(sample >> 40);
-				bytes[fill_idx + 6] = (byte)(sample >> 48);
-				bytes[fill_idx + 7] = (byte)(sample >> 56);
+				if (BitConverter.IsLittleEndian)
+				{
+					bytes[fill_idx + 7] = (byte)sample;
+					bytes[fill_idx + 6] = (byte)(sample >> 8);
+					bytes[fill_idx + 5] = (byte)(sample >> 16);
+					bytes[fill_idx + 4] = (byte)(sample >> 24);
+					bytes[fill_idx + 3] = (byte)(sample >> 32);
+					bytes[fill_idx + 2] = (byte)(sample >> 40);
+					bytes[fill_idx + 1] = (byte)(sample >> 48);
+					bytes[fill_idx] = (byte)(sample >> 56);
+				}
+				else
+				{
+					bytes[fill_idx] = (byte)sample;
+					bytes[fill_idx + 1] = (byte)(sample >> 8);
+					bytes[fill_idx + 2] = (byte)(sample >> 16);
+					bytes[fill_idx + 3] = (byte)(sample >> 24);
+					bytes[fill_idx + 4] = (byte)(sample >> 32);
+					bytes[fill_idx + 5] = (byte)(sample >> 40);
+					bytes[fill_idx + 6] = (byte)(sample >> 48);
+					bytes[fill_idx + 7] = (byte)(sample >> 56);
+				}
 
 				length -= 8;
 				fill_idx += 8;
@@ -135,8 +185,15 @@ namespace Litdex.Security.RNG
 
 				for (var i = 0; i < length; i++)
 				{
-					bytes[fill_idx] = (byte)sample;
-					sample >>= 8;
+					if (BitConverter.IsLittleEndian)
+					{
+						bytes[fill_idx] = (byte)(sample >> (56 - (i * 8)));
+					}
+					else
+					{
+						bytes[fill_idx] = (byte)sample;
+						sample >>= 8;
+					}
 					fill_idx++;
 				}
 			}
