@@ -78,7 +78,8 @@ namespace Litdex.Security.RNG
 				}
 				output.AddRange(chunk.Slice(0, length).ToArray());
 			}
-#elif NETSTANDARD2_0
+//#elif NETSTANDARD2_0
+#else
 			uint sample = 0;
 			var chunk = new byte[4];
 
@@ -88,17 +89,17 @@ namespace Litdex.Security.RNG
 
 				if (BitConverter.IsLittleEndian)
 				{
-					chunk[3] = (byte)sample;
-					chunk[2] = (byte)(sample >> 8);
-					chunk[1] = (byte)(sample >> 16);
-					chunk[0] = (byte)(sample >> 24);
-				}
-				else
-				{
 					chunk[0] = (byte)sample;
 					chunk[1] = (byte)(sample >> 8);
 					chunk[2] = (byte)(sample >> 16);
 					chunk[3] = (byte)(sample >> 24);
+				}
+				else
+				{
+					chunk[3] = (byte)sample;
+					chunk[2] = (byte)(sample >> 8);
+					chunk[1] = (byte)(sample >> 16);
+					chunk[0] = (byte)(sample >> 24);
 				}
 
 				output.AddRange(chunk);
@@ -114,12 +115,12 @@ namespace Litdex.Security.RNG
 				{
 					if (BitConverter.IsLittleEndian)
 					{
-						output.Add((byte)(sample >> (24 - (i * 8))));
+						output.Add((byte)sample);
+						sample >>= 8;
 					}
 					else
 					{
-						output.Add((byte)sample);
-						sample >>= 8;
+						output.Add((byte)(sample >> (24 - (i * 8))));
 					}
 				}
 			}
@@ -145,17 +146,17 @@ namespace Litdex.Security.RNG
 
 				if (BitConverter.IsLittleEndian)
 				{
-					bytes[fill_idx + 3] = (byte)sample;
-					bytes[fill_idx + 2] = (byte)(sample >> 8);
-					bytes[fill_idx + 1] = (byte)(sample >> 16);
-					bytes[fill_idx] = (byte)(sample >> 24);
-				}
-				else
-				{
 					bytes[fill_idx] = (byte)sample;
 					bytes[fill_idx + 1] = (byte)(sample >> 8);
 					bytes[fill_idx + 2] = (byte)(sample >> 16);
 					bytes[fill_idx + 3] = (byte)(sample >> 24);
+				}
+				else
+				{
+					bytes[fill_idx + 3] = (byte)sample;
+					bytes[fill_idx + 2] = (byte)(sample >> 8);
+					bytes[fill_idx + 1] = (byte)(sample >> 16);
+					bytes[fill_idx] = (byte)(sample >> 24);
 				}
 
 				length -= 4;
@@ -170,12 +171,12 @@ namespace Litdex.Security.RNG
 				{
 					if (BitConverter.IsLittleEndian)
 					{
-						bytes[fill_idx] = (byte)(sample >> (24 - (i * 8)));
+						bytes[fill_idx] = (byte)sample;
+						sample >>= 8;
 					}
 					else
 					{
-						bytes[fill_idx] = (byte)sample;
-						sample >>= 8;
+						bytes[fill_idx] = (byte)(sample >> (24 - (i * 8)));
 					}
 					fill_idx++;
 				}
