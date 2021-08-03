@@ -88,17 +88,6 @@ namespace Litdex.Security.RNG
 
 				if (BitConverter.IsLittleEndian)
 				{
-					chunk[7] = (byte)sample;
-					chunk[6] = (byte)(sample >> 8);
-					chunk[5] = (byte)(sample >> 16);
-					chunk[4] = (byte)(sample >> 24);
-					chunk[3] = (byte)(sample >> 32);
-					chunk[2] = (byte)(sample >> 40);
-					chunk[1] = (byte)(sample >> 48);
-					chunk[0] = (byte)(sample >> 56);
-				}
-				else
-				{
 					chunk[0] = (byte)sample;
 					chunk[1] = (byte)(sample >> 8);
 					chunk[2] = (byte)(sample >> 16);
@@ -107,6 +96,17 @@ namespace Litdex.Security.RNG
 					chunk[5] = (byte)(sample >> 40);
 					chunk[6] = (byte)(sample >> 48);
 					chunk[7] = (byte)(sample >> 56);
+				}
+				else
+				{
+					chunk[7] = (byte)sample;
+					chunk[6] = (byte)(sample >> 8);
+					chunk[5] = (byte)(sample >> 16);
+					chunk[4] = (byte)(sample >> 24);
+					chunk[3] = (byte)(sample >> 32);
+					chunk[2] = (byte)(sample >> 40);
+					chunk[1] = (byte)(sample >> 48);
+					chunk[0] = (byte)(sample >> 56);
 				}
 
 				output.AddRange(chunk);
@@ -122,13 +122,12 @@ namespace Litdex.Security.RNG
 				{
 					if (BitConverter.IsLittleEndian)
 					{
-						output.Add((byte)(sample >> (56 - (i * 8))));
+						output.Add((byte)sample);
 						sample >>= 8;
 					}
 					else
 					{
-						output.Add((byte)sample);
-						sample >>= 8;
+						output.Add((byte)(sample >> (56 - (i * 8))));
 					}
 				}
 			}
@@ -154,17 +153,6 @@ namespace Litdex.Security.RNG
 
 				if (BitConverter.IsLittleEndian)
 				{
-					bytes[fill_idx + 7] = (byte)sample;
-					bytes[fill_idx + 6] = (byte)(sample >> 8);
-					bytes[fill_idx + 5] = (byte)(sample >> 16);
-					bytes[fill_idx + 4] = (byte)(sample >> 24);
-					bytes[fill_idx + 3] = (byte)(sample >> 32);
-					bytes[fill_idx + 2] = (byte)(sample >> 40);
-					bytes[fill_idx + 1] = (byte)(sample >> 48);
-					bytes[fill_idx] = (byte)(sample >> 56);
-				}
-				else
-				{
 					bytes[fill_idx] = (byte)sample;
 					bytes[fill_idx + 1] = (byte)(sample >> 8);
 					bytes[fill_idx + 2] = (byte)(sample >> 16);
@@ -173,6 +161,17 @@ namespace Litdex.Security.RNG
 					bytes[fill_idx + 5] = (byte)(sample >> 40);
 					bytes[fill_idx + 6] = (byte)(sample >> 48);
 					bytes[fill_idx + 7] = (byte)(sample >> 56);
+				}
+				else
+				{
+					bytes[fill_idx + 7] = (byte)sample;
+					bytes[fill_idx + 6] = (byte)(sample >> 8);
+					bytes[fill_idx + 5] = (byte)(sample >> 16);
+					bytes[fill_idx + 4] = (byte)(sample >> 24);
+					bytes[fill_idx + 3] = (byte)(sample >> 32);
+					bytes[fill_idx + 2] = (byte)(sample >> 40);
+					bytes[fill_idx + 1] = (byte)(sample >> 48);
+					bytes[fill_idx] = (byte)(sample >> 56);
 				}
 
 				length -= 8;
@@ -187,12 +186,12 @@ namespace Litdex.Security.RNG
 				{
 					if (BitConverter.IsLittleEndian)
 					{
-						bytes[fill_idx] = (byte)(sample >> (56 - (i * 8)));
+						bytes[fill_idx] = (byte)sample;
+						sample >>= 8;
 					}
 					else
 					{
-						bytes[fill_idx] = (byte)sample;
-						sample >>= 8;
+						bytes[fill_idx] = (byte)(sample >> (56 - (i * 8)));
 					}
 					fill_idx++;
 				}
