@@ -83,6 +83,21 @@ namespace Litdex.Security.RNG
 		/// </exception>
 		void Fill(byte[] bytes);
 
+#if NET5_0_OR_GREATER
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		void Fill(Span<byte> bytes);
+
+#endif
+
 		/// <summary>
 		///		Generate <see cref="uint"/> value from generator.
 		/// </summary>

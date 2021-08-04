@@ -50,7 +50,7 @@ namespace Litdex.Security.RNG
 
 			var output = new List<byte>(length);
 #if NET5_0_OR_GREATER
-			var chunk = new System.Span<byte>(new byte[4]);
+			var chunk = new Span<byte>(new byte[4]);
 
 			while (length >= 4)
 			{
@@ -182,6 +182,56 @@ namespace Litdex.Security.RNG
 				}
 			}
 		}
+
+#if NET5_0_OR_GREATER
+
+		/// <inheritdoc/>
+		public override void Fill(Span<byte> bytes)
+		{
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			var length = bytes.Length;
+			var fill_idx = 0;
+
+			while (length > 4)
+			{
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(bytes, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(bytes, this.Next());
+				}
+				bytes.Slice(4);
+				length -= 4;
+				fill_idx += 4;
+			}
+
+			if (length != 0)
+			{
+				var sample = this.Next();
+
+				for (var i = 0; i < length; i++)
+				{
+					if (BitConverter.IsLittleEndian)
+					{
+						bytes[fill_idx] = (byte)sample;
+						sample >>= 8;
+					}
+					else
+					{
+						bytes[fill_idx] = (byte)(sample >> (24 - (i * 8)));
+					}
+					fill_idx++;
+				}
+			}
+		}
+
+#endif
 
 		/// <inheritdoc/>
 		public override uint NextInt()
