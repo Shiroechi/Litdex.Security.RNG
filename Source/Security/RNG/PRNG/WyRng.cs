@@ -60,8 +60,8 @@ namespace Litdex.Security.RNG.PRNG
 			var y1 = y >> 32;
 
 			var p11 = x1 * y1;
-			var p01 = x0 * y1;
 			var p10 = x1 * y0;
+			var p01 = x0 * y1;
 			var p00 = x0 * y0;
 
 			// 64-bit product + two 32-bit values
