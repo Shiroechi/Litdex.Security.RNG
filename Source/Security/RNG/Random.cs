@@ -61,13 +61,6 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public abstract void Fill(byte[] bytes);
 
-#if NET5_0_OR_GREATER
-
-		/// <inheritdoc/>
-		public abstract void Fill(Span<byte> bytes);
-
-#endif
-
 		/// <inheritdoc/>
 		public abstract uint NextInt();
 

@@ -48,42 +48,26 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
-			var output = new List<byte>(length);
-#if NET5_0_OR_GREATER
-			var chunk = new Span<byte>(new byte[8]);
-
-			while (length >= 8)
-			{
-				if (BitConverter.IsLittleEndian)
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
-				}
-				else
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(chunk, this.Next());
-				}
-				output.AddRange(chunk.ToArray());
-				length -= 8;
-			}
-
-			if (length != 0)
-			{
-				if (BitConverter.IsLittleEndian)
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
-				}
-				else
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(chunk, this.Next());
-				}
-				output.AddRange(chunk.Slice(0, length).ToArray());
-			}
-#elif NETSTANDARD2_0
 			ulong sample = 0;
+			var output = new List<byte>(length);
 			var chunk = new byte[8];
 
 			while (length >= 8)
 			{
+
+#if NET5_0_OR_GREATER
+
+				if (BitConverter.IsLittleEndian)
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+				}
+				else
+				{
+					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(chunk, this.Next());
+				}
+
+#else
+
 				sample = this.Next();
 
 				if (BitConverter.IsLittleEndian)
@@ -108,9 +92,10 @@ namespace Litdex.Security.RNG
 					chunk[1] = (byte)(sample >> 48);
 					chunk[0] = (byte)(sample >> 56);
 				}
+				
+#endif
 
 				output.AddRange(chunk);
-
 				length -= 8;
 			}
 
@@ -131,7 +116,7 @@ namespace Litdex.Security.RNG
 					}
 				}
 			}
-#endif
+			
 			return output.ToArray();
 		}
 
@@ -197,56 +182,6 @@ namespace Litdex.Security.RNG
 				}
 			}
 		}
-
-#if NET5_0_OR_GREATER
-
-		/// <inheritdoc/>
-		public override void Fill(Span<byte> bytes)
-		{
-			if (bytes.Length <= 0 || bytes == null)
-			{
-				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
-			}
-
-			var length = bytes.Length;
-			var fill_idx = 0;
-
-			while (length > 8)
-			{
-				if (BitConverter.IsLittleEndian)
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(bytes, this.Next());
-				}
-				else
-				{
-					System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(bytes, this.Next());
-				}
-				bytes.Slice(8);
-				length -= 8;
-				fill_idx += 8;
-			}
-
-			if (length != 0)
-			{
-				var sample = this.Next();
-
-				for (var i = 0; i < length; i++)
-				{
-					if (BitConverter.IsLittleEndian)
-					{
-						bytes[fill_idx] = (byte)sample;
-						sample >>= 8;
-					}
-					else
-					{
-						bytes[fill_idx] = (byte)(sample >> (24 - (i * 8)));
-					}
-					fill_idx++;
-				}
-			}
-		}
-
-#endif
 
 		/// <inheritdoc/>
 		public override uint NextInt()
