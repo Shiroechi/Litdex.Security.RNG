@@ -61,6 +61,9 @@ namespace Litdex.Security.RNG
 		/// <summary>
 		///		Generate array of random bytes from generator.
 		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order based on system endianess.
+		/// </remarks>
 		/// <param name="length">
 		///		Requested output length.
 		/// </param>
@@ -75,6 +78,9 @@ namespace Litdex.Security.RNG
 		/// <summary>
 		///		Fill the array with random bytes.
 		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order based on system endianess.
+		/// </remarks>
 		/// <param name="bytes">
 		///		Array to fill with random bytes.
 		///	</param>
@@ -82,6 +88,24 @@ namespace Litdex.Security.RNG
 		///		Array length can't be lower than 1 or null.
 		/// </exception>
 		void Fill(byte[] bytes);
+
+#if NET5_0_OR_GREATER
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order based on system endianess.
+		/// </remarks>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		void Fill(Span<byte> bytes);
+
+#endif
 
 		/// <summary>
 		///		Generate <see cref="uint"/> value from generator.
