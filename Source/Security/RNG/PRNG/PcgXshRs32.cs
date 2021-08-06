@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-
-namespace Litdex.Security.RNG.PRNG
+﻿namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
 	///		A Permuted Congruential Generator (PCG) that is composed of 
