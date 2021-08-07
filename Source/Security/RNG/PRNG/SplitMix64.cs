@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-//http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8-b132/java/util/SplittableRandom.java#SplittableRandom.0gamma
+//http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8-b132/java/util/SplittableRandom.java
 
 namespace Litdex.Security.RNG.PRNG
 {
@@ -63,7 +63,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[8];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._Seed = BitConverter.ToUInt64(bytes, 0);
 			}
 		}

@@ -36,6 +36,12 @@
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of seed is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed length lower than 4.
+		/// </exception>
 		public Xoshiro256plusplus(ulong[] seed)
 		{
 			this.SetSeed(seed);

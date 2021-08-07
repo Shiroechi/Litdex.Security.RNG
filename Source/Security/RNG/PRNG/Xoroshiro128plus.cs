@@ -72,7 +72,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[16];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._State1 = BitConverter.ToUInt64(bytes, 0);
 				this._State2 = BitConverter.ToUInt64(bytes, 8);
 			}
@@ -82,7 +82,7 @@ namespace Litdex.Security.RNG.PRNG
 		///		2^64 calls to NextLong(), it can be used to generate 2^64
 		///		non-overlapping subsequences for parallel computations.
 		/// </summary>
-		public void NextJump()
+		public virtual void NextJump()
 		{
 			ulong[] JUMP = { 0xDF900294D8F554A5, 0x170865DF4B3201FC };
 			ulong seed1 = 0, seed2 = 0;
@@ -113,7 +113,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed2">
 		///		Second RNG seed.
 		///	</param>
-		public void SetSeed(ulong seed1, ulong seed2)
+		public virtual void SetSeed(ulong seed1, ulong seed2)
 		{
 			this._State1 = seed1;
 			this._State2 = seed2;

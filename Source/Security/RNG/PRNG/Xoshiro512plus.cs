@@ -118,15 +118,17 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[64];
-				rng.GetBytes(bytes);
-				this._State[0] = BitConverter.ToUInt64(bytes, 0);
-				this._State[1] = BitConverter.ToUInt64(bytes, 8);
-				this._State[2] = BitConverter.ToUInt64(bytes, 16);
-				this._State[3] = BitConverter.ToUInt64(bytes, 24);
-				this._State[4] = BitConverter.ToUInt64(bytes, 32);
-				this._State[5] = BitConverter.ToUInt64(bytes, 40);
-				this._State[6] = BitConverter.ToUInt64(bytes, 48);
-				this._State[7] = BitConverter.ToUInt64(bytes, 56);
+				rng.GetNonZeroBytes(bytes);
+				this.SetSeed(
+					seed1: BitConverter.ToUInt64(bytes, 0),
+					seed2: BitConverter.ToUInt64(bytes, 8),
+					seed3: BitConverter.ToUInt64(bytes, 16),
+					seed4: BitConverter.ToUInt64(bytes, 24),
+					seed5: BitConverter.ToUInt64(bytes, 32),
+					seed6: BitConverter.ToUInt64(bytes, 40),
+					seed7: BitConverter.ToUInt64(bytes, 48),
+					seed8: BitConverter.ToUInt64(bytes, 56)
+					);
 			}
 		}
 
@@ -135,7 +137,7 @@ namespace Litdex.Security.RNG.PRNG
 		///		to 2^256 calls to next(); it can be used to generate 2^256
 		///		non-overlapping subsequences for parallel computations.
 		/// </summary>
-		public void NextJump()
+		public virtual void NextJump()
 		{
 			ulong[] JUMP = { 0x33ed89b6e7a353f9, 0x760083d7955323be,
 							 0x2837f2fbb5f22fae, 0x4b8c5674d309511c,
@@ -192,7 +194,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed8">
 		///		Eighth RNG seed.
 		/// </param>
-		public void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
+		public virtual void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
 		{
 			this._State[0] = seed1;
 			this._State[1] = seed2;
@@ -216,7 +218,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed length lower than 8.
 		/// </exception>
-		public void SetSeed(ulong[] seed)
+		public virtual void SetSeed(ulong[] seed)
 		{
 			if (seed == null || seed.Length == 0)
 			{

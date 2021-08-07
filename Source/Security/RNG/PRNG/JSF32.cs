@@ -86,7 +86,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[4];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this.SetSeed(BitConverter.ToUInt32(bytes, 0));
 			}
 		}

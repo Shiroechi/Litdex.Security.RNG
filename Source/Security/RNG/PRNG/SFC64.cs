@@ -78,7 +78,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[24];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this.SetSeed(
 					seed1: BitConverter.ToUInt64(bytes, 0),
 					seed2: BitConverter.ToUInt64(bytes, 8),
@@ -114,8 +114,24 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of <paramref name="seed"/> is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed need 3 numbers.
+		/// </exception>
 		public void SetSeed(ulong[] seed, ulong counter = 0)
 		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < 3)
+			{
+				throw new ArgumentException(nameof(seed), "Seed need 3 numbers.");
+			}
+
 			this.SetSeed(seed[0], seed[1], seed[2], 0);
 		}
 

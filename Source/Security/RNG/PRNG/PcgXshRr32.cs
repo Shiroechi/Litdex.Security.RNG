@@ -74,17 +74,16 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override void Reseed()
 		{
-			ulong seed, increment;
-
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[16];
-				rng.GetBytes(bytes);
-				seed = BitConverter.ToUInt64(bytes, 0);
-				increment = BitConverter.ToUInt64(bytes, 8);
-			}
+				rng.GetNonZeroBytes(bytes);
 
-			this.SetSeed(seed, increment);
+				this.SetSeed(
+					seed: BitConverter.ToUInt64(bytes, 0),
+					increment: BitConverter.ToUInt64(bytes, 8)
+					);
+			}
 		}
 
 		/// <summary>

@@ -41,7 +41,6 @@ namespace Litdex.Security.RNG.PRNG
 			this.SetSeed(seed);
 		}
 
-
 		~RomuDuoJr()
 		{
 			this._X = this._Y = 0;

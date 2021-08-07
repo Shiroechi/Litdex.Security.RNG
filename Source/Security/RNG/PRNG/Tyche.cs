@@ -108,8 +108,10 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[12];
-				rng.GetBytes(bytes);
-				this.Init(BitConverter.ToUInt64(bytes, 0), BitConverter.ToUInt32(bytes, 8));
+				rng.GetNonZeroBytes(bytes);
+				this.Init(
+					seed: BitConverter.ToUInt64(bytes, 0),
+					idx: BitConverter.ToUInt32(bytes, 8));
 			}
 		}
 
@@ -122,7 +124,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="idx">
 		///		Unique key.
 		/// </param>
-		public void SetSeed(ulong seed, uint idx)
+		public virtual void SetSeed(ulong seed, uint idx)
 		{
 			this.Init(seed, idx);
 		}

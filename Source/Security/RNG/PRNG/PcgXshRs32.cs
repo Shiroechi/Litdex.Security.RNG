@@ -45,8 +45,8 @@
 		{
 			var oldseed = this._Seed;
 			this._Seed = (oldseed * 6364136223846793005) + (this._Increment | 1);
-			var rot = (uint)(oldseed >> 61);
-			return (uint)(oldseed ^ (oldseed >> 22)) >> (int)(22 + rot);
+			var rot = (int)(oldseed >> 61);
+			return (uint)(oldseed ^ (oldseed >> 22)) >> (22 + rot);
 		}
 
 		#endregion Protected Method

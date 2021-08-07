@@ -45,6 +45,12 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of seed is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed length lower than 4.
+		/// </exception>
 		public Xoshiro256plus(ulong[] seed)
 		{
 			this.SetSeed(seed);
@@ -102,11 +108,13 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[32];
-				rng.GetBytes(bytes);
-				this._State[0] = BitConverter.ToUInt64(bytes, 0);
-				this._State[1] = BitConverter.ToUInt64(bytes, 8);
-				this._State[2] = BitConverter.ToUInt64(bytes, 16);
-				this._State[3] = BitConverter.ToUInt64(bytes, 24);
+				rng.GetNonZeroBytes(bytes);
+				this.SetSeed(
+					seed1: BitConverter.ToUInt64(bytes, 0),
+					seed2: BitConverter.ToUInt64(bytes, 8),
+					seed3: BitConverter.ToUInt64(bytes, 16),
+					seed4: BitConverter.ToUInt64(bytes, 24)
+					);
 			}
 		}
 
@@ -115,7 +123,7 @@ namespace Litdex.Security.RNG.PRNG
 		///		to 2^128 calls to next(); it can be used to generate 2^128
 		///		non-overlapping subsequences for parallel computations.
 		/// </summary>
-		public void NextJump()
+		public virtual void NextJump()
 		{
 			ulong[] JUMP = { 0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 0xa9582618e03fc9aa, 0x39abdc4529b1661c };
 
@@ -159,7 +167,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed4">
 		///		Fourth RNG seed.
 		/// </param>
-		public void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
+		public virtual void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
 		{
 			this._State[0] = seed1;
 			this._State[1] = seed2;
@@ -179,7 +187,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed length lower than 4.
 		/// </exception>
-		public void SetSeed(ulong[] seed)
+		public virtual void SetSeed(ulong[] seed)
 		{
 			if (seed == null || seed.Length == 0)
 			{
@@ -192,11 +200,6 @@ namespace Litdex.Security.RNG.PRNG
 			}
 
 			this.SetSeed(seed[0], seed[1], seed[2], seed[3]);
-
-			//for (var i = 0; i < 4; i++)
-			//{
-			//	this._State[i] = seed[i];
-			//}
 		}
 
 		#endregion Public

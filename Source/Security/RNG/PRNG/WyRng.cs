@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Based on Wyhash https://github.com/wangyi-fudan/wyhash
+	///		Based on Wyhash from  https://github.com/wangyi-fudan/wyhash
 	/// </summary>
 	public class WyRng : Random64
 	{
@@ -89,7 +89,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[8];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._Seed = BitConverter.ToUInt64(bytes, 0);
 			}
 		}

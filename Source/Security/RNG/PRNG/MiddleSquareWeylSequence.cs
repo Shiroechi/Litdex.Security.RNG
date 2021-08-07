@@ -22,7 +22,7 @@ namespace Litdex.Security.RNG.PRNG
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="MiddleSquareWeylSequence"/>  object.
+		///		Create an instance of <see cref="MiddleSquareWeylSequence"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
@@ -51,7 +51,8 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			this._Output *= this._Output;
 			this._Output += this._Sequence += this._Increment;
-			return this._Output = (this._Output >> 32) | (this._Output << 32);
+			this._Output = (this._Output >> 32) | (this._Output << 32);
+			return this._Output;
 		}
 
 		#endregion Protected Method
@@ -70,7 +71,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[16];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._Sequence = BitConverter.ToUInt64(bytes, 0);
 				this._Output = BitConverter.ToUInt64(bytes, 8);
 			}
