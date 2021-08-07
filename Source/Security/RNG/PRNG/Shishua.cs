@@ -44,13 +44,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public Shishua(ulong[] seed = null)
 		{
-			if (seed.Length < 4)
-			{
-				throw new ArgumentException("Seed must contain at least 4 numbers.", nameof(seed));
-			}
-			else if (seed == null)
+			if (seed == null)
 			{
 				this.Reseed();
+			}
+			else if (seed.Length < 4)
+			{
+				throw new ArgumentException("Seed must contain at least 4 numbers.", nameof(seed));
 			}
 			else
 			{
