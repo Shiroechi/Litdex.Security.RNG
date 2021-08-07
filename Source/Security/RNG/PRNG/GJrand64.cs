@@ -101,7 +101,7 @@ namespace Litdex.Security.RNG.PRNG
 				// get all bytes for 4 ulong seed
 				// 4 ulong x 8 bytes = 32 bytes
 				var bytes = new byte[32];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._A = BitConverter.ToUInt64(bytes, 0);
 				this._B = BitConverter.ToUInt64(bytes, 8);
 				this._C = BitConverter.ToUInt64(bytes, 16);
@@ -137,7 +137,7 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			if (seed.Length < 4)
 			{
-				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need at least 4 numbers.");
+				throw new ArgumentException(nameof(seed), $"Seed need at least 4 numbers.");
 			}
 
 			this.SetSeed(seed[0], seed[1], seed[2], seed[3]);

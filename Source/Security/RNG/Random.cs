@@ -58,8 +58,105 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public abstract byte[] NextBytes(int length);
 
+		/// <summary>
+		///		Generate array of random bytes from generator.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Little Endian.
+		/// </remarks>
+		/// <param name="length">
+		///		Requested output length.
+		/// </param>
+		/// <returns>
+		///		Array of bytes.
+		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		///		The requested output size can't lower than 1.
+		/// </exception>
+		public abstract byte[] NextBytesLittleEndian(int length);
+
+		/// <summary>
+		///		Generate array of random bytes from generator.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Big Endian.
+		/// </remarks>
+		/// <param name="length">
+		///		Requested output length.
+		/// </param>
+		/// <returns>
+		///		Array of bytes.
+		/// </returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		///		The requested output size can't lower than 1.
+		/// </exception>
+		public abstract byte[] NextBytesBigEndian(int length);
+
 		/// <inheritdoc/>
 		public abstract void Fill(byte[] bytes);
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Little Endian.
+		/// </remarks>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		public abstract void FillLittleEndian(byte[] bytes);
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Big Endian.
+		/// </remarks>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		public abstract void FillBigEndian(byte[] bytes);
+
+#if NET5_0_OR_GREATER
+
+		/// <inheritdoc/>
+		public abstract void Fill(Span<byte> bytes);
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Little Endian.
+		/// </remarks>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		public abstract void FillLittleEndian(Span<byte> bytes);
+
+		/// <summary>
+		///		Fill the array with random bytes.
+		/// </summary>
+		/// <remarks>
+		///		<see cref="byte"/> order in Big Endian.
+		/// </remarks>
+		/// <param name="bytes">
+		///		Array to fill with random bytes.
+		///	</param>
+		/// <exception cref="ArgumentNullException">
+		///		Array length can't be lower than 1 or null.
+		/// </exception>
+		public abstract void FillBigEndian(Span<byte> bytes);
+
+#endif
 
 		/// <inheritdoc/>
 		public abstract uint NextInt();

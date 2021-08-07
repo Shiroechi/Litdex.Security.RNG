@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Litdex.Security.RNG
 {
@@ -8,6 +7,15 @@ namespace Litdex.Security.RNG
 	/// </summary>
 	public abstract class Random64 : Random
 	{
+		#region Member
+
+		/// <summary>
+		///		<see cref="long"/> and <see cref="ulong"/> is 8 bytes.
+		/// </summary>
+		protected const byte _Size = 8;
+
+		#endregion Member
+
 		#region Protected Method
 
 		/// <summary>
@@ -37,96 +45,122 @@ namespace Litdex.Security.RNG
 		/// <inheritdoc/>
 		public override byte NextByte()
 		{
-			return (byte)this.Next();
+			return (byte)(this.Next() >> 56);
 		}
 
 		/// <inheritdoc/>
 		public override byte[] NextBytes(int length)
+		{
+			if (BitConverter.IsLittleEndian)
+			{
+				return this.NextBytesLittleEndian(length);
+			}
+			else
+			{
+				return this.NextBytesBigEndian(length);
+			}
+		}
+
+		/// <inheritdoc/>
+		public override byte[] NextBytesLittleEndian(int length)
 		{
 			if (length <= 0)
 			{
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
-			var output = new List<byte>(length);
-#if NET5_0
-			var chunk = new System.Span<byte>(new byte[8]);
+#if NET5_0_OR_GREATER
 
-			while (length >= 8)
-			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
-				output.AddRange(chunk.ToArray());
-				length -= 8;
-			}
+			var bytes = new byte[length];
+			var span = new Span<byte>(bytes);
 
-			if (length != 0)
-			{
-				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
-				output.AddRange(chunk.Slice(0, length).ToArray());
-			}
-#elif NETSTANDARD2_0
-			ulong sample = 0;
-			var chunk = new byte[8];
+			this.FillLittleEndian(span);
 
-			while (length >= 8)
-			{
-				sample = this.Next();
+			return bytes;
+#else
 
-				chunk[0] = (byte)sample;
-				chunk[1] = (byte)(sample >> 8);
-				chunk[2] = (byte)(sample >> 16);
-				chunk[3] = (byte)(sample >> 24);
-				chunk[4] = (byte)(sample >> 32);
-				chunk[5] = (byte)(sample >> 40);
-				chunk[6] = (byte)(sample >> 48);
-				chunk[7] = (byte)(sample >> 56);
+			var bytes = new byte[length];
 
-				output.AddRange(chunk);
+			this.FillLittleEndian(bytes);
 
-				length -= 8;
-			}
-
-			if (length != 0)
-			{
-				sample = this.Next();
-
-				for (var i = 0; i < length; i++)
-				{
-					output.Add((byte)sample);
-					sample >>= 8;
-				}
-			}
+			return bytes;
 #endif
-			return output.ToArray();
+		}
+
+		/// <inheritdoc/>
+		public override byte[] NextBytesBigEndian(int length)
+		{
+			if (length <= 0)
+			{
+				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
+			}
+
+
+#if NET5_0_OR_GREATER
+
+			var bytes = new byte[length];
+			var span = new Span<byte>(bytes);
+
+			this.FillBigEndian(span);
+
+			return bytes;
+#else
+
+			var bytes = new byte[length];
+
+			this.FillBigEndian(bytes);
+
+			return bytes;
+#endif
 		}
 
 		/// <inheritdoc/>
 		public override void Fill(byte[] bytes)
 		{
+			if (BitConverter.IsLittleEndian)
+			{
+				this.FillLittleEndian(bytes);
+			}
+			else
+			{
+				this.FillBigEndian(bytes);
+			}
+		}
+
+		/// <inheritdoc/>
+		public override void FillLittleEndian(byte[] bytes)
+		{
+
+#if NET5_0_OR_GREATER
+
+			var span = new Span<byte>(bytes);
+			this.FillLittleEndian(span);
+#else
+
 			if (bytes.Length <= 0 || bytes == null)
 			{
 				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
 			}
 
 			ulong sample = 0;
-			var fill_idx = 0;
+			var idx = 0;
 			var length = bytes.Length;
 
-			while (length > 8)
+			while (length >= _Size)
 			{
 				sample = this.Next();
 
-				bytes[fill_idx] = (byte)sample;
-				bytes[fill_idx + 1] = (byte)(sample >> 8);
-				bytes[fill_idx + 2] = (byte)(sample >> 16);
-				bytes[fill_idx + 3] = (byte)(sample >> 24);
-				bytes[fill_idx + 4] = (byte)(sample >> 32);
-				bytes[fill_idx + 5] = (byte)(sample >> 40);
-				bytes[fill_idx + 6] = (byte)(sample >> 48);
-				bytes[fill_idx + 7] = (byte)(sample >> 56);
+				bytes[idx] = (byte)sample;
+				bytes[idx + 1] = (byte)(sample >> 8);
+				bytes[idx + 2] = (byte)(sample >> 16);
+				bytes[idx + 3] = (byte)(sample >> 24);
+				bytes[idx + 4] = (byte)(sample >> 32);
+				bytes[idx + 5] = (byte)(sample >> 40);
+				bytes[idx + 6] = (byte)(sample >> 48);
+				bytes[idx + 7] = (byte)(sample >> 56);
 
-				length -= 8;
-				fill_idx += 8;
+				length -= _Size;
+				idx += _Size;
 			}
 
 			if (length != 0)
@@ -135,17 +169,137 @@ namespace Litdex.Security.RNG
 
 				for (var i = 0; i < length; i++)
 				{
-					bytes[fill_idx] = (byte)sample;
+					bytes[idx] = (byte)sample;
 					sample >>= 8;
-					fill_idx++;
+					idx++;
+				}
+			}
+#endif
+		}
+
+		/// <inheritdoc/>
+		public override void FillBigEndian(byte[] bytes)
+		{
+
+#if NET5_0_OR_GREATER
+
+			var span = new Span<byte>(bytes);
+			this.FillLittleEndian(span);
+
+#else
+
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			ulong sample = 0;
+			var idx = 0;
+			var length = bytes.Length;
+
+			while (length >= _Size)
+			{
+				sample = this.Next();
+
+				bytes[idx + 7] = (byte)sample;
+				bytes[idx + 6] = (byte)(sample >> 8);
+				bytes[idx + 5] = (byte)(sample >> 16);
+				bytes[idx + 4] = (byte)(sample >> 24);
+				bytes[idx + 3] = (byte)(sample >> 32);
+				bytes[idx + 2] = (byte)(sample >> 40);
+				bytes[idx + 1] = (byte)(sample >> 48);
+				bytes[idx] = (byte)(sample >> 56);
+
+				length -= _Size;
+				idx += _Size;
+			}
+
+			if (length != 0)
+			{
+				sample = this.Next();
+
+				for (var i = 0; i < length; i++)
+				{
+					bytes[idx] = (byte)(sample >> (56 - (i * 8)));
+					idx++;
+				}
+			}
+#endif
+		}
+
+#if NET5_0_OR_GREATER
+
+		/// <inheritdoc/>
+		public override void Fill(Span<byte> bytes)
+		{
+			if (BitConverter.IsLittleEndian)
+			{
+				this.FillLittleEndian(bytes);
+			}
+			else
+			{
+				this.FillBigEndian(bytes);
+			}
+		}
+
+		/// <inheritdoc/>
+		public override void FillLittleEndian(Span<byte> bytes)
+		{
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			while (bytes.Length >= _Size)
+			{
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(bytes, this.Next());
+				bytes = bytes.Slice(_Size);
+			}
+
+			if (bytes.Length != 0)
+			{
+				var chunk = new byte[_Size];
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(chunk, this.Next());
+
+				for (var i = 0; i < bytes.Length; i++)
+				{
+					bytes[i] = chunk[i];
 				}
 			}
 		}
 
 		/// <inheritdoc/>
+		public override void FillBigEndian(Span<byte> bytes)
+		{
+			if (bytes.Length <= 0 || bytes == null)
+			{
+				throw new ArgumentNullException(nameof(bytes), "Array length can't be lower than 1 or null.");
+			}
+
+			while (bytes.Length >= _Size)
+			{
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(bytes, this.Next());
+				bytes = bytes.Slice(_Size);
+			}
+
+			if (bytes.Length != 0)
+			{
+				var chunk = new byte[_Size];
+				System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(bytes, this.Next());
+
+				for (var i = 0; i < bytes.Length; i++)
+				{
+					bytes[i] = chunk[i];
+				}
+			}
+		}
+
+#endif
+
+		/// <inheritdoc/>
 		public override uint NextInt()
 		{
-			return unchecked((uint)this.Next());
+			return (uint)(this.Next() >> 32);
 		}
 
 		/// <inheritdoc/>

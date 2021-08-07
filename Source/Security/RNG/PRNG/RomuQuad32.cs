@@ -46,7 +46,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		A array of seed numbers.
 		/// </param>
-		/// <exception cref="ArgumentOutOfRangeException">
+		/// <exception cref="ArgumentException">
 		///		Seed need 4 numbers.
 		/// </exception>
 		public RomuQuad32(uint[] seed)
@@ -102,12 +102,12 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			using (var rng = new RNGCryptoServiceProvider())
 			{
-				var bytes = new byte[32];
-				rng.GetBytes(bytes);
+				var bytes = new byte[16];
+				rng.GetNonZeroBytes(bytes);
 				this._W = BitConverter.ToUInt32(bytes, 0);
-				this._X = BitConverter.ToUInt32(bytes, 8);
-				this._Y = BitConverter.ToUInt32(bytes, 16);
-				this._Z = BitConverter.ToUInt32(bytes, 24);
+				this._X = BitConverter.ToUInt32(bytes, 4);
+				this._Y = BitConverter.ToUInt32(bytes, 8);
+				this._Z = BitConverter.ToUInt32(bytes, 12);
 			}
 		}
 

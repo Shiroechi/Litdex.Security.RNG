@@ -43,7 +43,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		A array of seed numbers.
 		/// </param>
-		/// <exception cref="ArgumentOutOfRangeException">
+		/// <exception cref="ArgumentException">
 		///		Seed need 3 numbers.
 		/// </exception>
 		public RomuTrio(uint[] seed)
@@ -99,7 +99,7 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[24];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._X = BitConverter.ToUInt32(bytes, 0);
 				this._Y = BitConverter.ToUInt32(bytes, 8);
 				this._Z = BitConverter.ToUInt32(bytes, 16);
@@ -131,14 +131,22 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		A array of seed numbers.
 		/// </param>
-		/// <exception cref="ArgumentOutOfRangeException">
+		/// <exception cref="ArgumentNullException">
+		///		Array of <paramref name="seed"/> is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
 		///		Seed need 3 numbers.
 		/// </exception>
 		public void SetSeed(uint[] seed)
 		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
 			if (seed.Length < 3)
 			{
-				throw new ArgumentOutOfRangeException(nameof(seed), $"Seed need 3 numbers.");
+				throw new ArgumentException(nameof(seed), $"Seed need 3 numbers.");
 			}
 
 			this.SetSeed(seed[0], seed[1], seed[2]);

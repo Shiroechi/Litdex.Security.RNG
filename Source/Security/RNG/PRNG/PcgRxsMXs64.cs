@@ -4,22 +4,27 @@ using System.Security.Cryptography;
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Implemetation of Permuted Congruential Generator by O'Neill.
+	///		A Permuted Congruential Generator (PCG) that is composed of a 64-bit 
+	///		Linear Congruential Generator(LCG) combined with the RXS-M-XS (random xorshift; multiply; xorshift) output
+	///		transformation to create 64-bit output.
 	/// </summary>
 	/// <remarks>
-	///		Source: http://www.pcg-random.org/download.html
+	///		https://www.pcg-random.org/
 	/// </remarks>
-	public class PCG32 : Random64
+	public class PcgRxsMXs64 : Random64
 	{
 		#region Member
 
-		private ulong _Seed; //state in original code
-		private ulong _Increment;
+		protected ulong _Seed; // state in original code
+		protected ulong _Increment;
+		protected const ulong _Multiplier = 6364136223846793005;
 
 		#endregion Member
 
+		#region Constructor & Destructor
+
 		/// <summary>
-		///		Create an instance of <see cref="PCG32"/> object.
+		///		Create an instance of <see cref="PcgRxsMXs64"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
@@ -27,7 +32,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="increment">
 		///		Increment step.
 		///	</param>
-		public PCG32(ulong seed = 0, ulong increment = 0)
+		public PcgRxsMXs64(ulong seed = 0, ulong increment = 0)
 		{
 			this.SetSeed(seed, increment);
 		}
@@ -35,11 +40,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~PCG32()
+		~PcgRxsMXs64()
 		{
 			this._Seed = 0;
 			this._Increment = 0;
 		}
+
+		#endregion Constructor & Destructor
 
 		#region Protected Method
 
@@ -47,10 +54,9 @@ namespace Litdex.Security.RNG.PRNG
 		protected override ulong Next()
 		{
 			var oldseed = this._Seed;
-			this._Seed = (oldseed * 6364136223846793005) + (this._Increment | 1);
-			var xorshifted = (uint)((oldseed >> 18) ^ oldseed) >> 27;
-			var rot = (uint)(oldseed >> 59);
-			return (xorshifted >> (int)rot) | (xorshifted << (int)((-rot) & 31));
+			this._Seed = (oldseed * _Multiplier) + (this._Increment | 1);
+			ulong word = ((oldseed >> ((int)(oldseed >> 59) + 5)) ^ oldseed) * 12605985483714917081;
+			return (word >> 43) ^ word;
 		}
 
 		#endregion Protected Method
@@ -60,23 +66,22 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "PCG32";
+			return "PCG RXS-M-XS 64";
 		}
 
 		/// <inheritdoc/>
 		public override void Reseed()
 		{
-			ulong seed, increment;
-
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[16];
-				rng.GetBytes(bytes);
-				seed = BitConverter.ToUInt64(bytes, 0);
-				increment = BitConverter.ToUInt64(bytes, 8);
-			}
+				rng.GetNonZeroBytes(bytes);
 
-			this.SetSeed(seed, increment);
+				this.SetSeed(
+					seed: BitConverter.ToUInt64(bytes, 0),
+					increment: BitConverter.ToUInt64(bytes, 8)
+					);
+			}
 		}
 
 		/// <summary>
@@ -90,9 +95,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed, ulong increment)
 		{
-			this._Seed = seed + increment;
+			this._Seed = (seed + increment) * _Multiplier + increment;
 			this._Increment = increment;
-			this.Next();
 		}
 
 		#endregion Public Method

@@ -79,7 +79,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Duo Jr 64 bit";
+			return "Romu Duo 64 bit";
 		}
 
 		/// <inheritdoc/>
@@ -88,9 +88,10 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[16];
-				rng.GetBytes(bytes);
-				this.SetSeed(BitConverter.ToUInt32(bytes, 0),
-					BitConverter.ToUInt32(bytes, 8));
+				rng.GetNonZeroBytes(bytes);
+				this.SetSeed(
+					seed1: BitConverter.ToUInt64(bytes, 0),
+					seed2: BitConverter.ToUInt64(bytes, 8));
 			}
 		}
 
@@ -115,14 +116,14 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed">
 		///		RNG seeds.
 		/// </param>
-		/// <exception cref="ArgumentOutOfRangeException">
+		/// <exception cref="ArgumentException">
 		///		Seed need at least 2 numbers.
 		/// </exception>
 		public void SetSeed(ulong[] seed)
 		{
 			if (seed.Length < 2)
 			{
-				throw new ArgumentOutOfRangeException(nameof(seed), "Seed need 2 numbers.");
+				throw new ArgumentException(nameof(seed), "Seed need 2 numbers.");
 			}
 
 			this.SetSeed(seed[0], seed[1]);

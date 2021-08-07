@@ -101,10 +101,10 @@ namespace Litdex.Security.RNG.PRNG
 			using (var rng = new RNGCryptoServiceProvider())
 			{
 				var bytes = new byte[8];
-				rng.GetBytes(bytes);
+				rng.GetNonZeroBytes(bytes);
 				this._Key = BitConverter.ToUInt64(bytes, 0);
+				this._Counter = 0;
 			}
-			this._Counter = 0;
 		}
 
 		/// <summary>
