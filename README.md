@@ -46,6 +46,17 @@ var randomInt = rng.NextInt();
 
 Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
 
+# Warning
+
+For method that generate an arbitary byte array, like method `NextBytes`.
+
+```C#
+var rng = new Xoroshiro128plus();
+var bytes = rng.NextBytes(10);
+```
+
+Litdex generate the array using multiple `uint` or `ulong`, each `uint` or `ulong` will converted into byte array. When converted to byte array, Litdex order the byte based on the system endianess. Then each converted byte array will be concated with other byte array.
+
 # Contribute
 
 Feel free to open new [issue](https://github.com/Shiroechi/Litdex.Security.RNG/issues/new) or [PR](https://github.com/Shiroechi/Litdex.Security.RNG/pulls).
