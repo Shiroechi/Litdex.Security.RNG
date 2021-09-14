@@ -8,11 +8,19 @@ namespace Litdex.Security.RNG
 	/// <summary>
 	///		Base class of all random.
 	/// </summary>
-	public abstract class Random : IRNG, IDistribution
+	public abstract class Random : IRNG, ISequence, IDistribution
 	{
 		#region Member
 
+		/// <summary>
+		///		Hold a copy of gaussian number.
+		/// </summary>
 		protected double _NextGaussian = 0.0;
+
+		/// <summary>
+		///		Amount of roll after the state is initialized or seeded.
+		/// </summary>
+		protected const byte _InitialRoll = 20;
 
 		#endregion Member
 
@@ -51,8 +59,9 @@ namespace Litdex.Security.RNG
 				throw new ArgumentException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
 			}
 
-			var diff = (byte)(upper - lower + 1);
-			return (byte)(lower + (this.NextByte() % diff));
+			return (byte)(this.NextInt(lower, upper) >> 24);
+			//var diff = (byte)(upper - lower + 1);
+			//return (byte)(lower + (this.NextByte() % diff));
 		}
 
 		/// <inheritdoc/>
@@ -169,8 +178,32 @@ namespace Litdex.Security.RNG
 				throw new ArgumentException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
 			}
 
-			var diff = upper - lower + 1;
-			return lower + (this.NextInt() % diff);
+			// using unbiased lemire method
+			// from https://www.pcg-random.org/posts/bounded-rands.html
+
+			var range = upper - lower;
+			uint x = this.NextInt();
+			ulong m = (ulong)x * range;
+			uint l = (uint)m;
+			if (l < range)
+			{
+				uint t = (uint)(-range);
+				if (t >= range)
+				{
+					t -= range;
+					if (t >= range)
+						t %= range;
+				}
+				while (l < t)
+				{
+					x = this.NextInt();
+					m = (ulong)x * range;
+					l = (uint)m;
+				}
+			}
+			return (uint)(m >> 32) + lower;
+			//var diff = upper - lower + 1;
+			//return lower + (this.NextInt() % diff);
 		}
 
 		/// <summary>
@@ -420,7 +453,7 @@ namespace Litdex.Security.RNG
 			}
 
 			//while (threadSafe)
-			//TODO some prng algo infinite loop			
+			// TODO some prng algo infinite loop			
 			while (false)
 			{
 				var u1 = this.NextDouble();
