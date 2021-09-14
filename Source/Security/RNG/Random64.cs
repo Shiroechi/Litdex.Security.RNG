@@ -3,11 +3,16 @@
 namespace Litdex.Security.RNG
 {
 	/// <summary>
-	///		Base class for 64 bit RNG.
+	///		Base class for Random Number Generator that the internal state produces 64 bit output.
 	/// </summary>
 	public abstract class Random64 : Random
 	{
 		#region Member
+
+		/// <summary>
+		///		The internal state of RNG.
+		/// </summary>
+		protected ulong[] _State;
 
 		/// <summary>
 		///		<see cref="long"/> and <see cref="ulong"/> is 8 bytes.
@@ -25,6 +30,50 @@ namespace Litdex.Security.RNG
 		///		A 64-bit unsigned integer.
 		///	</returns>
 		protected abstract ulong Next();
+
+		/// <summary>
+		///		Rotates the specified value left by the specified number of bits.
+		/// </summary>
+		/// <param name="value">
+		///		The value to rotate.
+		/// </param>
+		/// <param name="offset">
+		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
+		///     as congruent mod 64.
+		/// </param>
+		/// <returns>
+		///		The rotated value.
+		/// </returns>
+		protected ulong RotateLeft(ulong value, int offset)
+		{
+#if NET5_0_OR_GREATER
+			return System.Numerics.BitOperations.RotateLeft(value, offset);
+#else
+			return (value << offset) | (value >> (64 - offset));
+#endif
+		}
+
+		/// <summary>
+		///		Rotates the specified value right by the specified number of bits.
+		/// </summary>
+		/// <param name="value">
+		///		The value to rotate.
+		/// </param>
+		/// <param name="offset">
+		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
+		///     as congruent mod 64.
+		/// </param>
+		/// <returns>
+		///		The rotated value.
+		/// </returns>
+		protected ulong RotateRight(ulong value, int offset)
+		{
+#if NET5_0_OR_GREATER
+			return System.Numerics.BitOperations.RotateRight(value, offset);
+#else
+			return (value >> offset) | (value << (64 - offset));
+#endif
+		}
 
 		#endregion Protected Method
 
@@ -69,22 +118,21 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
+			var bytes = new byte[length];
+
 #if NET5_0_OR_GREATER
 
-			var bytes = new byte[length];
 			var span = new Span<byte>(bytes);
 
 			this.FillLittleEndian(span);
 
-			return bytes;
 #else
-
-			var bytes = new byte[length];
 
 			this.FillLittleEndian(bytes);
 
-			return bytes;
 #endif
+
+			return bytes;
 		}
 
 		/// <inheritdoc/>
@@ -95,23 +143,21 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
+			var bytes = new byte[length];
 
 #if NET5_0_OR_GREATER
 
-			var bytes = new byte[length];
 			var span = new Span<byte>(bytes);
 
 			this.FillBigEndian(span);
 
-			return bytes;
 #else
-
-			var bytes = new byte[length];
 
 			this.FillBigEndian(bytes);
 
-			return bytes;
 #endif
+
+			return bytes;
 		}
 
 		/// <inheritdoc/>
@@ -135,6 +181,7 @@ namespace Litdex.Security.RNG
 
 			var span = new Span<byte>(bytes);
 			this.FillLittleEndian(span);
+
 #else
 
 			if (bytes.Length <= 0 || bytes == null)
@@ -184,7 +231,7 @@ namespace Litdex.Security.RNG
 #if NET5_0_OR_GREATER
 
 			var span = new Span<byte>(bytes);
-			this.FillLittleEndian(span);
+			this.FillBigEndian(span);
 
 #else
 
