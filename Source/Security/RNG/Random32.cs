@@ -109,7 +109,8 @@ namespace Litdex.Security.RNG
 				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
 			}
 
-			Array.Copy(seed, 0, this._State, 0, seed.Length);
+			var length = seed.Length > this._State.Length ? this._State.Length : seed.Length;
+			Array.Copy(seed, 0, this._State, 0, length);
 		}
 
 		/// <inheritdoc/>

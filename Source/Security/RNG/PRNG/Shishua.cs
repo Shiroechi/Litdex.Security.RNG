@@ -188,18 +188,7 @@ namespace Litdex.Security.RNG.PRNG
 			}
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		A array of seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of seed is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed need 4 numbers.
-		/// </exception>
+		///	<inheritdoc/>
 		public override void SetSeed(params ulong[] seed)
 		{
 			if (seed.Length < 4 || seed == null)

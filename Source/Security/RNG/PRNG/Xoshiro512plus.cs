@@ -209,33 +209,6 @@ namespace Litdex.Security.RNG.PRNG
 			this._State[7] = seed8;
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		RNG seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of seed is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed length lower than 8.
-		/// </exception>
-		public virtual void SetSeed(ulong[] seed)
-		{
-			if (seed == null || seed.Length == 0)
-			{
-				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
-			}
-
-			if (seed.Length < 8)
-			{
-				throw new ArgumentException(nameof(seed), "Seed numbers must have at least 8 numbers.");
-			}
-
-			this.SetSeed(seed[0], seed[1], seed[2], seed[3], seed[4], seed[5], seed[6], seed[7]);
-		}
-
 		#endregion Public Method
 	}
 }

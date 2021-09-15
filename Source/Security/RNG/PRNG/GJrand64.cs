@@ -124,14 +124,17 @@ namespace Litdex.Security.RNG.PRNG
 			}
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		public void SetSeed(ulong[] seed)
+		/// <inheritdoc/>
+		public override void SetSeed(params ulong[] seed)
 		{
-			if (seed.Length < 4)
+			if (seed == null || seed.Length == 0)
 			{
-				throw new ArgumentException(nameof(seed), $"Seed need at least 4 numbers.");
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
 			}
 
 			this.SetSeed(seed[0], seed[1], seed[2], seed[3]);

@@ -90,6 +90,22 @@ namespace Litdex.Security.RNG.PRNG
 			}
 		}
 
+		/// <inheritdoc/>
+		public override void SetSeed(params ulong[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			this.SetSeed(seed[0]);
+		}
+
 		#endregion	Public
 	}
 }

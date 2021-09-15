@@ -107,25 +107,6 @@ namespace Litdex.Security.RNG.PRNG
 			this._State[1] = seed2;
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		RNG seeds.
-		/// </param>
-		/// <exception cref="ArgumentException">
-		///		Seed need at least 2 numbers.
-		/// </exception>
-		public void SetSeed(ulong[] seed)
-		{
-			if (seed.Length < 2)
-			{
-				throw new ArgumentException(nameof(seed), "Seed need 2 numbers.");
-			}
-
-			this.SetSeed(seed[0], seed[1]);
-		}
-
 		#endregion Public Method
 	}
 }

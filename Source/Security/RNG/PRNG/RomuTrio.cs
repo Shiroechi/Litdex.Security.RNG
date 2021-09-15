@@ -125,33 +125,6 @@ namespace Litdex.Security.RNG.PRNG
 			this._State[2] = seed3;
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		A array of seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of <paramref name="seed"/> is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed need 3 numbers.
-		/// </exception>
-		public void SetSeed(ulong[] seed)
-		{
-			if (seed == null || seed.Length == 0)
-			{
-				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
-			}
-
-			if (seed.Length < 3)
-			{
-				throw new ArgumentException(nameof(seed), $"Seed need 3 numbers.");
-			}
-
-			this.SetSeed(seed[0], seed[1], seed[2]);
-		}
-
 		#endregion Public Method
 	}
 }

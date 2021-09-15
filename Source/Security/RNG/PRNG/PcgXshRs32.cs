@@ -24,7 +24,14 @@
 		///	</param>
 		public PcgXshRs32(ulong seed = 0, ulong increment = 0)
 		{
-			this.SetSeed(seed, increment);
+			if (seed == 0)
+			{
+				this.Reseed();
+			}
+			else
+			{
+				this.SetSeed(seed, increment);
+			}
 		}
 
 		/// <summary>
