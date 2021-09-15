@@ -8,12 +8,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </summary>
 	public class Wyrand : Random64
 	{
-		#region Member
-
-		protected ulong _State;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -24,6 +18,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public Wyrand(ulong seed = 0)
 		{
+			this._State = new ulong[1];
 			this.SetSeed(seed);
 		}
 
@@ -32,7 +27,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~Wyrand()
 		{
-			this._State = 0;
+			this._State[0] = 0;
 		}
 
 		#endregion Constructor & Destructor
@@ -42,8 +37,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			this._State += 0xa0761d6478bd642f;
-			var result = this.MUM(this._State ^ 0xe7037ed1a0b428db, this._State);
+			this._State[0] += 0xa0761d6478bd642f;
+			var result = this.MUM(this._State[0] ^ 0xe7037ed1a0b428db, this._State[0]);
 			return result;
 		}
 
@@ -103,7 +98,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
-				this._State = BitConverter.ToUInt64(bytes, 0);
+#if NET5_0_OR_GREATER
+				this.SetSeed(seed: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes));
+#else
+				this.SetSeed(seed: BitConverter.ToUInt64(bytes, 0));
+#endif
 			}
 		}
 
@@ -115,7 +114,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed)
 		{
-			this._State = seed;
+			this._State[0] = seed;
 		}
 
 		#endregion Public Method

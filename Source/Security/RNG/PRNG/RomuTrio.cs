@@ -12,12 +12,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class RomuTrio : Random64
 	{
-		#region Member
-
-		private ulong _X, _Y, _Z;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -32,8 +26,9 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed3">
 		///		Z state.
 		/// </param>
-		public RomuTrio(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0)
+		public RomuTrio(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0)
 		{
+			this._State = new ulong[3];
 			this.SetSeed(seed1, seed2, seed3);
 		}
 
@@ -46,8 +41,9 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed need 3 numbers.
 		/// </exception>
-		public RomuTrio(uint[] seed)
+		public RomuTrio(ulong[] seed)
 		{
+			this._State = new ulong[3];
 			this.SetSeed(seed);
 		}
 
@@ -56,7 +52,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~RomuTrio()
 		{
-			this._X = this._Y = this._Z = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -66,21 +62,16 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			ulong xp = this._X;
-			ulong yp = this._Y;
-			ulong zp = this._Z;
+			ulong xp = this._State[0];
+			ulong yp = this._State[1];
+			ulong zp = this._State[2];
 
-			this._X = 15241094284759029579u * zp; // a-mult
-			this._Y = yp - xp; // d-sub
-			this._Y = this.ROTL(this._Y, 12);
-			this._Z = zp - yp; // e-add
-			this._Z = this.ROTL(this._Z, 44); // f-rotl
+			this._State[0] = 15241094284759029579u * zp; // a-mult
+			this._State[1] = yp - xp; // d-sub
+			this._State[1] = this.RotateLeft(this._State[1], 12);
+			this._State[2] = zp - yp; // e-add
+			this._State[2] = this.RotateLeft(this._State[2], 44); // f-rotl
 			return xp;
-		}
-
-		protected ulong ROTL(ulong d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (64 - lrot));
 		}
 
 		#endregion Protected Method
@@ -90,7 +81,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Trio 64 bit";
+			return "Romu Trio 64-bit";
 		}
 
 		/// <inheritdoc/>
@@ -100,9 +91,18 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[24];
 				rng.GetNonZeroBytes(bytes);
-				this._X = BitConverter.ToUInt32(bytes, 0);
-				this._Y = BitConverter.ToUInt32(bytes, 8);
-				this._Z = BitConverter.ToUInt32(bytes, 16);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)));
+#else
+				this.SetSeed(
+					seed1: BitConverter.ToUInt32(bytes, 0),
+					seed2: BitConverter.ToUInt32(bytes, 8),
+					seed3: BitConverter.ToUInt32(bytes, 16));
+#endif
 			}
 		}
 
@@ -118,11 +118,11 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed3">
 		///		Z state.
 		/// </param>
-		public void SetSeed(uint seed1, uint seed2, uint seed3)
+		public void SetSeed(ulong seed1, ulong seed2, ulong seed3)
 		{
-			this._X = seed1;
-			this._Y = seed2;
-			this._Z = seed3;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
+			this._State[2] = seed3;
 		}
 
 		/// <summary>
@@ -137,7 +137,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed need 3 numbers.
 		/// </exception>
-		public void SetSeed(uint[] seed)
+		public void SetSeed(ulong[] seed)
 		{
 			if (seed == null || seed.Length == 0)
 			{

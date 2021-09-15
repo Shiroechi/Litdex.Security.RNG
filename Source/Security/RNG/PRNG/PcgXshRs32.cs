@@ -32,7 +32,7 @@
 		/// </summary>
 		~PcgXshRs32()
 		{
-			this._Seed = 0;
+			this._State0 = 0;
 			this._Increment = 0;
 		}
 
@@ -43,8 +43,8 @@
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			var oldseed = this._Seed;
-			this._Seed = (oldseed * 6364136223846793005) + (this._Increment | 1);
+			var oldseed = this._State0;
+			this._State0 = (oldseed * 6364136223846793005) + (this._Increment | 1);
 			var rot = (int)(oldseed >> 61);
 			return (uint)(oldseed ^ (oldseed >> 22)) >> (22 + rot);
 		}
@@ -56,7 +56,7 @@
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "PCG XSH-RS 32";
+			return "PCG XSH-RS 32-bit";
 		}
 
 		#endregion Public Method

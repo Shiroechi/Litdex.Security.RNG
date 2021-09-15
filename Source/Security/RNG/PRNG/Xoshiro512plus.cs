@@ -9,18 +9,12 @@ namespace Litdex.Security.RNG.PRNG
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoshiro512plus.c
 	/// </remarks>
-	public class Xoshiro512plus : Random64
+	public class Xoshiro512Plus : Random64
 	{
-		#region Member
-
-		protected ulong[] _State = new ulong[8];
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro512plus"/> object.
+		///		Create an instance of <see cref="Xoshiro512Plus"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -46,28 +40,30 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed8">
 		///		Eighth RNG seed.
 		/// </param>
-		public Xoshiro512plus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
+		public Xoshiro512Plus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
 		{
+			this._State = new ulong[8];
 			this.SetSeed(seed1, seed2, seed3, seed4, seed5, seed6, seed7, seed8);
 		}
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro512plus"/> object.
+		///		Create an instance of <see cref="Xoshiro512Plus"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
-		public Xoshiro512plus(ulong[] seed)
+		public Xoshiro512Plus(ulong[] seed)
 		{
+			this._State = new ulong[8];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor
 		/// </summary>
-		~Xoshiro512plus()
+		~Xoshiro512Plus()
 		{
-			this._State = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -97,11 +93,6 @@ namespace Litdex.Security.RNG.PRNG
 			return result;
 		}
 
-		protected ulong RotateLeft(ulong val, int shift)
-		{
-			return (val << shift) | (val >> (64 - shift));
-		}
-
 		#endregion Protected Method
 
 		#region Public Method
@@ -119,6 +110,18 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[64];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)),
+					seed4: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(24)),
+					seed5: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(32)),
+					seed6: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(40)),
+					seed7: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(48)),
+					seed8: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(56)));
+#else
 				this.SetSeed(
 					seed1: BitConverter.ToUInt64(bytes, 0),
 					seed2: BitConverter.ToUInt64(bytes, 8),
@@ -127,8 +130,8 @@ namespace Litdex.Security.RNG.PRNG
 					seed5: BitConverter.ToUInt64(bytes, 32),
 					seed6: BitConverter.ToUInt64(bytes, 40),
 					seed7: BitConverter.ToUInt64(bytes, 48),
-					seed8: BitConverter.ToUInt64(bytes, 56)
-					);
+					seed8: BitConverter.ToUInt64(bytes, 56));
+#endif
 			}
 		}
 

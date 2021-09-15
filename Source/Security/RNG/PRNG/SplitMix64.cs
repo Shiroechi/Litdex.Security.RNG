@@ -10,12 +10,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </summary>
 	public class SplitMix64 : Random64
 	{
-		#region Member
-
-		private ulong _Seed;
-
-		#endregion Member
-
 		/// <summary>
 		///		Create an instance of <see cref="SplitMix64"/> object.
 		/// </summary>
@@ -24,7 +18,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public SplitMix64(ulong seed = 0)
 		{
-			this._Seed = seed;
+			this._State = new ulong[1];
+			this.SetSeed(seed);
 		}
 
 		/// <summary>
@@ -32,7 +27,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~SplitMix64()
 		{
-			this._Seed = 0;
+			this._State[0] = 0;
 		}
 
 		#region Protected Method
@@ -40,8 +35,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			this._Seed += 0x9E3779B97F4A7C15UL;
-			var result = this._Seed;
+			this._State[0] += 0x9E3779B97F4A7C15UL;
+			var result = this._State[0];
 			result = (result ^ (result >> 30)) * 0xBF58476D1CE4E5B9UL;
 			result = (result ^ (result >> 27)) * 0x94D049BB133111EBUL;
 			return result ^ (result >> 31);
@@ -64,7 +59,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
-				this._Seed = BitConverter.ToUInt64(bytes, 0);
+#if NET5_0_OR_GREATER
+				this.SetSeed(System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes));
+#else
+				this.SetSeed(BitConverter.ToUInt64(bytes, 0));
+#endif
 			}
 		}
 
@@ -76,7 +75,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed)
 		{
-			this._Seed = seed;
+			this._State[0] = seed;
 		}
 
 		#endregion Public Method

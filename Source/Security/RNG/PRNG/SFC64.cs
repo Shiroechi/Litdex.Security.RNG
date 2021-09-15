@@ -20,7 +20,6 @@ namespace Litdex.Security.RNG.PRNG
 	{
 		#region Member
 
-		private ulong[] _Seed = new ulong[3];
 		private ulong _Counter;
 
 		#endregion Member
@@ -30,11 +29,21 @@ namespace Litdex.Security.RNG.PRNG
 		/// <summary>
 		///		Create an instance of <see cref="SFC64"/> object.
 		/// </summary>
-		/// <param name="seed">
-		///		RNG seed.
-		///	</param>
+		/// <param name="seed1">
+		///		First seed.
+		/// </param>
+		/// <param name="seed2">
+		///		Second seed.
+		/// </param>
+		/// <param name="seed3">
+		///		Third seed.
+		/// </param>
+		/// <param name="counter">
+		///		Counter number.
+		/// </param>
 		public SFC64(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong counter = 0)
 		{
+			this._State = new ulong[3];
 			this.SetSeed(seed1, seed2, seed3, counter);
 		}
 
@@ -43,7 +52,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~SFC64()
 		{
-			this._Seed = null;
+			Array.Clear(this._State, 0, this._State.Length);
+			this._Counter = 0;
 		}
 
 		#endregion Constructor & Destructor
@@ -53,12 +63,12 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			ulong result = this._Seed[0] + this._Seed[1] + this._Counter;
+			ulong result = this._State[0] + this._State[1] + this._Counter;
 			this._Counter++;
-			this._Seed[0] = this._Seed[1] ^ (this._Seed[1] >> 11);
-			this._Seed[1] = this._Seed[2] + (this._Seed[2] << 3);
-			this._Seed[2] = (this._Seed[2] << 24) | (this._Seed[2] >> 40 /* 64 - 24 */);
-			this._Seed[2] += result;
+			this._State[0] = this._State[1] ^ (this._State[1] >> 11);
+			this._State[1] = this._State[2] + (this._State[2] << 3);
+			this._State[2] = this.RotateLeft(this._State[2], 24);
+			this._State[2] += result;
 			return result;
 		}
 
@@ -69,7 +79,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "SFC 64 bit";
+			return "SFC 64-bit";
 		}
 
 		/// <inheritdoc/>
@@ -79,30 +89,46 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[24];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
 				this.SetSeed(
-					seed1: BitConverter.ToUInt64(bytes, 0),
-					seed2: BitConverter.ToUInt64(bytes, 8),
-					seed3: BitConverter.ToUInt64(bytes, 16),
-					1
-					);
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)),
+					counter: 1);
+#else
+				this.SetSeed(
+					seed1: BitConverter.ToUInt32(bytes, 0),
+					seed2: BitConverter.ToUInt32(bytes, 8),
+					seed3: BitConverter.ToUInt32(bytes, 16),
+					counter: 1);
+#endif
 			}
 		}
 
 		/// <summary>
 		///		Set <see cref="RNG"/> seed manually.
 		/// </summary>
-		/// <param name="seed">
-		///		RNG seed.
+		/// <param name="seed1">
+		///		First seed.
+		/// </param>
+		/// <param name="seed2">
+		///		Second seed.
+		/// </param>
+		/// <param name="seed3">
+		///		Third seed.
+		/// </param>
+		/// <param name="counter">
+		///		Counter number.
 		/// </param>
 		public void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong counter = 0)
 		{
-			this._Seed[0] = seed1;
-			this._Seed[1] = seed2;
-			this._Seed[2] = seed3;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
+			this._State[2] = seed3;
 			this._Counter = counter;
 
-			// todo: max loop 18?
-			for (var i = 0; i < 12; i++)
+			for (var i = 0; i < _InitialRoll; i++)
 			{
 				this.Next();
 			}
@@ -113,6 +139,9 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
+		/// </param>
+		/// <param name="counter">
+		///		Counter number.
 		/// </param>
 		/// <exception cref="ArgumentNullException">
 		///		Array of <paramref name="seed"/> is null or empty.

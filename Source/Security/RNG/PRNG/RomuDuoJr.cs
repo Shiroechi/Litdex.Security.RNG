@@ -24,6 +24,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuDuoJr(ulong seed1 = 0, ulong seed2 = 0)
 		{
+			this._State = new ulong[2];
 			this.SetSeed(seed1, seed2);
 		}
 
@@ -38,12 +39,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuDuoJr(ulong[] seed)
 		{
+			this._State = new ulong[2];
 			this.SetSeed(seed);
 		}
 
 		~RomuDuoJr()
 		{
-			this._X = this._Y = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -53,10 +55,10 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			ulong xp = this._X;
-			this._X = 15241094284759029579u * this._Y;
-			this._Y -= xp;
-			this._Y = this.ROTL(this._Y, 27);
+			ulong xp = this._State[0];
+			this._State[0] = 15241094284759029579u * this._State[1];
+			this._State[1] -= xp;
+			this._State[1] = this.RotateLeft(this._State[1], 27);
 			return xp;
 		}
 
@@ -67,7 +69,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Duo Jr 64 bit";
+			return "Romu Duo Jr 64-bit";
 		}
 
 		#endregion Public Method

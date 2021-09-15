@@ -73,7 +73,7 @@ namespace Litdex.Security.RNG.PRNG
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
 #if NET5_0_OR_GREATER
-				var span = new Span<byte>(bytes);
+				var span = bytes.AsSpan();
 				this._Sequence = System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span);
 				this._Output = System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8));
 #else

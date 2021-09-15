@@ -12,12 +12,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class RomuQuad32 : Random32
 	{
-		#region Member
-
-		private uint _W, _X, _Y, _Z;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -37,6 +31,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuQuad32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint seed4 = 0)
 		{
+			this._State = new uint[4];
 			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
@@ -51,6 +46,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuQuad32(uint[] seed)
 		{
+			this._State = new uint[4];
 			this.SetSeed(seed);
 		}
 
@@ -59,7 +55,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~RomuQuad32()
 		{
-			this._W = this._X = this._Y = this._Z = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -69,22 +65,17 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			uint wp = this._W;
-			uint xp = this._X;
-			uint yp = this._Y;
-			uint zp = this._Z;
+			uint wp = this._State[0];
+			uint xp = this._State[1];
+			uint yp = this._State[2];
+			uint zp = this._State[3];
 
-			this._W = 3323815723 * zp; // a-mult
-			this._X = zp + this.ROTL(wp, 26); // b-rotl, c-add
-			this._Y = yp - xp; // d-sub
-			this._Z = yp + wp; // e-add
-			this._Z = this.ROTL(this._Z, 9); // f-rotl
+			this._State[0] = 3323815723 * zp; // a-mult
+			this._State[1] = zp + this.RotateLeft(wp, 26); // b-rotl, c-add
+			this._State[2] = yp - xp; // d-sub
+			this._State[3] = yp + wp; // e-add
+			this._State[3] = this.RotateLeft(this._State[3], 9); // f-rotl
 			return xp;
-		}
-
-		protected uint ROTL(uint d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (32 - lrot));
 		}
 
 		#endregion Protected Method
@@ -94,7 +85,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Quad 32 bit";
+			return "Romu Quad 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -104,10 +95,20 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
-				this._W = BitConverter.ToUInt32(bytes, 0);
-				this._X = BitConverter.ToUInt32(bytes, 4);
-				this._Y = BitConverter.ToUInt32(bytes, 8);
-				this._Z = BitConverter.ToUInt32(bytes, 12);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(4)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(8)),
+					seed4: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(12)));
+#else
+				this.SetSeed(
+					seed1: BitConverter.ToUInt32(bytes, 0),
+					seed2: BitConverter.ToUInt32(bytes, 4),
+					seed3: BitConverter.ToUInt32(bytes, 8),
+					seed4: BitConverter.ToUInt32(bytes, 12));
+#endif
 			}
 		}
 
@@ -128,10 +129,10 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(uint seed1, uint seed2, uint seed3, uint seed4)
 		{
-			this._W = seed1;
-			this._X = seed2;
-			this._Y = seed3;
-			this._Z = seed4;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
+			this._State[2] = seed3;
+			this._State[3] = seed4;
 		}
 
 		/// <summary>

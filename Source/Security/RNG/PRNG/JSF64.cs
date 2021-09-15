@@ -11,12 +11,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class JSF64 : Random64
 	{
-		#region Member
-
-		private ulong[] _Seed = new ulong[4];
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -27,6 +21,7 @@ namespace Litdex.Security.RNG.PRNG
 		///	</param>
 		public JSF64(ulong seed = 0)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed);
 		}
 
@@ -35,7 +30,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~JSF64()
 		{
-			this._Seed = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -45,29 +40,12 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var e = this._Seed[0] - this.Rotate(this._Seed[1], 7);
-			this._Seed[0] = this._Seed[1] ^ this.Rotate(this._Seed[2], 13);
-			this._Seed[1] = this._Seed[2] + this.Rotate(this._Seed[3], 37);
-			this._Seed[2] = this._Seed[3] + e;
-			this._Seed[3] = e + this._Seed[0];
-			return this._Seed[3];
-		}
-
-		/// <summary>
-		///		Rotate the bit.
-		/// </summary>
-		/// <param name="value">
-		///		Number to rotate.
-		///	</param>
-		/// <param name="shift">
-		///		Bit to rotate.
-		///	</param>
-		/// <returns>
-		///		
-		/// </returns>
-		protected ulong Rotate(ulong value, int shift)
-		{
-			return ((value) << (shift)) | ((value) >> (64 - (shift)));
+			var e = this._State[0] - this.RotateLeft(this._State[1], 7);
+			this._State[0] = this._State[1] ^ this.RotateLeft(this._State[2], 13);
+			this._State[1] = this._State[2] + this.RotateLeft(this._State[3], 37);
+			this._State[2] = this._State[3] + e;
+			this._State[3] = e + this._State[0];
+			return this._State[3];
 		}
 
 		#endregion Protected Method
@@ -77,7 +55,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "JSF 64 bit";
+			return "JSF 64-bit";
 		}
 
 		/// <inheritdoc/>
@@ -87,7 +65,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				this.SetSeed(System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes));
+#else
 				this.SetSeed(BitConverter.ToUInt64(bytes, 0));
+#endif
 			}
 		}
 
@@ -99,10 +81,10 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed)
 		{
-			this._Seed[0] = 0xF1EA5EED;
-			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
+			this._State[0] = 0xF1EA5EED;
+			this._State[1] = this._State[2] = this._State[3] = seed;
 
-			for (var i = 0; i < 20; i++)
+			for (var i = 0; i < _InitialRoll; i++)
 			{
 				this.Next();
 			}

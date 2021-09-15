@@ -12,13 +12,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class RomuDuo : Random64
 	{
-		#region Member
-
-		protected ulong _X;
-		protected ulong _Y;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -32,6 +25,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuDuo(ulong seed1 = 0, ulong seed2 = 0)
 		{
+			this._State = new ulong[2];
 			this.SetSeed(seed1, seed2);
 		}
 
@@ -46,12 +40,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuDuo(ulong[] seed)
 		{
+			this._State = new ulong[2];
 			this.SetSeed(seed);
 		}
 
 		~RomuDuo()
 		{
-			this._X = this._Y = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -61,15 +56,10 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			ulong xp = this._X;
-			this._X = 15241094284759029579u * this._Y;
-			this._Y = this.ROTL(this._Y, 27) + this.ROTL(this._Y, 15) - xp;
+			ulong xp = this._State[0];
+			this._State[0] = 15241094284759029579u * this._State[1];
+			this._State[1] = this.RotateLeft(this._State[1], 27) + this.RotateLeft(this._State[1], 15) - xp;
 			return xp;
-		}
-
-		protected ulong ROTL(ulong d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (64 - lrot));
 		}
 
 		#endregion Protected Method
@@ -79,7 +69,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Duo 64 bit";
+			return "Romu Duo 64-bit";
 		}
 
 		/// <inheritdoc/>
@@ -89,9 +79,16 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)));
+#else
 				this.SetSeed(
 					seed1: BitConverter.ToUInt64(bytes, 0),
 					seed2: BitConverter.ToUInt64(bytes, 8));
+#endif
 			}
 		}
 
@@ -106,8 +103,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed1, ulong seed2)
 		{
-			this._X = seed1;
-			this._Y = seed2;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
 		}
 
 		/// <summary>

@@ -15,7 +15,6 @@ namespace Litdex.Security.RNG.PRNG
 	{
 		#region Member
 
-		protected ulong _Seed; // state in original code
 		protected ulong _Increment;
 		protected const ulong _Multiplier = 6364136223846793005;
 
@@ -34,6 +33,7 @@ namespace Litdex.Security.RNG.PRNG
 		///	</param>
 		public PcgRxsMXs64(ulong seed = 0, ulong increment = 0)
 		{
+			this._State = new ulong[1];
 			this.SetSeed(seed, increment);
 		}
 
@@ -42,7 +42,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~PcgRxsMXs64()
 		{
-			this._Seed = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 			this._Increment = 0;
 		}
 
@@ -53,8 +53,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var oldseed = this._Seed;
-			this._Seed = (oldseed * _Multiplier) + (this._Increment | 1);
+			var oldseed = this._State[0];
+			this._State[0] = (oldseed * _Multiplier) + (this._Increment | 1);
 			ulong word = ((oldseed >> ((int)(oldseed >> 59) + 5)) ^ oldseed) * 12605985483714917081;
 			return (word >> 43) ^ word;
 		}
@@ -66,7 +66,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "PCG RXS-M-XS 64";
+			return "PCG RXS-M-XS 64-bit";
 		}
 
 		/// <inheritdoc/>
@@ -76,11 +76,16 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
-
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					increment: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)));
+#else
 				this.SetSeed(
 					seed: BitConverter.ToUInt64(bytes, 0),
-					increment: BitConverter.ToUInt64(bytes, 8)
-					);
+					increment: BitConverter.ToUInt64(bytes, 8));
+#endif
 			}
 		}
 
@@ -95,7 +100,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed, ulong increment)
 		{
-			this._Seed = (seed + increment) * _Multiplier + increment;
+			this._State[0] = (seed + increment) * _Multiplier + increment;
 			this._Increment = increment;
 		}
 

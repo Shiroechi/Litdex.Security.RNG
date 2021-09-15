@@ -1,17 +1,19 @@
-﻿namespace Litdex.Security.RNG.PRNG
+﻿using System;
+
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Variations of <see cref="Xoshiro256plus"/>.
+	///		Variations of <see cref="Xoshiro256Plus"/>.
 	/// </summary>
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoshiro256plusplus.c
 	/// </remarks>
-	public class Xoshiro256plusplus : Xoshiro256plus
+	public class Xoshiro256PlusPlus : Xoshiro256Plus
 	{
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256plusplus"/> object.
+		///		Create an instance of <see cref="Xoshiro256PlusPlus"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -25,13 +27,14 @@
 		/// <param name="seed4">
 		///		Fourth RNG seed.
 		/// </param>
-		public Xoshiro256plusplus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
+		public Xoshiro256PlusPlus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256plusplus"/> object.
+		///		Create an instance of <see cref="Xoshiro256PlusPlus"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
@@ -42,17 +45,18 @@
 		/// <exception cref="ArgumentException">
 		///		Seed length lower than 4.
 		/// </exception>
-		public Xoshiro256plusplus(ulong[] seed)
+		public Xoshiro256PlusPlus(ulong[] seed)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~Xoshiro256plusplus()
+		~Xoshiro256PlusPlus()
 		{
-			this._State = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
