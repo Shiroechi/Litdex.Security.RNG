@@ -59,9 +59,8 @@ namespace Litdex.Security.RNG
 				throw new ArgumentException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
 			}
 
-			return (byte)(this.NextInt(lower, upper) >> 24);
-			//var diff = (byte)(upper - lower + 1);
-			//return (byte)(lower + (this.NextByte() % diff));
+			var diff = (byte)(upper - lower + 1);
+			return (byte)(lower + (this.NextByte() % diff));
 		}
 
 		/// <inheritdoc/>
