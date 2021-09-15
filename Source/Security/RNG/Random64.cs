@@ -85,6 +85,33 @@ namespace Litdex.Security.RNG
 			return "Random64";
 		}
 
+		/// <summary>
+		///		Set <see cref="RNG"/> internal state manually.
+		/// </summary>
+		/// <param name="seed">
+		///		Number to generate the random numbers.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of seed is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed amount must same as the internal state amount.
+		/// </exception>
+		public virtual void SetSeed(params ulong[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed numbers must have at least { this._State.Length } numbers.");
+			}
+
+			Array.Copy(seed, 0, this._State, 0, seed.Length);
+		}
+
 		/// <inheritdoc/>
 		public override bool NextBoolean()
 		{

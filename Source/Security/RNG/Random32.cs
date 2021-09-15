@@ -49,7 +49,7 @@ namespace Litdex.Security.RNG
 #if NET5_0_OR_GREATER
 			return System.Numerics.BitOperations.RotateLeft(value, offset);
 #else
-			return (value << offset) | (value >> (64 - offset));
+			return (value << offset) | (value >> (32 - offset));
 #endif
 		}
 
@@ -71,7 +71,7 @@ namespace Litdex.Security.RNG
 #if NET5_0_OR_GREATER
 			return System.Numerics.BitOperations.RotateRight(value, offset);
 #else
-			return (value >> offset) | (value << (64 - offset));
+			return (value >> offset) | (value << (32 - offset));
 #endif
 		}
 
@@ -83,6 +83,33 @@ namespace Litdex.Security.RNG
 		public override string AlgorithmName()
 		{
 			return "Random32";
+		}
+
+		/// <summary>
+		///		Set <see cref="RNG"/> internal state manually.
+		/// </summary>
+		/// <param name="seed">
+		///		Number to generate the random numbers.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of seed is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed amount must same as the internal state amount.
+		/// </exception>
+		public virtual void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed numbers must have at least { this._State.Length } numbers.");
+			}
+
+			Array.Copy(seed, 0, this._State, 0, seed.Length);
 		}
 
 		/// <inheritdoc/>
