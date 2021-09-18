@@ -12,6 +12,20 @@ namespace Litdex.Security.RNG.PRNG
 	public class Shioi : Random64
 	{
 		#region Constructor & Destructor
+		
+		/// <summary>
+		///		Create an instance of <see cref="Shioi"/> object.
+		/// </summary>
+		/// <param name="seed">
+		///		RNG seed numbers.
+		/// </param>
+		/// <exception cref="ArgumentOutOfRangeException">
+		///		Seed need 2 numbers.
+		/// </exception>
+		public Shioi()
+		{
+			this._State = new ulong[2];
+		}
 
 		/// <summary>
 		///		Create an instance of <see cref="Shioi"/> object.
@@ -22,9 +36,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		Seed need 2 numbers.
 		/// </exception>
-		public Shioi(ulong[] seed)
+		public Shioi(ulong[] seed) : this()
 		{
-			this._State = new ulong[2];
 			this.SetSeed(seed);
 		}
 

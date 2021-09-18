@@ -12,6 +12,14 @@ namespace Litdex.Security.RNG.PRNG
 	public class Seiran : Random64
 	{
 		#region Constructor & Destructor
+		
+		/// <summary>
+		///		Create an instance of <see cref="Seiran"/> object.
+		/// </summary>
+		public Seiran()
+		{
+			this._State = new ulong[2];
+		}
 
 		/// <summary>
 		///		Create an instance of <see cref="Seiran"/> object.
@@ -22,9 +30,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		Seed need 2 numbers.
 		/// </exception>
-		public Seiran(ulong[] seed)
+		public Seiran(ulong[] seed) : this()
 		{
-			this._State = new ulong[2];
 			this.SetSeed(seed);
 		}
 
@@ -80,7 +87,7 @@ namespace Litdex.Security.RNG.PRNG
 #endif
 			}
 		}
-		
+
 		/// <summary>
 		///		Set <see cref="RNG"/> seed manually.
 		/// </summary>
