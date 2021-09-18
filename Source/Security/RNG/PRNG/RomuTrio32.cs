@@ -115,7 +115,7 @@ namespace Litdex.Security.RNG.PRNG
 			this._State[1] = seed2;
 			this._State[2] = seed3;
 		}
-		
+
 		#endregion Public Method
 	}
 }

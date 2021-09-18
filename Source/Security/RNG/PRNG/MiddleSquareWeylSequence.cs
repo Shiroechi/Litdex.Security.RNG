@@ -12,7 +12,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class MiddleSquareWeylSequence : Random32
 	{
 		#region Member
-		
+
 		private ulong _Output = 0; // random output
 		private ulong _Sequence = 0; // Weyl sequence
 		private ulong _Increment = 0xB5AD4ECEDA1CE2A9; // odd constant
