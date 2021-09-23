@@ -311,7 +311,6 @@ namespace Litdex.Security.RNG
 				throw new ArgumentException(nameof(lower), "The lower bound must not be greater than or equal to the upper bound.");
 			}
 
-			// TODO: do 128-bit multiplication
 			// using unbiased lemire method
 			// from https://www.pcg-random.org/posts/bounded-rands.html
 			var range = upper - lower;
