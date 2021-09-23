@@ -184,7 +184,6 @@ namespace Litdex.Security.RNG.PRNG
 					BitConverter.ToUInt64(bytes, 24)
 				});
 #endif
-
 			}
 		}
 
