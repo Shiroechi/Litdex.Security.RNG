@@ -21,7 +21,7 @@ Currently [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG
 - [GJrand](http://gjrand.sourceforge.net/)
 - [JSF](http://burtleburtle.net/bob/rand/smallprng.html)
 - [Middle Square Weyl Sequence](https://en.wikipedia.org/wiki/Middle-square_method)
-- [PCG](https://en.wikipedia.org/wiki/Permuted_congruential_generator)
+- [PCG](https://www.pcg-random.org/)
 - [Romu](http://romu-random.org/)
 - SFC (Chris Doty-Humphrey's Chaotic PRNG)
 - [Seiran](https://github.com/andanteyk/prng-seiran)
@@ -35,11 +35,11 @@ Currently [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG
 
 All of the algorithm have passing Practrand or Test01 test. But I've never test it individually, the author who is said that their algorithm past Practrand or Test01.
 
-You can check in this website ["PRNG Battle Royale: 47 PRNGs × 9 consoles"](https://rhet.dev/wheel/rng-battle-royale-47-prngs-9-consoles/), the writer have tested some of the algorithm that have been implemented.
+You can check in this website ["PRNG Battle Royale: 47 PRNGs ï¿½ 9 consoles"](https://rhet.dev/wheel/rng-battle-royale-47-prngs-9-consoles/), the writer have tested some of the algorithm that have been implemented.
 
 # How to use
 
-For detailed use read [How to use](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use)
+For detailed use, read [How to use](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use)
 or [Documentation](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Documentation)
 
 The simple way to use
@@ -54,7 +54,7 @@ var randomInt = rng.NextInt();
 
 Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
 
-# Bechmark
+# Benchmark
 
 ## 32-bit RNG
 
@@ -136,6 +136,18 @@ WarmupCount=10
 | NextLong |       Xoshiro 512** | 17.425 ns | 0.2050 ns | 0.3069 ns | 16.905 ns | 17.904 ns |   12 |      - |         - |
 | NextLong |              Gjrand | 25.934 ns | 0.2945 ns | 0.4408 ns | 24.915 ns | 26.314 ns |   13 |      - |         - |
 | NextLong |             Shishua | 30.672 ns | 0.4714 ns | 0.6909 ns | 29.746 ns | 31.842 ns |   14 | 0.0306 |      16 B |
+
+# Warning
+
+For method that generate an arbitary byte array, like method `NextBytes`.
+
+```C#
+var rng = new Xoroshiro128plus();
+var bytes = rng.NextBytes(10);
+```
+
+Litdex generate the array using multiple `uint` or `ulong`, each `uint` or `ulong` will converted into byte array. When converted to byte array, Litdex order the byte based on the system endianess. Then each converted byte array will be concated with other byte array.
+
 
 # Contribute
 
