@@ -35,7 +35,7 @@ Currently [Litdex.Security.RNG](https://github.com/Shiroechi/Litdex.Security.RNG
 
 All of the algorithm have passing Practrand or Test01 test. But I've never test it individually, the author who is said that their algorithm past Practrand or Test01.
 
-You can check in this website ["PRNG Battle Royale: 47 PRNGs Ã— 9 consoles"](https://rhet.dev/wheel/rng-battle-royale-47-prngs-9-consoles/), the writer have tested some of the algorithm that have been implemented.
+You can check in this website ["PRNG Battle Royale: 47 PRNGs × 9 consoles"](https://rhet.dev/wheel/rng-battle-royale-47-prngs-9-consoles/), the writer have tested some of the algorithm that have been implemented.
 
 # How to use
 
@@ -54,7 +54,7 @@ var randomInt = rng.NextInt();
 
 Want to create your own RNG?? Then read [Custom RNG](https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG)
 
-# Benchmark
+# Bechmark
 
 ## 32-bit RNG
 
