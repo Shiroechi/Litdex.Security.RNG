@@ -9,18 +9,12 @@ namespace Litdex.Security.RNG.PRNG
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoshiro256plus.c
 	/// </remarks>
-	public class Xoshiro256plus : Random64
+	public class Xoshiro256Plus : Random64
 	{
-		#region Member
-
-		protected ulong[] _State = new ulong[4];
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256plus"/> object.
+		///		Create an instance of <see cref="Xoshiro256Plus"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -34,13 +28,14 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed4">
 		///		Fourth RNG seed.
 		/// </param>
-		public Xoshiro256plus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
+		public Xoshiro256Plus(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256plus"/> object.
+		///		Create an instance of <see cref="Xoshiro256Plus"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
@@ -51,17 +46,18 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed length lower than 4.
 		/// </exception>
-		public Xoshiro256plus(ulong[] seed)
+		public Xoshiro256Plus(ulong[] seed)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~Xoshiro256plus()
+		~Xoshiro256Plus()
 		{
-			this._State = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -87,11 +83,6 @@ namespace Litdex.Security.RNG.PRNG
 			return result;
 		}
 
-		protected ulong RotateLeft(ulong val, int shift)
-		{
-			return (val << shift) | (val >> (64 - shift));
-		}
-
 		#endregion Protected Method
 
 		#region Public Method
@@ -109,12 +100,20 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[32];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)),
+					seed4: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(24)));
+#else
 				this.SetSeed(
 					seed1: BitConverter.ToUInt64(bytes, 0),
 					seed2: BitConverter.ToUInt64(bytes, 8),
 					seed3: BitConverter.ToUInt64(bytes, 16),
-					seed4: BitConverter.ToUInt64(bytes, 24)
-					);
+					seed4: BitConverter.ToUInt64(bytes, 24));
+#endif
 			}
 		}
 
@@ -173,33 +172,6 @@ namespace Litdex.Security.RNG.PRNG
 			this._State[1] = seed2;
 			this._State[2] = seed3;
 			this._State[3] = seed4;
-		}
-
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		RNG seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of seed is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed length lower than 4.
-		/// </exception>
-		public virtual void SetSeed(ulong[] seed)
-		{
-			if (seed == null || seed.Length == 0)
-			{
-				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
-			}
-
-			if (seed.Length < 4)
-			{
-				throw new ArgumentException(nameof(seed), "Seed numbers must have at least 4 numbers.");
-			}
-
-			this.SetSeed(seed[0], seed[1], seed[2], seed[3]);
 		}
 
 		#endregion Public

@@ -3,11 +3,16 @@
 namespace Litdex.Security.RNG
 {
 	/// <summary>
-	///		Base class for 32 bit RNG.
+	///		Base class for Random Number Generator that the internal state produces 32 bit output.
 	/// </summary>
 	public abstract class Random32 : Random
 	{
 		#region Member
+
+		/// <summary>
+		///		The internal state of RNG.
+		/// </summary>
+		protected uint[] _State;
 
 		/// <summary>
 		///		<see cref="int"/> and <see cref="uint"/> is 4 bytes.
@@ -26,6 +31,50 @@ namespace Litdex.Security.RNG
 		///	</returns>
 		protected abstract uint Next();
 
+		/// <summary>
+		///		Rotates the specified value left by the specified number of bits.
+		/// </summary>
+		/// <param name="value">
+		///		The value to rotate.
+		/// </param>
+		/// <param name="offset">
+		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
+		///     as congruent mod 64.
+		/// </param>
+		/// <returns>
+		///		The rotated value.
+		/// </returns>
+		protected uint RotateLeft(uint value, int offset)
+		{
+#if NET5_0_OR_GREATER
+			return System.Numerics.BitOperations.RotateLeft(value, offset);
+#else
+			return (value << offset) | (value >> (32 - offset));
+#endif
+		}
+
+		/// <summary>
+		///		Rotates the specified value right by the specified number of bits.
+		/// </summary>
+		/// <param name="value">
+		///		The value to rotate.
+		/// </param>
+		/// <param name="offset">
+		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
+		///     as congruent mod 64.
+		/// </param>
+		/// <returns>
+		///		The rotated value.
+		/// </returns>
+		protected uint RotateRight(uint value, int offset)
+		{
+#if NET5_0_OR_GREATER
+			return System.Numerics.BitOperations.RotateRight(value, offset);
+#else
+			return (value >> offset) | (value << (32 - offset));
+#endif
+		}
+
 		#endregion Protected Method
 
 		#region Public Method
@@ -34,6 +83,34 @@ namespace Litdex.Security.RNG
 		public override string AlgorithmName()
 		{
 			return "Random32";
+		}
+
+		/// <summary>
+		///		Set <see cref="RNG"/> internal state manually.
+		/// </summary>
+		/// <param name="seed">
+		///		Number to generate the random numbers.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Array of seed is null or empty.
+		/// </exception>
+		/// <exception cref="ArgumentException">
+		///		Seed amount must same as the internal state amount.
+		/// </exception>
+		public virtual void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			var length = seed.Length > this._State.Length ? this._State.Length : seed.Length;
+			Array.Copy(seed, 0, this._State, 0, length);
 		}
 
 		/// <inheritdoc/>
@@ -69,22 +146,21 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
+			var bytes = new byte[length];
+
 #if NET5_0_OR_GREATER
 
-			var bytes = new byte[length];
 			var span = new Span<byte>(bytes);
 
 			this.FillLittleEndian(span);
 
-			return bytes;
 #else
-
-			var bytes = new byte[length];
 
 			this.FillLittleEndian(bytes);
 
-			return bytes;
 #endif
+
+			return bytes;
 		}
 
 		/// <inheritdoc/>
@@ -95,23 +171,21 @@ namespace Litdex.Security.RNG
 				throw new ArgumentOutOfRangeException(nameof(length), "The requested output size can't lower than 1.");
 			}
 
+			var bytes = new byte[length];
 
 #if NET5_0_OR_GREATER
 
-			var bytes = new byte[length];
 			var span = new Span<byte>(bytes);
 
 			this.FillBigEndian(span);
 
-			return bytes;
 #else
-
-			var bytes = new byte[length];
 
 			this.FillBigEndian(bytes);
 
-			return bytes;
 #endif
+
+			return bytes;
 		}
 
 		/// <inheritdoc/>

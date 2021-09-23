@@ -1,17 +1,19 @@
-﻿namespace Litdex.Security.RNG.PRNG
+﻿using System;
+
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Variations of <see cref="Xoshiro256plus"/>.
+	///		Variations of <see cref="Xoshiro256Plus"/>.
 	/// </summary>
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoshiro256starstar.c
 	/// </remarks>
-	public class Xoshiro256starstar : Xoshiro256plus
+	public class Xoshiro256StarStar : Xoshiro256Plus
 	{
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256starstar"/> object.
+		///		Create an instance of <see cref="Xoshiro256StarStar"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -25,28 +27,30 @@
 		/// <param name="seed4">
 		///		Fourth RNG seed.
 		/// </param>
-		public Xoshiro256starstar(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
+		public Xoshiro256StarStar(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed1, seed2, seed3, seed4);
 		}
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro256starstar"/> object.
+		///		Create an instance of <see cref="Xoshiro256StarStar"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
-		public Xoshiro256starstar(ulong[] seed)
+		public Xoshiro256StarStar(ulong[] seed)
 		{
+			this._State = new ulong[4];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~Xoshiro256starstar()
+		~Xoshiro256StarStar()
 		{
-			this._State = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor

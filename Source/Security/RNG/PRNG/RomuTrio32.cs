@@ -12,14 +12,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class RomuTrio32 : Random32
 	{
-		#region Member
-
-		private uint _X;
-		private uint _Y;
-		private uint _Z;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -36,6 +28,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuTrio32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0)
 		{
+			this._State = new uint[3];
 			this.SetSeed(seed1, seed2, seed3);
 		}
 
@@ -50,6 +43,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </exception>
 		public RomuTrio32(uint[] seed)
 		{
+			this._State = new uint[3];
 			this.SetSeed(seed);
 		}
 
@@ -60,20 +54,15 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			uint xp = this._X;
-			uint yp = this._Y;
-			uint zp = this._Z;
-			this._X = 3323815723u * zp;
-			this._Y = yp - xp;
-			this._Y = this.ROTL(this._Y, 6);
-			this._Z = zp - yp;
-			this._Z = this.ROTL(this._Z, 22);
+			uint xp = this._State[0];
+			uint yp = this._State[1];
+			uint zp = this._State[2];
+			this._State[0] = 3323815723u * zp;
+			this._State[1] = yp - xp;
+			this._State[1] = this.RotateLeft(this._State[1], 6);
+			this._State[2] = zp - yp;
+			this._State[2] = this.RotateLeft(this._State[2], 22);
 			return xp;
-		}
-
-		protected uint ROTL(uint d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (32 - lrot));
 		}
 
 		#endregion Protected Method
@@ -83,7 +72,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Trio 32 bit";
+			return "Romu Trio 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -93,9 +82,18 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[12];
 				rng.GetNonZeroBytes(bytes);
-				this._X = BitConverter.ToUInt32(bytes, 0);
-				this._Y = BitConverter.ToUInt32(bytes, 4);
-				this._Z = BitConverter.ToUInt32(bytes, 8);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(4)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(8)));
+#else
+				this.SetSeed(
+					seed1: BitConverter.ToUInt32(bytes, 0),
+					seed2: BitConverter.ToUInt32(bytes, 4),
+					seed3: BitConverter.ToUInt32(bytes, 8));
+#endif
 			}
 		}
 
@@ -113,36 +111,9 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(uint seed1, uint seed2, uint seed3)
 		{
-			this._X = seed1;
-			this._Y = seed2;
-			this._Z = seed3;
-		}
-
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		A array of seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of <paramref name="seed"/> is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed need 3 numbers.
-		/// </exception>
-		public void SetSeed(uint[] seed)
-		{
-			if (seed == null || seed.Length == 0)
-			{
-				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
-			}
-
-			if (seed.Length < 3)
-			{
-				throw new ArgumentException(nameof(seed), "Seed need 3 numbers.");
-			}
-
-			this.SetSeed(seed[0], seed[1], seed[2]);
+			this._State[0] = seed1;
+			this._State[1] = seed2;
+			this._State[2] = seed3;
 		}
 
 		#endregion Public Method

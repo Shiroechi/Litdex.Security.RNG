@@ -10,12 +10,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </summary>
 	public class Tyche : Random32
 	{
-		#region Member
-
-		protected uint _A, _B, _C, _D;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -29,12 +23,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public Tyche(ulong seed = 0, uint idx = 0)
 		{
+			this._State = new uint[4];
 			this.SetSeed(seed, idx);
 		}
 
 		~Tyche()
 		{
-			this._A = this._B = this._C = this._D = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -45,7 +40,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected override uint Next()
 		{
 			this.Mix();
-			return this._B;
+			return this._State[1];
 		}
 
 		/// <summary>
@@ -59,12 +54,12 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		protected void Init(ulong seed, uint idx)
 		{
-			this._A = (uint)(seed / uint.MaxValue);
-			this._B = (uint)(seed % uint.MaxValue);
-			this._C = 2654435769;
-			this._D = idx ^ 1367130551;
+			this._State[0] = (uint)(seed / uint.MaxValue);
+			this._State[1] = (uint)(seed % uint.MaxValue);
+			this._State[2] = 2654435769;
+			this._State[3] = idx ^ 1367130551;
 
-			for (var i = 0; i < 20; i++)
+			for (var i = 0; i < _InitialRoll; i++)
 			{
 				this.Mix();
 			}
@@ -75,21 +70,21 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		protected virtual void Mix()
 		{
-			this._A += this._B;
-			this._D ^= this._A;
-			this._D = this._D << 16 | this._D >> 16;
+			this._State[0] += this._State[1];
+			this._State[3] ^= this._State[0];
+			this._State[3] = this._State[3] << 16 | this._State[3] >> 16;
 
-			this._C += this._D;
-			this._B ^= this._C;
-			this._B = this._B << 12 | this._B >> 20;
+			this._State[2] += this._State[3];
+			this._State[1] ^= this._State[2];
+			this._State[1] = this._State[1] << 12 | this._State[1] >> 20;
 
-			this._A += this._B;
-			this._D ^= this._A;
-			this._D = this._D << 8 | this._D >> 24;
+			this._State[0] += this._State[1];
+			this._State[3] ^= this._State[0];
+			this._State[3] = this._State[3] << 8 | this._State[3] >> 24;
 
-			this._C += this._D;
-			this._B ^= this._C;
-			this._B = this._B << 7 | this._B >> 25;
+			this._State[2] += this._State[3];
+			this._State[1] ^= this._State[2];
+			this._State[1] = this._State[1] << 7 | this._State[1] >> 25;
 		}
 
 		#endregion Protected Method
@@ -109,9 +104,16 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[12];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.Init(
+					seed: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					idx: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(8)));
+#else
 				this.Init(
 					seed: BitConverter.ToUInt64(bytes, 0),
 					idx: BitConverter.ToUInt32(bytes, 8));
+#endif
 			}
 		}
 
@@ -127,6 +129,21 @@ namespace Litdex.Security.RNG.PRNG
 		public virtual void SetSeed(ulong seed, uint idx)
 		{
 			this.Init(seed, idx);
+		}
+
+		public override void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			this.SetSeed(seed[0], seed[1]);
 		}
 
 		#endregion Public Method

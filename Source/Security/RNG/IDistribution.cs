@@ -35,6 +35,5 @@
 		///		Gamma distribution.
 		/// </returns>
 		double NextGamma(double alpha, double beta);
-
 	}
 }

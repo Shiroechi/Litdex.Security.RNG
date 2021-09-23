@@ -25,7 +25,6 @@ namespace Litdex.Security.RNG.PRNG
 
 		// Note: While it is an array, a "lane" refers to 4 consecutive ulong.
 		// RNG state.
-		private ulong[] _State = new ulong[16]; // 4 lanes
 		private ulong[] _Output = new ulong[16]; // 4 lanes, 2 parts
 		private ulong[] _Counter = new ulong[4]; // 1 lane
 
@@ -44,6 +43,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public Shishua(ulong[] seed = null)
 		{
+			this._State = new ulong[16]; // 4 lanes
+
 			if (seed == null)
 			{
 				this.Reseed();
@@ -60,9 +61,9 @@ namespace Litdex.Security.RNG.PRNG
 
 		~Shishua()
 		{
-			this._State = null;
-			this._Output = null;
-			this._Counter = null;
+			Array.Clear(this._State, 0, this._State.Length);
+			Array.Clear(this._Output, 0, this._Output.Length);
+			Array.Clear(this._Counter, 0, this._Counter.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -142,7 +143,6 @@ namespace Litdex.Security.RNG.PRNG
 				// Merge together.
 				for (var j = 0; j < 4; j++)
 				{
-
 					this._Output[j + 8] = this._State[j + 0] ^ this._State[j + 12];
 					this._Output[j + 12] = this._State[j + 8] ^ this._State[j + 4];
 
@@ -168,29 +168,27 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[64];
 				rng.GetNonZeroBytes(bytes);
-
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(new ulong[] {
+					System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
+					System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)),
+					System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(24))
+				});
+#else
 				this.SetSeed(new ulong[] {
 					BitConverter.ToUInt64(bytes, 0),
 					BitConverter.ToUInt64(bytes, 8),
 					BitConverter.ToUInt64(bytes, 16),
 					BitConverter.ToUInt64(bytes, 24)
 				});
+#endif
 			}
 		}
 
-		/// <summary>
-		///		Set <see cref="RNG"/> seed manually.
-		/// </summary>
-		/// <param name="seed">
-		///		A array of seed numbers.
-		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Array of seed is null or empty.
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		///		Seed need 4 numbers.
-		/// </exception>
-		public void SetSeed(ulong[] seed)
+		///	<inheritdoc/>
+		public override void SetSeed(params ulong[] seed)
 		{
 			if (seed.Length < 4 || seed == null)
 			{

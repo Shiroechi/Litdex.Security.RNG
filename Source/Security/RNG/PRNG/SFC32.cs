@@ -4,9 +4,8 @@ using System.Security.Cryptography;
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Implementation of Small, Fast, Counting (SFC) 64-bit generator of Chris Doty-Humphrey.
+	///		Implementation of Small, Fast, Counting (SFC) 32-bit generator of Chris Doty-Humphrey.
 	///		The original source is the PractRand test suite
-	/// 
 	/// </summary>
 	/// <remarks>
 	///		<para>
@@ -16,11 +15,11 @@ namespace Litdex.Security.RNG.PRNG
 	///			https://github.com/bashtage/randomgen/blob/main/randomgen/src/sfc/
 	///		</para>
 	///	</remarks>
-	public class SFC64 : Random64
+	public class SFC32 : Random32
 	{
 		#region Member
 
-		private ulong _Counter;
+		private uint _Counter;
 
 		#endregion Member
 
@@ -41,16 +40,16 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="counter">
 		///		Counter number.
 		/// </param>
-		public SFC64(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong counter = 0)
+		public SFC32(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint counter = 0)
 		{
-			this._State = new ulong[3];
+			this._State = new uint[3];
 			this.SetSeed(seed1, seed2, seed3, counter);
 		}
 
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~SFC64()
+		~SFC32()
 		{
 			Array.Clear(this._State, 0, this._State.Length);
 			this._Counter = 0;
@@ -61,13 +60,13 @@ namespace Litdex.Security.RNG.PRNG
 		#region	Protected Method
 
 		/// <inheritdoc/>
-		protected override ulong Next()
+		protected override uint Next()
 		{
-			ulong result = this._State[0] + this._State[1] + this._Counter;
+			uint result = this._State[0] + this._State[1] + this._Counter;
 			this._Counter++;
-			this._State[0] = this._State[1] ^ (this._State[1] >> 11);
+			this._State[0] = this._State[1] ^ (this._State[1] >> 9);
 			this._State[1] = this._State[2] + (this._State[2] << 3);
-			this._State[2] = this.RotateLeft(this._State[2], 24);
+			this._State[2] = this.RotateLeft(this._State[2], 21);
 			this._State[2] += result;
 			return result;
 		}
@@ -79,7 +78,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "SFC 64-bit";
+			return "SFC 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -87,21 +86,21 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			using (var rng = new RNGCryptoServiceProvider())
 			{
-				var bytes = new byte[24];
+				var bytes = new byte[12];
 				rng.GetNonZeroBytes(bytes);
 #if NET5_0_OR_GREATER
-				var span = bytes.AsSpan();
+				var span = new Span<byte>(bytes);
 				this.SetSeed(
-					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
-					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)),
-					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(16)),
-					counter: 1);
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(4)),
+					seed3: System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(8)),
+					1);
 #else
 				this.SetSeed(
 					seed1: BitConverter.ToUInt32(bytes, 0),
-					seed2: BitConverter.ToUInt32(bytes, 8),
-					seed3: BitConverter.ToUInt32(bytes, 16),
-					counter: 1);
+					seed2: BitConverter.ToUInt32(bytes, 4),
+					seed3: BitConverter.ToUInt32(bytes, 8),
+					1);
 #endif
 			}
 		}
@@ -121,7 +120,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="counter">
 		///		Counter number.
 		/// </param>
-		public void SetSeed(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong counter = 0)
+		public void SetSeed(uint seed1 = 0, uint seed2 = 0, uint seed3 = 0, uint counter = 0)
 		{
 			this._State[0] = seed1;
 			this._State[1] = seed2;
@@ -149,7 +148,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <exception cref="ArgumentException">
 		///		Seed need 3 numbers.
 		/// </exception>
-		public void SetSeed(ulong[] seed, ulong counter = 0)
+		public void SetSeed(uint[] seed, uint counter = 0)
 		{
 			if (seed == null || seed.Length == 0)
 			{
@@ -165,7 +164,7 @@ namespace Litdex.Security.RNG.PRNG
 		}
 
 		/// <inheritdoc/>
-		public override void SetSeed(params ulong[] seed)
+		public override void SetSeed(params uint[] seed)
 		{
 			if (seed == null || seed.Length == 0)
 			{

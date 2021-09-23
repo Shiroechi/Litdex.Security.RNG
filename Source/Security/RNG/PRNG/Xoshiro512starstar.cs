@@ -1,17 +1,19 @@
-﻿namespace Litdex.Security.RNG.PRNG
+﻿using System;
+
+namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Vartions of <see cref="Xoshiro512plus"/>.
+	///		Vartions of <see cref="Xoshiro512Plus"/>.
 	/// </summary>
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoshiro512starstar.c
 	/// </remarks>
-	public class Xoshiro512starstar : Xoshiro512plus
+	public class Xoshiro512StarStar : Xoshiro512Plus
 	{
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro512starstar"/> object.
+		///		Create an instance of <see cref="Xoshiro512StarStar"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -37,28 +39,30 @@
 		/// <param name="seed8">
 		///		Eighth RNG seed.
 		/// </param>
-		public Xoshiro512starstar(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
+		public Xoshiro512StarStar(ulong seed1 = 0, ulong seed2 = 0, ulong seed3 = 0, ulong seed4 = 0, ulong seed5 = 0, ulong seed6 = 0, ulong seed7 = 0, ulong seed8 = 0)
 		{
+			this._State = new ulong[8];
 			this.SetSeed(seed1, seed2, seed3, seed4, seed5, seed6, seed7, seed8);
 		}
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoshiro512starstar"/> object.
+		///		Create an instance of <see cref="Xoshiro512StarStar"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
-		public Xoshiro512starstar(ulong[] seed)
+		public Xoshiro512StarStar(ulong[] seed)
 		{
+			this._State = new ulong[8];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor
 		/// </summary>
-		~Xoshiro512starstar()
+		~Xoshiro512StarStar()
 		{
-			this._State = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor

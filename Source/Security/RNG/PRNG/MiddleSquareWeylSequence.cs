@@ -9,7 +9,7 @@ namespace Litdex.Security.RNG.PRNG
 	/// <remarks>
 	///		Source: https://arxiv.org/abs/1704.00358
 	/// </remarks>
-	public class MiddleSquareWeylSequence : Random64
+	public class MiddleSquareWeylSequence : Random32
 	{
 		#region Member
 
@@ -47,12 +47,12 @@ namespace Litdex.Security.RNG.PRNG
 		#region Protected Method
 
 		/// <inheritdoc/>
-		protected override ulong Next()
+		protected override uint Next()
 		{
 			this._Output *= this._Output;
 			this._Output += this._Sequence += this._Increment;
 			this._Output = (this._Output >> 32) | (this._Output << 32);
-			return this._Output;
+			return (uint)this._Output;
 		}
 
 		#endregion Protected Method
@@ -72,8 +72,14 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this._Sequence = System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span);
+				this._Output = System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8));
+#else
 				this._Sequence = BitConverter.ToUInt64(bytes, 0);
 				this._Output = BitConverter.ToUInt64(bytes, 8);
+#endif
 			}
 		}
 

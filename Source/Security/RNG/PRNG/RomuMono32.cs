@@ -13,12 +13,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class RomuMono32 : Random32
 	{
-		#region Member
-
-		private uint _Seed;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -29,12 +23,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public RomuMono32(uint seed = 0)
 		{
+			this._State = new uint[1];
 			this.SetSeed(seed);
 		}
 
 		~RomuMono32()
 		{
-			this._Seed = 0;
+			this._State[0] = 0;
 		}
 
 		#endregion Constructor & Destructor
@@ -44,15 +39,10 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			uint result = this._Seed >> 16;
-			this._Seed *= 3611795771u;
-			this._Seed = this.ROTL(this._Seed, 12);
+			uint result = this._State[0] >> 16;
+			this._State[0] *= 3611795771u;
+			this._State[0] = this.RotateLeft(this._State[0], 12);
 			return result;
-		}
-
-		protected uint ROTL(uint d, int lrot)
-		{
-			return (d << (lrot)) | (d >> (32 - lrot));
 		}
 
 		#endregion Protected Method
@@ -62,7 +52,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "Romu Mono 32 bit";
+			return "Romu Mono 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -72,7 +62,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[4];
 				rng.GetBytes(bytes);
-				this._Seed = BitConverter.ToUInt32(bytes, 0);
+#if NET5_0_OR_GREATER
+				this.SetSeed(System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(bytes));
+#else
+				this.SetSeed(BitConverter.ToUInt32(bytes, 0));
+#endif
 			}
 		}
 
@@ -84,7 +78,23 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(uint seed)
 		{
-			this._Seed = (seed & 0x1fffffffu) + 1156979152u;  // Accepts 29 seed-bits.;
+			this._State[0] = (seed & 0x1fffffffu) + 1156979152u;  // Accepts 29 seed-bits.;
+		}
+
+		/// <inheritdoc/>
+		public override void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			this.SetSeed(seed[0]);
 		}
 
 		#endregion Public Method

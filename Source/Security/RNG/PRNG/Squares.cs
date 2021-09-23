@@ -102,8 +102,15 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
-				this._Key = BitConverter.ToUInt64(bytes, 0);
-				this._Counter = 0;
+#if NET5_0_OR_GREATER
+				this.SetSeed(
+					key: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes),
+					ctr: 0);
+#else
+				this.SetSeed(
+					key: BitConverter.ToUInt64(bytes, 0),
+					ctr: 0);
+#endif
 			}
 		}
 

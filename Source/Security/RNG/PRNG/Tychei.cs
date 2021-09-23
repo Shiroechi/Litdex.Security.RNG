@@ -1,6 +1,8 @@
 ﻿// http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.714.1893&rep=rep1&type=pdf
 // https://github.com/lemire/testingRNG/blob/master/cpp-prng-bench/tychei.hpp
 
+using System;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -21,12 +23,13 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public Tychei(ulong seed = 0xFEEDFACECAFEF00D, uint idx = 0)
 		{
+			this._State = new uint[4];
 			this.SetSeed(seed, idx);
 		}
 
 		~Tychei()
 		{
-			this._A = this._B = this._C = this._D = 0;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -37,7 +40,7 @@ namespace Litdex.Security.RNG.PRNG
 		protected override uint Next()
 		{
 			this.Mix();
-			return this._A;
+			return this._State[0];
 		}
 
 		/// <summary>
@@ -45,17 +48,17 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		protected override void Mix()
 		{
-			this._B = (this._B << 25 | this._B >> 7) ^ this._C;
-			this._C -= this._D;
+			this._State[1] = (this._State[1] << 25 | this._State[1] >> 7) ^ this._State[2];
+			this._State[2] -= this._State[3];
 
-			this._D = (this._D << 24 | this._D >> 8) ^ this._A;
-			this._A -= this._B;
+			this._State[3] = (this._State[3] << 24 | this._State[3] >> 8) ^ this._State[0];
+			this._State[0] -= this._State[1];
 
-			this._B = (this._B << 20 | this._B >> 12) ^ this._C;
-			this._C -= this._D;
+			this._State[1] = (this._State[1] << 20 | this._State[1] >> 12) ^ this._State[2];
+			this._State[2] -= this._State[3];
 
-			this._D = (this._D << 16 | this._D >> 16) ^ this._A;
-			this._A -= this._B;
+			this._State[3] = (this._State[3] << 16 | this._State[3] >> 16) ^ this._State[0];
+			this._State[0] -= this._State[1];
 		}
 
 		#endregion Protected Method

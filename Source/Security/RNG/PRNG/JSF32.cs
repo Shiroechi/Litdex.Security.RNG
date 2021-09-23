@@ -11,12 +11,6 @@ namespace Litdex.Security.RNG.PRNG
 	/// </remarks>
 	public class JSF32 : Random32
 	{
-		#region Member
-
-		protected uint[] _Seed = new uint[4];
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
@@ -27,6 +21,7 @@ namespace Litdex.Security.RNG.PRNG
 		///	</param>
 		public JSF32(uint seed = 0)
 		{
+			this._State = new uint[4];
 			this.SetSeed(seed);
 		}
 
@@ -35,7 +30,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~JSF32()
 		{
-			this._Seed = null;
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -45,29 +40,12 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			var e = this._Seed[0] - this.Rotate(this._Seed[1], 27);
-			this._Seed[0] = this._Seed[1] ^ this.Rotate(this._Seed[2], 17);
-			this._Seed[1] = this._Seed[2] + this._Seed[3];
-			this._Seed[2] = this._Seed[3] + e;
-			this._Seed[3] = e + this._Seed[0];
-			return this._Seed[3];
-		}
-
-		/// <summary>
-		///		Rotate the bit.
-		/// </summary>
-		/// <param name="value">
-		///		Number to rotate.</param>
-		/// <param name="shift">
-		///		Bit to rotate.
-		///	</param>
-		/// <returns>
-		///		Left rotate of the <paramref name="value"/>.
-		/// </returns>
-		protected uint Rotate(uint value, int shift)
-		{
-			// sizeof(uint) = 32
-			return ((value) << (shift)) | ((value) >> (sizeof(uint) - shift));
+			var e = this._State[0] - this.RotateLeft(this._State[1], 27);
+			this._State[0] = this._State[1] ^ this.RotateLeft(this._State[2], 17);
+			this._State[1] = this._State[2] + this._State[3];
+			this._State[2] = this._State[3] + e;
+			this._State[3] = e + this._State[0];
+			return this._State[3];
 		}
 
 		#endregion Protected Method
@@ -77,7 +55,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "JSF 32 bit";
+			return "JSF 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -87,7 +65,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[4];
 				rng.GetNonZeroBytes(bytes);
+#if NET5_0_OR_GREATER
+				this.SetSeed(System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(bytes));
+#else
 				this.SetSeed(BitConverter.ToUInt32(bytes, 0));
+#endif
 			}
 		}
 
@@ -99,13 +81,29 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(uint seed)
 		{
-			this._Seed[0] = 0xF1EA5EED;
-			this._Seed[1] = this._Seed[2] = this._Seed[3] = seed;
+			this._State[0] = 0xF1EA5EED;
+			this._State[1] = this._State[2] = this._State[3] = seed;
 
-			for (var i = 0; i < 20; i++)
+			for (var i = 0; i < _InitialRoll; i++)
 			{
 				this.Next();
 			}
+		}
+
+		/// <inheritdoc/>
+		public override void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			this.SetSeed(seed[0]);
 		}
 
 		#endregion Public Method

@@ -16,7 +16,7 @@ namespace Litdex.Security.RNG.PRNG
 	{
 		#region Member
 
-		protected ulong _Seed; //state in original code
+		protected ulong _State0;
 		protected ulong _Increment;
 		protected const ulong _Multiplier = 6364136223846793005;
 
@@ -35,7 +35,14 @@ namespace Litdex.Security.RNG.PRNG
 		///	</param>
 		public PcgXshRr32(ulong seed = 0, ulong increment = 0)
 		{
-			this.SetSeed(seed, increment);
+			if (seed == 0)
+			{
+				this.Reseed();
+			}
+			else
+			{
+				this.SetSeed(seed, increment);
+			}
 		}
 
 		/// <summary>
@@ -43,7 +50,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		~PcgXshRr32()
 		{
-			this._Seed = 0;
+			this._State0 = 0;
 			this._Increment = 0;
 		}
 
@@ -54,8 +61,8 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override uint Next()
 		{
-			var oldseed = this._Seed;
-			this._Seed = (oldseed * _Multiplier) + (this._Increment | 1);
+			var oldseed = this._State0;
+			this._State0 = (oldseed * _Multiplier) + (this._Increment | 1);
 			var xorshifted = (uint)(((oldseed >> 18) ^ oldseed) >> 27);
 			var rot = (uint)(oldseed >> 59);
 			return (xorshifted >> (int)rot) | (xorshifted << (int)((-rot) & 31));
@@ -68,7 +75,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "PCG XSH-RR 32";
+			return "PCG XSH-RR 32-bit";
 		}
 
 		/// <inheritdoc/>
@@ -78,11 +85,16 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
-
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					increment: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)));
+#else
 				this.SetSeed(
 					seed: BitConverter.ToUInt64(bytes, 0),
-					increment: BitConverter.ToUInt64(bytes, 8)
-					);
+					increment: BitConverter.ToUInt64(bytes, 8));
+#endif
 			}
 		}
 
@@ -97,8 +109,24 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed, ulong increment)
 		{
-			this._Seed = (seed + increment) * _Multiplier + increment;
+			this._State0 = (seed + increment) * _Multiplier + increment;
 			this._Increment = increment;
+		}
+
+		/// <inheritdoc/>
+		public override void SetSeed(params uint[] seed)
+		{
+			if (seed == null || seed.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(seed), "Seed can't null or empty.");
+			}
+
+			if (seed.Length < this._State.Length)
+			{
+				throw new ArgumentException(nameof(seed), $"Seed need at least { this._State.Length } numbers.");
+			}
+
+			this.SetSeed(seed: seed[0], increment: seed[1]);
 		}
 
 		#endregion Public Method

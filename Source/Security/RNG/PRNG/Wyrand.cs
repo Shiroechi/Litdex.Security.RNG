@@ -6,33 +6,28 @@ namespace Litdex.Security.RNG.PRNG
 	/// <summary>
 	///		Based on Wyhash from  https://github.com/wangyi-fudan/wyhash
 	/// </summary>
-	public class WyRng : Random64
+	public class Wyrand : Random64
 	{
-		#region Member
-
-		private ulong _Seed;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="WyRng"/> object.
+		///		Create an instance of <see cref="Wyrand"/> object.
 		/// </summary>
 		/// <param name="seed">
 		///		RNG seed.
 		/// </param>
-		public WyRng(ulong seed = 0)
+		public Wyrand(ulong seed = 0)
 		{
+			this._State = new ulong[1];
 			this.SetSeed(seed);
 		}
 
 		/// <summary>
 		///		Destructor.
 		/// </summary>
-		~WyRng()
+		~Wyrand()
 		{
-			this._Seed = 0;
+			this._State[0] = 0;
 		}
 
 		#endregion Constructor & Destructor
@@ -42,13 +37,26 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			this._Seed += 0xa0761d6478bd642f;
-			var result = this.MUM(this._Seed ^ 0xe7037ed1a0b428db, this._Seed);
+			this._State[0] += 0xa0761d6478bd642f;
+			var result = this.MUM(this._State[0] ^ 0xe7037ed1a0b428db, this._State[0]);
 			return result;
 		}
 
 		protected ulong MUM(ulong x, ulong y)
 		{
+			// from source code
+			// uint64_t ha=*A>>32, hb=*B>>32, la=(uint32_t)*A, lb=(uint32_t)*B, hi, lo;
+			// uint64_t rh = ha * hb, rm0 = ha * lb, rm1 = hb * la, rl = la * lb, t = rl + (rm0 << 32), c = t < rl;
+			// lo = t + (rm1 << 32);
+			// c += lo < t;
+			// hi = rh + (rm0 >> 32) + (rm1 >> 32) + c;
+			// #if (WYHASH_CONDOM>1)
+			// *A^=lo;  *B^=hi;
+			// #else
+			// *A = lo;
+			// *B = hi;
+			// #endif
+
 			ulong hi, lo;
 
 			lo = x * y;
@@ -80,7 +88,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		public override string AlgorithmName()
 		{
-			return "WyRng";
+			return "Wyrand";
 		}
 
 		/// <inheritdoc/>
@@ -90,7 +98,11 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[8];
 				rng.GetNonZeroBytes(bytes);
-				this._Seed = BitConverter.ToUInt64(bytes, 0);
+#if NET5_0_OR_GREATER
+				this.SetSeed(seed: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes));
+#else
+				this.SetSeed(seed: BitConverter.ToUInt64(bytes, 0));
+#endif
 			}
 		}
 
@@ -102,7 +114,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </param>
 		public void SetSeed(ulong seed)
 		{
-			this._Seed = seed;
+			this._State[0] = seed;
 		}
 
 		#endregion Public Method

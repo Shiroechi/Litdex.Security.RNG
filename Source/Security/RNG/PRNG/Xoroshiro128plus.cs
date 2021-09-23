@@ -4,23 +4,17 @@ using System.Security.Cryptography;
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
-	///		Xoroshiro128plus PRNG is improved from Xoroshift128.
+	///		Xoroshiro128+ PRNG is improved from Xoroshift128.
 	/// </summary>
 	/// <remarks>
 	///		Source: https://prng.di.unimi.it/xoroshiro128plus.c
 	/// </remarks>
-	public class Xoroshiro128plus : Random64
+	public class Xoroshiro128Plus : Random64
 	{
-		#region Member
-
-		protected ulong _State1, _State2;
-
-		#endregion Member
-
 		#region Constructor & Destructor
 
 		/// <summary>
-		///		Create an instance of <see cref="Xoroshiro128plus"/> object.
+		///		Create an instance of <see cref="Xoroshiro128Plus"/> object.
 		/// </summary>
 		/// <param name="seed1">
 		///		First RNG seed.
@@ -28,9 +22,15 @@ namespace Litdex.Security.RNG.PRNG
 		/// <param name="seed2">
 		///		Second RNG seed.
 		///	</param>
-		public Xoroshiro128plus(ulong seed1 = 0, ulong seed2 = 0)
+		public Xoroshiro128Plus(ulong seed1 = 0, ulong seed2 = 0)
 		{
+			this._State = new ulong[2];
 			this.SetSeed(seed1, seed2);
+		}
+
+		~Xoroshiro128Plus()
+		{
+			Array.Clear(this._State, 0, this._State.Length);
 		}
 
 		#endregion Constructor & Destructor
@@ -40,20 +40,15 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var s0 = this._State1;
-			var s1 = this._State2;
-			var result = this._State1 + this._State2;
+			var s0 = this._State[0];
+			var s1 = this._State[1];
+			var result = this._State[0] + this._State[1];
 
 			s1 ^= s0;
-			this._State1 = this.RotateLeft(s0, 24) ^ s1 ^ (s1 << 16); // a, b
-			this._State2 = this.RotateLeft(s1, 37); // c
+			this._State[0] = this.RotateLeft(s0, 24) ^ s1 ^ (s1 << 16); // a, b
+			this._State[1] = this.RotateLeft(s1, 37); // c
 
 			return result;
-		}
-
-		protected ulong RotateLeft(ulong val, int shift)
-		{
-			return (val << shift) | (val >> (64 - shift));
 		}
 
 		#endregion Protected Method
@@ -73,8 +68,16 @@ namespace Litdex.Security.RNG.PRNG
 			{
 				var bytes = new byte[16];
 				rng.GetNonZeroBytes(bytes);
-				this._State1 = BitConverter.ToUInt64(bytes, 0);
-				this._State2 = BitConverter.ToUInt64(bytes, 8);
+#if NET5_0_OR_GREATER
+				var span = bytes.AsSpan();
+				this.SetSeed(
+					seed1: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span),
+					seed2: System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(8)));
+#else
+				this.SetSeed(
+					seed1: BitConverter.ToUInt64(bytes, 0),
+					seed2: BitConverter.ToUInt64(bytes, 8));
+#endif
 			}
 		}
 
@@ -100,8 +103,8 @@ namespace Litdex.Security.RNG.PRNG
 				}
 			}
 
-			this._State1 = seed1;
-			this._State2 = seed2;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
 		}
 
 		/// <summary>
@@ -115,8 +118,8 @@ namespace Litdex.Security.RNG.PRNG
 		///	</param>
 		public virtual void SetSeed(ulong seed1, ulong seed2)
 		{
-			this._State1 = seed1;
-			this._State2 = seed2;
+			this._State[0] = seed1;
+			this._State[1] = seed2;
 		}
 
 		#endregion Public
