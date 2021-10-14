@@ -9,31 +9,29 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
-    <PackageTags>Random RNG PRNG Splitmix Xoroshiro GJrand JSF PCG MSWS Squares Tyche Tychei Romu</PackageTags>
+    <PackageTags>Random RNG PRNG GJrand JSF MSWS PCG Romu Seiran SFC Shioi Shishua Splitmix Squares Tyche Wyrand Xoroshiro</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <Version>2.7.0</Version>
-    <AssemblyVersion>2.7.0.0</AssemblyVersion>
+    <Version>2.8.0</Version>
+    <AssemblyVersion>2.8.0.0</AssemblyVersion>
     <RootNamespace>Litdex</RootNamespace>
-    <PackageReleaseNotes>- Rename WyRng to Wyrand
-- Add Seiran, Shioi, SFC 32
+    <PackageReleaseNotes>- Add new async method for Choice, Sample, Shuffle in ISequence
 - Fix xml docs
-- Change algorithm to generate number in range</PackageReleaseNotes>
+- Fix minor bugs</PackageReleaseNotes>
     <Copyright>Shiroechi</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
-    <FileVersion>2.7.0.0</FileVersion>
+    <FileVersion>2.8.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\Project\C#\Litdex\Litdex.Security.RNG\Litdex.Security.RNG.xml</DocumentationFile>
+    <DocumentationFile>.\Litdex.Security.RNG.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>true</Optimize>
-    <DocumentationFile></DocumentationFile>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
