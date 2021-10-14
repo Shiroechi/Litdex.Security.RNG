@@ -12,7 +12,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class Seiran : Random64
 	{
 		#region Constructor & Destructor
-		
+
 		/// <summary>
 		///		Create an instance of <see cref="Seiran"/> object.
 		/// </summary>
