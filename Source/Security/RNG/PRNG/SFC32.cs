@@ -160,7 +160,7 @@ namespace Litdex.Security.RNG.PRNG
 				throw new ArgumentException(nameof(seed), "Seed need 3 numbers.");
 			}
 
-			this.SetSeed(seed[0], seed[1], seed[2], 0);
+			this.SetSeed(seed[0], seed[1], seed[2], counter);
 		}
 
 		/// <inheritdoc/>
