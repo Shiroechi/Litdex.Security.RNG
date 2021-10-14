@@ -12,7 +12,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class Shioi : Random64
 	{
 		#region Constructor & Destructor
-		
+
 		/// <summary>
 		///		Create an instance of <see cref="Shioi"/> object.
 		/// </summary>
@@ -150,7 +150,7 @@ namespace Litdex.Security.RNG.PRNG
 		///     This method is equivalent to 2^64 <see cref="Next"/> calls.
 		///     It can be executed in the same amount of time as 128 <see cref="Next"/> calls.
 		/// </remarks>
-		private void Jump64()
+		public void Jump64()
 		{
 			// It is equivalent to jump({ 0x3, 0 })
 			var s0 = this._State[0];
