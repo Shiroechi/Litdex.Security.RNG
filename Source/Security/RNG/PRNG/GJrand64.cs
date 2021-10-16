@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -62,14 +64,14 @@ namespace Litdex.Security.RNG.PRNG
 		protected void Advance()
 		{
 			this._State[1] += this._State[2];
-			this._State[0] = this.RotateLeft(this._State[0], 32);
+			this._State[0] = this._State[0].RotateLeft(32);
 			this._State[2] ^= this._State[1];
 			this._State[3] += 0x55AA96A5;
 			this._State[0] += this._State[1];
-			this._State[2] = this.RotateLeft(this._State[2], 23);
+			this._State[2] = this._State[2].RotateLeft(23);
 			this._State[1] ^= this._State[0];
 			this._State[0] += this._State[2];
-			this._State[1] = this.RotateLeft(this._State[1], 19);
+			this._State[1] = this._State[1].RotateLeft(19);
 			this._State[2] += this._State[0];
 			this._State[1] += this._State[3];
 		}

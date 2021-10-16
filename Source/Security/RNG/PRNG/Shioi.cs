@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -12,7 +14,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class Shioi : Random64
 	{
 		#region Constructor & Destructor
-		
+
 		/// <summary>
 		///		Create an instance of <see cref="Shioi"/> object.
 		/// </summary>
@@ -56,7 +58,7 @@ namespace Litdex.Security.RNG.PRNG
 			var s0 = this._State[0];
 			var s1 = this._State[1];
 
-			var result = this.RotateLeft(s0 * 0xD2B74407B1CE6E93, 29) + s1;
+			var result = (s0 * 0xD2B74407B1CE6E93).RotateLeft(29) + s1;
 
 			// note: MUST use arithmetic right shift
 			this._State[0] = s1;
@@ -150,7 +152,7 @@ namespace Litdex.Security.RNG.PRNG
 		///     This method is equivalent to 2^64 <see cref="Next"/> calls.
 		///     It can be executed in the same amount of time as 128 <see cref="Next"/> calls.
 		/// </remarks>
-		private void Jump64()
+		public void Jump64()
 		{
 			// It is equivalent to jump({ 0x3, 0 })
 			var s0 = this._State[0];

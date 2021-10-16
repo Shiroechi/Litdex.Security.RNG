@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -67,7 +69,7 @@ namespace Litdex.Security.RNG.PRNG
 			this._Counter++;
 			this._State[0] = this._State[1] ^ (this._State[1] >> 11);
 			this._State[1] = this._State[2] + (this._State[2] << 3);
-			this._State[2] = this.RotateLeft(this._State[2], 24);
+			this._State[2] = this._State[2].RotateLeft(24);
 			this._State[2] += result;
 			return result;
 		}
@@ -161,7 +163,7 @@ namespace Litdex.Security.RNG.PRNG
 				throw new ArgumentException(nameof(seed), "Seed need 3 numbers.");
 			}
 
-			this.SetSeed(seed[0], seed[1], seed[2], 0);
+			this.SetSeed(seed[0], seed[1], seed[2], counter);
 		}
 
 		/// <inheritdoc/>

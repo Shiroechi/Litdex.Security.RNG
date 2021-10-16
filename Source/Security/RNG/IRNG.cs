@@ -20,8 +20,6 @@ namespace Litdex.Security.RNG
 		/// </summary>
 		void Reseed();
 
-		#region Basic
-
 		/// <summary>
 		///		Generate <see cref="bool"/> value from generator.
 		/// </summary>
@@ -182,7 +180,5 @@ namespace Litdex.Security.RNG
 		///		Lower bound is greater than or equal to upper bound.
 		/// </exception>
 		double NextDouble(double lower, double upper);
-
-		#endregion Basic
 	}
 }

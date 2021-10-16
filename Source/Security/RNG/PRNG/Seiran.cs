@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -12,7 +14,7 @@ namespace Litdex.Security.RNG.PRNG
 	public class Seiran : Random64
 	{
 		#region Constructor & Destructor
-		
+
 		/// <summary>
 		///		Create an instance of <see cref="Seiran"/> object.
 		/// </summary>
@@ -50,9 +52,9 @@ namespace Litdex.Security.RNG.PRNG
 			var s0 = this._State[0];
 			var s1 = this._State[1];
 
-			ulong result = this.RotateLeft((s0 + s1) * 9, 29) + s0;
+			ulong result = ((s0 + s1) * 9).RotateLeft(29) + s0;
 
-			this._State[0] = s0 ^ this.RotateLeft(s1, 29);
+			this._State[0] = s0 ^ s1.RotateLeft(29);
 			this._State[1] = s0 ^ s1 << 9;
 
 			return result;
@@ -155,7 +157,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// </summary>
 		public void Previous()
 		{
-			ulong t1 = this.RotateLeft(this._State[0] ^ this._State[1], 64 - 29);
+			ulong t1 = (this._State[0] ^ this._State[1]).RotateLeft(64 - 29);
 			t1 ^= t1 << 44 ^ (t1 & ~0xffffful) << 24;
 			t1 ^= (t1 & (0x7ffful << 40)) << 4;
 			t1 ^= (t1 & (0x7fful << 40)) << 8;
@@ -163,7 +165,7 @@ namespace Litdex.Security.RNG.PRNG
 			t1 ^= (t1 & (0xffffful << 35)) >> 20;
 			t1 ^= (t1 & (0x7ffful << 20)) >> 20;
 
-			this._State[0] ^= this.RotateLeft(t1, 29);
+			this._State[0] ^= t1.RotateLeft(29);
 			this._State[1] = t1;
 		}
 

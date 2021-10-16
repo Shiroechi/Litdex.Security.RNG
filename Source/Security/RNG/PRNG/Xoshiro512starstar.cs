@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -72,7 +74,7 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var result = this.RotateLeft(this._State[1] * 5, 7) * 9;
+			var result = (this._State[1] * 5).RotateLeft(7) * 9;
 
 			var t = this._State[1] << 11;
 
@@ -87,7 +89,7 @@ namespace Litdex.Security.RNG.PRNG
 
 			this._State[6] ^= t;
 
-			this._State[7] = this.RotateLeft(this._State[7], 21);
+			this._State[7] = this._State[7].RotateLeft(21);
 
 			return result;
 		}
