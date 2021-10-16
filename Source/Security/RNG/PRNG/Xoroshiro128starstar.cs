@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -41,11 +43,11 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			var s0 = this._State[0];
 			var s1 = this._State[1];
-			var result = this.RotateLeft(this._State[0] * 5, 7) * 9;
+			var result = (this._State[0] * 5).RotateLeft(7) * 9;
 
 			s1 ^= s0;
-			this._State[0] = this.RotateLeft(s0, 24) ^ s1 ^ (s1 << 16); // a, b
-			this._State[1] = this.RotateLeft(s1, 37); // c
+			this._State[0] = s0.RotateLeft(24) ^ s1 ^ (s1 << 16); // a, b
+			this._State[1] = s1.RotateLeft(37); // c
 
 			return result;
 		}

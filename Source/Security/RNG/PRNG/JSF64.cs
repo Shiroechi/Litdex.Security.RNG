@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -40,9 +42,9 @@ namespace Litdex.Security.RNG.PRNG
 		/// <inheritdoc/>
 		protected override ulong Next()
 		{
-			var e = this._State[0] - this.RotateLeft(this._State[1], 7);
-			this._State[0] = this._State[1] ^ this.RotateLeft(this._State[2], 13);
-			this._State[1] = this._State[2] + this.RotateLeft(this._State[3], 37);
+			var e = this._State[0] - this._State[1].RotateLeft(7);
+			this._State[0] = this._State[1] ^ this._State[2].RotateLeft(13);
+			this._State[1] = this._State[2] + this._State[3].RotateLeft(37);
 			this._State[2] = this._State[3] + e;
 			this._State[3] = e + this._State[0];
 			return this._State[3];

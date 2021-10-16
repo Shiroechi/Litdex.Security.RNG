@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -56,7 +58,7 @@ namespace Litdex.Security.RNG.PRNG
 			var s0 = this._State[0];
 			var s1 = this._State[1];
 
-			var result = this.RotateLeft(s0 * 0xD2B74407B1CE6E93, 29) + s1;
+			var result = (s0 * 0xD2B74407B1CE6E93).RotateLeft(29) + s1;
 
 			// note: MUST use arithmetic right shift
 			this._State[0] = s1;

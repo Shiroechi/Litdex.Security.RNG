@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -58,7 +60,7 @@ namespace Litdex.Security.RNG.PRNG
 		{
 			ulong xp = this._State[0];
 			this._State[0] = 15241094284759029579u * this._State[1];
-			this._State[1] = this.RotateLeft(this._State[1], 27) + this.RotateLeft(this._State[1], 15) - xp;
+			this._State[1] = this._State[1].RotateLeft(27) + this._State[1].RotateLeft(15) - xp;
 			return xp;
 		}
 

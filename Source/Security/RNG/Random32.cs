@@ -31,50 +31,6 @@ namespace Litdex.Security.RNG
 		///	</returns>
 		protected abstract uint Next();
 
-		/// <summary>
-		///		Rotates the specified value left by the specified number of bits.
-		/// </summary>
-		/// <param name="value">
-		///		The value to rotate.
-		/// </param>
-		/// <param name="offset">
-		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
-		///     as congruent mod 64.
-		/// </param>
-		/// <returns>
-		///		The rotated value.
-		/// </returns>
-		protected uint RotateLeft(uint value, int offset)
-		{
-#if NET5_0_OR_GREATER
-			return System.Numerics.BitOperations.RotateLeft(value, offset);
-#else
-			return (value << offset) | (value >> (32 - offset));
-#endif
-		}
-
-		/// <summary>
-		///		Rotates the specified value right by the specified number of bits.
-		/// </summary>
-		/// <param name="value">
-		///		The value to rotate.
-		/// </param>
-		/// <param name="offset">
-		///		The number of bits to rotate by. Any value outside the range [0..63] is treated
-		///     as congruent mod 64.
-		/// </param>
-		/// <returns>
-		///		The rotated value.
-		/// </returns>
-		protected uint RotateRight(uint value, int offset)
-		{
-#if NET5_0_OR_GREATER
-			return System.Numerics.BitOperations.RotateRight(value, offset);
-#else
-			return (value >> offset) | (value << (32 - offset));
-#endif
-		}
-
 		#endregion Protected Method
 
 		#region Public Method

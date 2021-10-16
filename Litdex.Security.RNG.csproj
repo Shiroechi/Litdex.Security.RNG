@@ -41,4 +41,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Litdex.Utilities\Litdex.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

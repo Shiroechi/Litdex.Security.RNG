@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -78,7 +80,7 @@ namespace Litdex.Security.RNG.PRNG
 
 			this._State[2] ^= t;
 
-			this._State[3] = this.RotateLeft(this._State[3], 45);
+			this._State[3] = this._State[3].RotateLeft(45);
 
 			return result;
 		}

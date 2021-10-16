@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+using Litdex.Utilities.Extension;
+
 namespace Litdex.Security.RNG.PRNG
 {
 	/// <summary>
@@ -68,9 +70,9 @@ namespace Litdex.Security.RNG.PRNG
 
 			this._State[0] = 15241094284759029579u * zp; // a-mult
 			this._State[1] = yp - xp; // d-sub
-			this._State[1] = this.RotateLeft(this._State[1], 12);
+			this._State[1] = this._State[1].RotateLeft(12);
 			this._State[2] = zp - yp; // e-add
-			this._State[2] = this.RotateLeft(this._State[2], 44); // f-rotl
+			this._State[2] = this._State[2].RotateLeft(44); // f-rotl
 			return xp;
 		}
 
