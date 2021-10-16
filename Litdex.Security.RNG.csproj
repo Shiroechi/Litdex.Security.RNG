@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Shiroechi</Authors>
     <Company>Litdex</Company>
-    <Description>Library that provide basic random generator function.</Description>
+    <Description>Library that provide many random generator algorithm.</Description>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Shiroechi/Litdex.Security.RNG</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Shiroechi/Litdex.Security.RNG</RepositoryUrl>
