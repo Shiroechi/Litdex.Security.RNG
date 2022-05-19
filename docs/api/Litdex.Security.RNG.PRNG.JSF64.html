@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class JSF64
+   | Litdex.Security.RNG </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class JSF64
+   | Litdex.Security.RNG ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="description" content="A collection of Pseudo Random Number Generator (PRNG) for .NET">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Litdex.Security.RNG.PRNG.JSF64">
+  
+  
+  <h1 id="Litdex_Security_RNG_PRNG_JSF64" data-uid="Litdex.Security.RNG.PRNG.JSF64" class="text-break">Class JSF64
+  </h1>
+  <div class="markdown level0 summary"><p>Implementation of a Bob Jenkins Small Fast (Noncryptographic) PRNGs.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Litdex.Security.RNG.Random.html">Random</a></div>
+    <div class="level2"><a class="xref" href="Litdex.Security.RNG.Random64.html">Random64</a></div>
+    <div class="level3"><span class="xref">JSF64</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Litdex.Security.RNG.IRNG.html">IRNG</a></div>
+    <div><a class="xref" href="Litdex.Security.RNG.IDistribution.html">IDistribution</a></div>
+    <div><a class="xref" href="Litdex.Security.RNG.ISequence.html">ISequence</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64__State">Random64._State</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64__Size">Random64._Size</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextBoolean">Random64.NextBoolean()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextByte">Random64.NextByte()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextBytes_System_Int32_">Random64.NextBytes(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextBytesLittleEndian_System_Int32_">Random64.NextBytesLittleEndian(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextBytesBigEndian_System_Int32_">Random64.NextBytesBigEndian(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_Fill_System_Byte___">Random64.Fill(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_FillLittleEndian_System_Byte___">Random64.FillLittleEndian(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_FillBigEndian_System_Byte___">Random64.FillBigEndian(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextInt">Random64.NextInt()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_NextLong">Random64.NextLong()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random__InitialRoll">Random._InitialRoll</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ToString">Random.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextByte_System_Byte_System_Byte_">Random.NextByte(Byte, Byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextInt_System_UInt32_System_UInt32_">Random.NextInt(UInt32, UInt32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextLong_System_UInt64_System_UInt64_">Random.NextLong(UInt64, UInt64)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextDouble">Random.NextDouble()</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextDouble_System_Double_System_Double_">Random.NextDouble(Double, Double)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random__NextGaussian">Random._NextGaussian</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextGaussian_System_Double_System_Double_System_Boolean_">Random.NextGaussian(Double, Double, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_NextGamma_System_Double_System_Double_">Random.NextGamma(Double, Double)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Choice__1___0___">Random.Choice&lt;T&gt;(T[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Choice__1___0___System_Int32_">Random.Choice&lt;T&gt;(T[], Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_">Random.ChoiceAsync&lt;T&gt;(T[], Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_CancellationToken_">Random.ChoiceAsync&lt;T&gt;(T[], Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__">Random.Choice&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__System_Int32_">Random.Choice&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_">Random.ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_CancellationToken_">Random.ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Sample__1___0___System_Int32_">Random.Sample&lt;T&gt;(T[], Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_">Random.SampleAsync&lt;T&gt;(T[], Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_CancellationToken_">Random.SampleAsync&lt;T&gt;(T[], Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Sample__1_IEnumerable___0__System_Int32_">Random.Sample&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_">Random.SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_CancellationToken_">Random.SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Shuffle__1___0___">Random.Shuffle&lt;T&gt;(T[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleAsync__1___0___">Random.ShuffleAsync&lt;T&gt;(T[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleAsync__1___0___CancellationToken_">Random.ShuffleAsync&lt;T&gt;(T[], CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Shuffle__1_IEnumerable___0__">Random.Shuffle&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__">Random.ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__CancellationToken_">Random.ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleInPlace__1___0___">Random.ShuffleInPlace&lt;T&gt;(T[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___">Random.ShuffleInPlaceAsync&lt;T&gt;(T[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___CancellationToken_">Random.ShuffleInPlaceAsync&lt;T&gt;(T[], CancellationToken)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Litdex.Security.RNG.PRNG.html">Litdex.Security.RNG.PRNG</a></h6>
+  <h6><strong>Assembly</strong>: Litdex.Security.RNG.dll</h6>
+  <h5 id="Litdex_Security_RNG_PRNG_JSF64_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class JSF64 : Random64, IRNG, IDistribution, ISequence</code></pre>
+  </div>
+  <h5 id="Litdex_Security_RNG_PRNG_JSF64_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Source: <a href="http://burtleburtle.net/bob/rand/smallprng.html">http://burtleburtle.net/bob/rand/smallprng.html</a></p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64__ctor_System_UInt64_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.%23ctor(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L24">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64__ctor_" data-uid="Litdex.Security.RNG.PRNG.JSF64.#ctor*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64__ctor_System_UInt64_" data-uid="Litdex.Security.RNG.PRNG.JSF64.#ctor(System.UInt64)">JSF64(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Create an instance of <a class="xref" href="Litdex.Security.RNG.PRNG.JSF64.html">JSF64</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JSF64(ulong seed = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">seed</span></td>
+        <td><p>RNG seed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_AlgorithmName.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.AlgorithmName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L58">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_AlgorithmName_" data-uid="Litdex.Security.RNG.PRNG.JSF64.AlgorithmName*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_AlgorithmName" data-uid="Litdex.Security.RNG.PRNG.JSF64.AlgorithmName">AlgorithmName()</h4>
+  <div class="markdown level1 summary"><p>The name of the algorithm this generator implements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string AlgorithmName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The name of RNG.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_AlgorithmName">Random64.AlgorithmName()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_Finalize.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L33">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_Finalize_" data-uid="Litdex.Security.RNG.PRNG.JSF64.Finalize*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_Finalize" data-uid="Litdex.Security.RNG.PRNG.JSF64.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Destructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_Next.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.Next%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L43">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_Next_" data-uid="Litdex.Security.RNG.PRNG.JSF64.Next*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_Next" data-uid="Litdex.Security.RNG.PRNG.JSF64.Next">Next()</h4>
+  <div class="markdown level1 summary"><p>Generate next random number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ulong Next()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>A 64-bit unsigned integer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_Next">Random64.Next()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_Reseed.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.Reseed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L64">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_Reseed_" data-uid="Litdex.Security.RNG.PRNG.JSF64.Reseed*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_Reseed" data-uid="Litdex.Security.RNG.PRNG.JSF64.Reseed">Reseed()</h4>
+  <div class="markdown level1 summary"><p>Seed with <see cref="!:System.Security.Cryptography.RNGCryptoServiceProvider"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Reseed()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Litdex.Security.RNG.Random.html#Litdex_Security_RNG_Random_Reseed">Random.Reseed()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_SetSeed_System_UInt64_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L84">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_SetSeed_" data-uid="Litdex.Security.RNG.PRNG.JSF64.SetSeed*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_SetSeed_System_UInt64_" data-uid="Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64)">SetSeed(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Set <a class="xref" href="Litdex.Security.RNG.html">Litdex.Security.RNG</a> seed manually.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSeed(ulong seed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">seed</span></td>
+        <td><p>RNG seed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64_SetSeed_System_UInt64___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L96">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_PRNG_JSF64_SetSeed_" data-uid="Litdex.Security.RNG.PRNG.JSF64.SetSeed*"></a>
+  <h4 id="Litdex_Security_RNG_PRNG_JSF64_SetSeed_System_UInt64___" data-uid="Litdex.Security.RNG.PRNG.JSF64.SetSeed(System.UInt64[])">SetSeed(UInt64[])</h4>
+  <div class="markdown level1 summary"><p>Set <a class="xref" href="Litdex.Security.RNG.html">Litdex.Security.RNG</a> internal state manually.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetSeed(params ulong[] seed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span>[]</td>
+        <td><span class="parametername">seed</span></td>
+        <td><p>Number to generate the random numbers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Litdex.Security.RNG.Random64.html#Litdex_Security_RNG_Random64_SetSeed_System_UInt64___">Random64.SetSeed(UInt64[])</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.IRNG.html">IRNG</a>
+  </div>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.IDistribution.html">IDistribution</a>
+  </div>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.ISequence.html">ISequence</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_PRNG_JSF64.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.PRNG.JSF64%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/PRNG/JSF64.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Developed by <a href='https://github.com/Shiroechi/Litdex.Security.RNG'>Shiroechi</a> and <a href='https://github.com/Shiroechi/Litdex.Security.RNG/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/Shiroechi/Litdex.Security.RNG/blob/main/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
