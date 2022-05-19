@@ -1,0 +1,2724 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Random
+   | Litdex.Security.RNG </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Random
+   | Litdex.Security.RNG ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="description" content="A collection of Pseudo Random Number Generator (PRNG) for .NET">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Litdex.Security.RNG.Random">
+  
+  
+  <h1 id="Litdex_Security_RNG_Random" data-uid="Litdex.Security.RNG.Random" class="text-break">Class Random
+  </h1>
+  <div class="markdown level0 summary"><p>Base class of all random.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Random</span></div>
+      <div class="level2"><a class="xref" href="Litdex.Security.RNG.Random32.html">Random32</a></div>
+      <div class="level2"><a class="xref" href="Litdex.Security.RNG.Random64.html">Random64</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Litdex.Security.RNG.IRNG.html">IRNG</a></div>
+    <div><a class="xref" href="Litdex.Security.RNG.IDistribution.html">IDistribution</a></div>
+    <div><a class="xref" href="Litdex.Security.RNG.ISequence.html">ISequence</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Litdex.Security.RNG.html">Litdex.Security.RNG</a></h6>
+  <h6><strong>Assembly</strong>: Litdex.Security.RNG.dll</h6>
+  <h5 id="Litdex_Security_RNG_Random_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Random : object, IRNG, IDistribution, ISequence</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random__InitialRoll.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random._InitialRoll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L17">View Source</a>
+  </span>
+  <h4 id="Litdex_Security_RNG_Random__InitialRoll" data-uid="Litdex.Security.RNG.Random._InitialRoll">_InitialRoll</h4>
+  <div class="markdown level1 summary"><p>Amount of roll after the state is initialized or seeded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const byte _InitialRoll = null</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random__NextGaussian.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random._NextGaussian%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomDistribution.cs/#L13">View Source</a>
+  </span>
+  <h4 id="Litdex_Security_RNG_Random__NextGaussian" data-uid="Litdex.Security.RNG.Random._NextGaussian">_NextGaussian</h4>
+  <div class="markdown level1 summary"><p>Hold a copy of gaussian number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected double _NextGaussian</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_AlgorithmName.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.AlgorithmName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L24">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_AlgorithmName_" data-uid="Litdex.Security.RNG.Random.AlgorithmName*"></a>
+  <h4 id="Litdex_Security_RNG_Random_AlgorithmName" data-uid="Litdex.Security.RNG.Random.AlgorithmName">AlgorithmName()</h4>
+  <div class="markdown level1 summary"><p>The name of the algorithm this generator implements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string AlgorithmName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The name of RNG.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Choice__1___0___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Choice%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L15">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Choice_" data-uid="Litdex.Security.RNG.Random.Choice*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Choice__1___0___" data-uid="Litdex.Security.RNG.Random.Choice``1(``0[])">Choice&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"><p>Select one element randomly from the given set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T Choice&lt;T&gt;(T[] items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Random element from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Choice__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Choice%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L26">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Choice_" data-uid="Litdex.Security.RNG.Random.Choice*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Choice__1___0___System_Int32_" data-uid="Litdex.Security.RNG.Random.Choice``1(``0[],System.Int32)">Choice&lt;T&gt;(T[], Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Choice&lt;T&gt;(T[] items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Choice%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L75">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Choice_" data-uid="Litdex.Security.RNG.Random.Choice*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__" data-uid="Litdex.Security.RNG.Random.Choice``1(IEnumerable{``0})">Choice&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Select one element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T Choice&lt;T&gt;(IEnumerable&lt;T&gt; items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Random element from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Choice%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L81">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Choice_" data-uid="Litdex.Security.RNG.Random.Choice*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Choice__1_IEnumerable___0__System_Int32_" data-uid="Litdex.Security.RNG.Random.Choice``1(IEnumerable{``0},System.Int32)">Choice&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Choice&lt;T&gt;(IEnumerable&lt;T&gt; items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ChoiceAsync%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L60">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ChoiceAsync_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync``1(``0[],System.Int32)">ChoiceAsync&lt;T&gt;(T[], Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ChoiceAsync&lt;T&gt;(T[] items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ChoiceAsync%60%601(%60%600%5B%5D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L66">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ChoiceAsync_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ChoiceAsync__1___0___System_Int32_CancellationToken_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync``1(``0[],System.Int32,CancellationToken)">ChoiceAsync&lt;T&gt;(T[], Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ChoiceAsync&lt;T&gt;(T[] items, int select, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ChoiceAsync%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L87">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ChoiceAsync_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync``1(IEnumerable{``0},System.Int32)">ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt; items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ChoiceAsync%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L93">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ChoiceAsync_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ChoiceAsync__1_IEnumerable___0__System_Int32_CancellationToken_" data-uid="Litdex.Security.RNG.Random.ChoiceAsync``1(IEnumerable{``0},System.Int32,CancellationToken)">ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ChoiceAsync&lt;T&gt;(IEnumerable&lt;T&gt; items, int select, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Fill_System_Byte___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Fill(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L97">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Fill_" data-uid="Litdex.Security.RNG.Random.Fill*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Fill_System_Byte___" data-uid="Litdex.Security.RNG.Random.Fill(System.Byte[])">Fill(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Fill the array with random bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Fill(byte[] bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Array to fill with random bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_Fill_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order based on system endianess.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_FillBigEndian_System_Byte___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.FillBigEndian(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L125">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_FillBigEndian_" data-uid="Litdex.Security.RNG.Random.FillBigEndian*"></a>
+  <h4 id="Litdex_Security_RNG_Random_FillBigEndian_System_Byte___" data-uid="Litdex.Security.RNG.Random.FillBigEndian(System.Byte[])">FillBigEndian(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Fill the array with random bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void FillBigEndian(byte[] bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Array to fill with random bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_FillBigEndian_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order in Big Endian.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_FillLittleEndian_System_Byte___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.FillLittleEndian(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L111">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_FillLittleEndian_" data-uid="Litdex.Security.RNG.Random.FillLittleEndian*"></a>
+  <h4 id="Litdex_Security_RNG_Random_FillLittleEndian_System_Byte___" data-uid="Litdex.Security.RNG.Random.FillLittleEndian(System.Byte[])">FillLittleEndian(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Fill the array with random bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void FillLittleEndian(byte[] bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Array to fill with random bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_FillLittleEndian_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order in Little Endian.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextBoolean.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextBoolean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L43">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextBoolean_" data-uid="Litdex.Security.RNG.Random.NextBoolean*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextBoolean" data-uid="Litdex.Security.RNG.Random.NextBoolean">NextBoolean()</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.Boolean"></see> value from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool NextBoolean()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> or <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextByte.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L46">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextByte_" data-uid="Litdex.Security.RNG.Random.NextByte*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextByte" data-uid="Litdex.Security.RNG.Random.NextByte">NextByte()</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.Byte"></see> value from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte NextByte()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><p>Random <see cref="!:System.Byte"></see>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextByte_System_Byte_System_Byte_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextByte(System.Byte%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L49">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextByte_" data-uid="Litdex.Security.RNG.Random.NextByte*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextByte_System_Byte_System_Byte_" data-uid="Litdex.Security.RNG.Random.NextByte(System.Byte,System.Byte)">NextByte(Byte, Byte)</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.Byte"></see> value between
+lower bound and upper bound from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual byte NextByte(byte lower, byte upper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">lower</span></td>
+        <td><p>Lower bound or expected minimum value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">upper</span></td>
+        <td><p>Upper bound or ecpected maximum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><p><see cref="!:System.Byte"></see> value between lower bound and upper bound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextBytes_System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextBytes(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L60">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextBytes_" data-uid="Litdex.Security.RNG.Random.NextBytes*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextBytes_System_Int32_" data-uid="Litdex.Security.RNG.Random.NextBytes(System.Int32)">NextBytes(Int32)</h4>
+  <div class="markdown level1 summary"><p>Generate array of random bytes from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte[] NextBytes(int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Requested output length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>Array of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_NextBytes_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order based on system endianess.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextBytesBigEndian_System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextBytesBigEndian(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L94">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextBytesBigEndian_" data-uid="Litdex.Security.RNG.Random.NextBytesBigEndian*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextBytesBigEndian_System_Int32_" data-uid="Litdex.Security.RNG.Random.NextBytesBigEndian(System.Int32)">NextBytesBigEndian(Int32)</h4>
+  <div class="markdown level1 summary"><p>Generate array of random bytes from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte[] NextBytesBigEndian(int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Requested output length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>Array of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_NextBytesBigEndian_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order in Big Endian.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextBytesLittleEndian_System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextBytesLittleEndian(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L77">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextBytesLittleEndian_" data-uid="Litdex.Security.RNG.Random.NextBytesLittleEndian*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextBytesLittleEndian_System_Int32_" data-uid="Litdex.Security.RNG.Random.NextBytesLittleEndian(System.Int32)">NextBytesLittleEndian(Int32)</h4>
+  <div class="markdown level1 summary"><p>Generate array of random bytes from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte[] NextBytesLittleEndian(int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Requested output length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>Array of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_NextBytesLittleEndian_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><see cref="!:System.Byte"></see> order in Little Endian.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextDouble.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextDouble%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L244">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextDouble_" data-uid="Litdex.Security.RNG.Random.NextDouble*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextDouble" data-uid="Litdex.Security.RNG.Random.NextDouble">NextDouble()</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.Double"></see> value from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual double NextDouble()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>A 64-bit floating point number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextDouble_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextDouble(System.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L250">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextDouble_" data-uid="Litdex.Security.RNG.Random.NextDouble*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextDouble_System_Double_System_Double_" data-uid="Litdex.Security.RNG.Random.NextDouble(System.Double,System.Double)">NextDouble(Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.Double"></see> value between
+lower bound and upper bound from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual double NextDouble(double lower, double upper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">lower</span></td>
+        <td><p>Lower bound or expected minimum value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">upper</span></td>
+        <td><p>Upper bound or ecpected maximum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p><see cref="!:System.Double"></see> value between lower bound and upper bound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextGamma_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextGamma(System.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomDistribution.cs/#L60">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextGamma_" data-uid="Litdex.Security.RNG.Random.NextGamma*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextGamma_System_Double_System_Double_" data-uid="Litdex.Security.RNG.Random.NextGamma(System.Double,System.Double)">NextGamma(Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Generate gamma distribution from 2 numbers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual double NextGamma(double alpha, double beta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">alpha</span></td>
+        <td><p>Alpha uniform number.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">beta</span></td>
+        <td><p>Beta uniform number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Gamma distribution.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextGaussian_System_Double_System_Double_System_Boolean_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextGaussian(System.Double%2CSystem.Double%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomDistribution.cs/#L16">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextGaussian_" data-uid="Litdex.Security.RNG.Random.NextGaussian*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextGaussian_System_Double_System_Double_System_Boolean_" data-uid="Litdex.Security.RNG.Random.NextGaussian(System.Double,System.Double,System.Boolean)">NextGaussian(Double, Double, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Generate gaussian distribution.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual double NextGaussian(double mean = null, double std = null, bool threadSafe = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">mean</span></td>
+        <td><p>Mean value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">std</span></td>
+        <td><p>Standard deviation value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">threadSafe</span></td>
+        <td><p>By default <span class="xref">false</span>. Set <span class="xref">true</span> for thread safe but more slower.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>A 64 bit floating point number normal distribution.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextInt.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextInt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L163">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextInt_" data-uid="Litdex.Security.RNG.Random.NextInt*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextInt" data-uid="Litdex.Security.RNG.Random.NextInt">NextInt()</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.UInt32"></see> value from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract uint NextInt()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>A 32-bit unsigned integer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextInt_System_UInt32_System_UInt32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextInt(System.UInt32%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L166">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextInt_" data-uid="Litdex.Security.RNG.Random.NextInt*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextInt_System_UInt32_System_UInt32_" data-uid="Litdex.Security.RNG.Random.NextInt(System.UInt32,System.UInt32)">NextInt(UInt32, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.UInt32"></see> value between
+lower bound and upper bound from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual uint NextInt(uint lower, uint upper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">lower</span></td>
+        <td><p>Lower bound or expected minimum value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">upper</span></td>
+        <td><p>Upper bound or ecpected maximum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p><see cref="!:System.UInt32"></see> value between lower bound and upper bound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextLong.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextLong%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L204">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextLong_" data-uid="Litdex.Security.RNG.Random.NextLong*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextLong" data-uid="Litdex.Security.RNG.Random.NextLong">NextLong()</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.UInt64"></see> value from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract ulong NextLong()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>A 64-bit unsigned integer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_NextLong_System_UInt64_System_UInt64_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.NextLong(System.UInt64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L207">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_NextLong_" data-uid="Litdex.Security.RNG.Random.NextLong*"></a>
+  <h4 id="Litdex_Security_RNG_Random_NextLong_System_UInt64_System_UInt64_" data-uid="Litdex.Security.RNG.Random.NextLong(System.UInt64,System.UInt64)">NextLong(UInt64, UInt64)</h4>
+  <div class="markdown level1 summary"><p>Generate <see cref="!:System.UInt64"></see> value between
+lower bound and upper bound from generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ulong NextLong(ulong lower, ulong upper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">lower</span></td>
+        <td><p>Lower bound or expected minimum value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">upper</span></td>
+        <td><p>Upper bound or ecpected maximum value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p><see cref="!:System.UInt64"></see> value lower bound and upper bound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Reseed.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Reseed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L30">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Reseed_" data-uid="Litdex.Security.RNG.Random.Reseed*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Reseed" data-uid="Litdex.Security.RNG.Random.Reseed">Reseed()</h4>
+  <div class="markdown level1 summary"><p>Seed with <see cref="!:System.Security.Cryptography.RNGCryptoServiceProvider"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Reseed()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Sample__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Sample%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L99">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Sample_" data-uid="Litdex.Security.RNG.Random.Sample*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Sample__1___0___System_Int32_" data-uid="Litdex.Security.RNG.Random.Sample``1(``0[],System.Int32)">Sample&lt;T&gt;(T[], Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Sample&lt;T&gt;(T[] items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Sample__1_IEnumerable___0__System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Sample%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L153">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Sample_" data-uid="Litdex.Security.RNG.Random.Sample*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Sample__1_IEnumerable___0__System_Int32_" data-uid="Litdex.Security.RNG.Random.Sample``1(IEnumerable{``0},System.Int32)">Sample&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Sample&lt;T&gt;(IEnumerable&lt;T&gt; items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.SampleAsync%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L138">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_SampleAsync_" data-uid="Litdex.Security.RNG.Random.SampleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_" data-uid="Litdex.Security.RNG.Random.SampleAsync``1(``0[],System.Int32)">SampleAsync&lt;T&gt;(T[], Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; SampleAsync&lt;T&gt;(T[] items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.SampleAsync%60%601(%60%600%5B%5D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L144">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_SampleAsync_" data-uid="Litdex.Security.RNG.Random.SampleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_CancellationToken_" data-uid="Litdex.Security.RNG.Random.SampleAsync``1(``0[],System.Int32,CancellationToken)">SampleAsync&lt;T&gt;(T[], Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; SampleAsync&lt;T&gt;(T[] items, int select, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_SampleAsync__1___0___System_Int32_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.SampleAsync%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L159">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_SampleAsync_" data-uid="Litdex.Security.RNG.Random.SampleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_" data-uid="Litdex.Security.RNG.Random.SampleAsync``1(IEnumerable{``0},System.Int32)">SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt; items, int select)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.SampleAsync%60%601(IEnumerable%7B%60%600%7D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L165">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_SampleAsync_" data-uid="Litdex.Security.RNG.Random.SampleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_CancellationToken_" data-uid="Litdex.Security.RNG.Random.SampleAsync``1(IEnumerable{``0},System.Int32,CancellationToken)">SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Select arbitrary distinct element randomly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; SampleAsync&lt;T&gt;(IEnumerable&lt;T&gt; items, int select, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">select</span></td>
+        <td><p>The desired amount to select.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Multiple random elements from the given set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_SampleAsync__1_IEnumerable___0__System_Int32_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Shuffle__1___0___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Shuffle%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L171">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Shuffle_" data-uid="Litdex.Security.RNG.Random.Shuffle*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Shuffle__1___0___" data-uid="Litdex.Security.RNG.Random.Shuffle``1(``0[])">Shuffle&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Shuffle&lt;T&gt;(T[] items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_Shuffle__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.Shuffle%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L210">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_Shuffle_" data-uid="Litdex.Security.RNG.Random.Shuffle*"></a>
+  <h4 id="Litdex_Security_RNG_Random_Shuffle__1_IEnumerable___0__" data-uid="Litdex.Security.RNG.Random.Shuffle``1(IEnumerable{``0})">Shuffle&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T[] Shuffle&lt;T&gt;(IEnumerable&lt;T&gt; items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleAsync__1___0___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleAsync%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L195">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleAsync__1___0___" data-uid="Litdex.Security.RNG.Random.ShuffleAsync``1(``0[])">ShuffleAsync&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ShuffleAsync&lt;T&gt;(T[] items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleAsync__1___0____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleAsync__1___0___CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleAsync%60%601(%60%600%5B%5D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L201">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleAsync__1___0___CancellationToken_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync``1(``0[],CancellationToken)">ShuffleAsync&lt;T&gt;(T[], CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ShuffleAsync&lt;T&gt;(T[] items, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleAsync__1___0___CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleAsync%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L216">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__" data-uid="Litdex.Security.RNG.Random.ShuffleAsync``1(IEnumerable{``0})">ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt; items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleAsync%60%601(IEnumerable%7B%60%600%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L222">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__CancellationToken_" data-uid="Litdex.Security.RNG.Random.ShuffleAsync``1(IEnumerable{``0},CancellationToken)">ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Shuffle items with Fisher-Yates shuffle then return the shuffled item in new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;T[]&gt; ShuffleAsync&lt;T&gt;(IEnumerable&lt;T&gt; items, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
+        <td><p>Array of shuffled items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleAsync__1_IEnumerable___0__CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleInPlace__1___0___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleInPlace%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L228">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleInPlace_" data-uid="Litdex.Security.RNG.Random.ShuffleInPlace*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleInPlace__1___0___" data-uid="Litdex.Security.RNG.Random.ShuffleInPlace``1(``0[])">ShuffleInPlace&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"><p>Shuffle items in place with Fisher-Yates shuffle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ShuffleInPlace&lt;T&gt;(T[] items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleInPlaceAsync%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L247">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleInPlaceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___" data-uid="Litdex.Security.RNG.Random.ShuffleInPlaceAsync``1(``0[])">ShuffleInPlaceAsync&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"><p>Shuffle items in place with Fisher-Yates shuffle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task ShuffleInPlaceAsync&lt;T&gt;(T[] items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>Task based operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___CancellationToken_.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ShuffleInPlaceAsync%60%601(%60%600%5B%5D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L253">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync_" data-uid="Litdex.Security.RNG.Random.ShuffleInPlaceAsync*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___CancellationToken_" data-uid="Litdex.Security.RNG.Random.ShuffleInPlaceAsync``1(``0[],CancellationToken)">ShuffleInPlaceAsync&lt;T&gt;(T[], CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Shuffle items in place with Fisher-Yates shuffle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task ShuffleInPlaceAsync&lt;T&gt;(T[] items, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>A set of items to shuffle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Token to cancel the operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>Task based operations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of objects in array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Litdex_Security_RNG_Random_ShuffleInPlaceAsync__1___0___CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Used for large data, objects or arrays.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random_ToString.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/Random.cs/#L33">View Source</a>
+  </span>
+  <a id="Litdex_Security_RNG_Random_ToString_" data-uid="Litdex.Security.RNG.Random.ToString*"></a>
+  <h4 id="Litdex_Security_RNG_Random_ToString" data-uid="Litdex.Security.RNG.Random.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.IRNG.html">IRNG</a>
+  </div>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.IDistribution.html">IDistribution</a>
+  </div>
+  <div>
+      <a class="xref" href="Litdex.Security.RNG.ISequence.html">ISequence</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/new/main/apiSpec/new?filename=Litdex_Security_RNG_Random.md&amp;value=---%0Auid%3A%20Litdex.Security.RNG.Random%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Source/Security/RNG/RandomSequence.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Developed by <a href='https://github.com/Shiroechi/Litdex.Security.RNG'>Shiroechi</a> and <a href='https://github.com/Shiroechi/Litdex.Security.RNG/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/Shiroechi/Litdex.Security.RNG/blob/main/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
