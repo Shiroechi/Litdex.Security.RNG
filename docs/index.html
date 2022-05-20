@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the HOMEPAGE. | Litdex.Security.RNG </title>
+    <title>Litdex.Security.RNG | Litdex.Security.RNG </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="This is the HOMEPAGE. | Litdex.Security.RNG ">
+    <meta name="title" content="Litdex.Security.RNG | Litdex.Security.RNG ">
     <meta name="generator" content="docfx 2.59.2.0">
     <meta name="description" content="A collection of Pseudo Random Number Generator (PRNG) for .NET">
     <link rel="shortcut icon" href="favicon.ico">
@@ -70,13 +70,734 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="this-is-the-homepage">This is the <strong>HOMEPAGE</strong>.</h1>
+<h1 id="litdexsecurityrng">Litdex.Security.RNG</h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.</li>
-</ol>
+<p>Library that provide basic random generator function and was inspired from Python <a href="https://github.com/python/cpython/blob/master/Lib/random.py">random.py</a>.</p>
+<p><a href="https://github.com/Shiroechi/Litdex.Security.RNG">Litdex.Security.RNG</a> have already provide some basic random algorithm, so you can use it immediately rather than implement it yourself. But, still <a href="https://github.com/Shiroechi/Litdex.Security.RNG">Litdex.Security.RNG</a> created with extensibility in mind, so you can implement your own <em>random generator</em> with this <a href="https://github.com/Shiroechi/Litdex.Security.RNG">library</a>.</p>
+<p><strong>Note:</strong> This is sub-modlue of <a href="https://github.com/Shiroechi/Litdex">Litdex</a>.</p>
+<p><a href="https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng"><img src="https://www.codefactor.io/repository/github/shiroechi/litdex.security.rng/badge?style=for-the-badge" alt="CodeFactor"></a></p>
+<h1 id="download">Download</h1>
+<p><a href="https://www.nuget.org/packages/Litdex/"><img src="https://img.shields.io/nuget/v/litdex?label=Litdex&amp;style=for-the-badge" alt="Nuget"></a></p>
+<p><a href="https://www.nuget.org/packages/Litdex.Security.RNG"><img src="https://img.shields.io/nuget/v/Litdex.Security.RNG?label=Litdex.Security.RNG&amp;style=for-the-badge" alt="Nuget"></a></p>
+<h1 id="this-package-contains">This package contains:</h1>
+<p>Currently <a href="https://github.com/Shiroechi/Litdex.Security.RNG">Litdex.Security.RNG</a> support this algorithm:</p>
+<ul>
+<li><a href="http://gjrand.sourceforge.net/">GJrand</a></li>
+<li><a href="http://burtleburtle.net/bob/rand/smallprng.html">JSF</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Middle-square_method">Middle Square Weyl Sequence</a></li>
+<li><a href="https://www.pcg-random.org/">PCG</a></li>
+<li><a href="http://romu-random.org/">Romu</a></li>
+<li>SFC (Chris Doty-Humphrey's Chaotic PRNG)</li>
+<li><a href="https://github.com/andanteyk/prng-seiran">Seiran</a></li>
+<li><a href="https://github.com/andanteyk/prng-shioi">Shioi</a></li>
+<li><a href="https://github.com/espadrine/shishua">Shishua</a></li>
+<li>SplitMix64</li>
+<li><a href="https://en.wikipedia.org/wiki/Counter-based_random_number_generator_(CBRNG)#Squares_RNG">Squares</a></li>
+<li><a href="https://www.researchgate.net/publication/233997772_Fast_and_Small_Nonlinear_Pseudorandom_Number_Generators_for_Computer_Simulation">Tyche</a></li>
+<li><a href="https://github.com/wangyi-fudan/wyhash">Wyrand</a></li>
+<li><a href="http://prng.di.unimi.it/">Xoroshiro and Xoshiro</a></li>
+</ul>
+<p>All of the algorithm have passing Practrand or Test01 test. But I've never test it individually, the author who is said that their algorithm past Practrand or Test01.</p>
+<p>You can check in this website <a href="https://rhet.dev/wheel/rng-battle-royale-47-prngs-9-consoles/">&quot;PRNG Battle Royale: 47 PRNGs � 9 consoles&quot;</a>, the writer have tested some of the algorithm that have been implemented.</p>
+<h1 id="how-to-use">How to use</h1>
+<p>For detailed use, read <a href="https://github.com/Shiroechi/Litdex.Security.RNG/wiki/How-to-use">How to use</a>
+or <a href="https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Documentation">Documentation</a></p>
+<p>The simple way to use</p>
+<pre><code class="lang-C#">// create rng object
+var rng = new Xoroshiro128plus();
+
+// get random integer
+var randomInt = rng.NextInt();
+</code></pre>
+<p>Want to create your own RNG?? Then read <a href="https://github.com/Shiroechi/Litdex.Security.RNG/wiki/Custom-RNG">Custom RNG</a></p>
+<h1 id="benchmark">Benchmark</h1>
+<h2 id="32-bit-rng">32-bit RNG</h2>
+<pre><code class="lang-ini">
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.18363.1500 (1909/November2019Update/19H2)
+AMD FX-8800P Radeon R7, 12 Compute Cores 4C+8G, 1 CPU, 4 logical and 4 physical cores
+.NET SDK=5.0.401
+  [Host]    : .NET 5.0.10 (5.0.1021.41214), X64 RyuJIT
+  MediumRun : .NET 5.0.10 (5.0.1021.41214), X64 RyuJIT
+
+Job=MediumRun  IterationCount=15  LaunchCount=2  
+WarmupCount=10  
+
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>rand</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Rank</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System.Random</td>
+<td>?</td>
+<td style="text-align: right;">5,320.380 ns</td>
+<td style="text-align: right;">30.5306 ns</td>
+<td style="text-align: right;">45.6968 ns</td>
+<td style="text-align: right;">5,256.942 ns</td>
+<td style="text-align: right;">5,395.361 ns</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.5341</td>
+<td style="text-align: right;">280 B</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>JSF 32-bit</td>
+<td style="text-align: right;">9.559 ns</td>
+<td style="text-align: right;">0.1051 ns</td>
+<td style="text-align: right;">0.1507 ns</td>
+<td style="text-align: right;">9.291 ns</td>
+<td style="text-align: right;">9.994 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>JSF 3(...)otate [24]</td>
+<td style="text-align: right;">10.283 ns</td>
+<td style="text-align: right;">0.0942 ns</td>
+<td style="text-align: right;">0.1410 ns</td>
+<td style="text-align: right;">10.099 ns</td>
+<td style="text-align: right;">10.522 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Middl(...)uence [27]</td>
+<td style="text-align: right;">12.428 ns</td>
+<td style="text-align: right;">0.0641 ns</td>
+<td style="text-align: right;">0.0920 ns</td>
+<td style="text-align: right;">12.310 ns</td>
+<td style="text-align: right;">12.694 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>PCG XSH-RR 32-bit</td>
+<td style="text-align: right;">12.805 ns</td>
+<td style="text-align: right;">0.0962 ns</td>
+<td style="text-align: right;">0.1380 ns</td>
+<td style="text-align: right;">12.547 ns</td>
+<td style="text-align: right;">13.106 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>PCG XSH-RS 32-bit</td>
+<td style="text-align: right;">10.849 ns</td>
+<td style="text-align: right;">0.6821 ns</td>
+<td style="text-align: right;">1.0210 ns</td>
+<td style="text-align: right;">8.613 ns</td>
+<td style="text-align: right;">12.409 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Romu Mono 32-bit</td>
+<td style="text-align: right;">11.347 ns</td>
+<td style="text-align: right;">0.0834 ns</td>
+<td style="text-align: right;">0.1169 ns</td>
+<td style="text-align: right;">11.136 ns</td>
+<td style="text-align: right;">11.532 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Romu Quad 32-bit</td>
+<td style="text-align: right;">10.316 ns</td>
+<td style="text-align: right;">0.1106 ns</td>
+<td style="text-align: right;">0.1621 ns</td>
+<td style="text-align: right;">10.075 ns</td>
+<td style="text-align: right;">10.737 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Romu Trio 32-bit</td>
+<td style="text-align: right;">13.664 ns</td>
+<td style="text-align: right;">0.1315 ns</td>
+<td style="text-align: right;">0.1886 ns</td>
+<td style="text-align: right;">13.373 ns</td>
+<td style="text-align: right;">14.166 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>SFC 32-bit</td>
+<td style="text-align: right;">10.270 ns</td>
+<td style="text-align: right;">0.0651 ns</td>
+<td style="text-align: right;">0.0934 ns</td>
+<td style="text-align: right;">10.090 ns</td>
+<td style="text-align: right;">10.427 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Squares</td>
+<td style="text-align: right;">13.174 ns</td>
+<td style="text-align: right;">0.0892 ns</td>
+<td style="text-align: right;">0.1307 ns</td>
+<td style="text-align: right;">12.936 ns</td>
+<td style="text-align: right;">13.476 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Tyche</td>
+<td style="text-align: right;">49.391 ns</td>
+<td style="text-align: right;">0.2749 ns</td>
+<td style="text-align: right;">0.4114 ns</td>
+<td style="text-align: right;">48.846 ns</td>
+<td style="text-align: right;">49.951 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>NextInt</td>
+<td>Tyche-i</td>
+<td style="text-align: right;">20.308 ns</td>
+<td style="text-align: right;">0.1033 ns</td>
+<td style="text-align: right;">0.1481 ns</td>
+<td style="text-align: right;">20.078 ns</td>
+<td style="text-align: right;">20.541 ns</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="64-bit-rng">64-bit RNG</h2>
+<pre><code class="lang-ini">
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.18363.1500 (1909/November2019Update/19H2)
+AMD FX-8800P Radeon R7, 12 Compute Cores 4C+8G, 1 CPU, 4 logical and 4 physical cores
+.NET SDK=5.0.401
+  [Host]    : .NET 5.0.10 (5.0.1021.41214), X64 RyuJIT
+  MediumRun : .NET 5.0.10 (5.0.1021.41214), X64 RyuJIT
+
+Job=MediumRun  IterationCount=15  LaunchCount=2  
+WarmupCount=10  
+
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>rand</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Rank</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NextLong</td>
+<td>Romu Duo 64-bit</td>
+<td style="text-align: right;">5.547 ns</td>
+<td style="text-align: right;">0.0658 ns</td>
+<td style="text-align: right;">0.0985 ns</td>
+<td style="text-align: right;">5.356 ns</td>
+<td style="text-align: right;">5.748 ns</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Romu Duo Jr 64-bit</td>
+<td style="text-align: right;">5.583 ns</td>
+<td style="text-align: right;">0.0647 ns</td>
+<td style="text-align: right;">0.0948 ns</td>
+<td style="text-align: right;">5.415 ns</td>
+<td style="text-align: right;">5.853 ns</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Shioi</td>
+<td style="text-align: right;">5.779 ns</td>
+<td style="text-align: right;">0.0587 ns</td>
+<td style="text-align: right;">0.0861 ns</td>
+<td style="text-align: right;">5.635 ns</td>
+<td style="text-align: right;">5.930 ns</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Seiran</td>
+<td style="text-align: right;">5.815 ns</td>
+<td style="text-align: right;">0.0835 ns</td>
+<td style="text-align: right;">0.1198 ns</td>
+<td style="text-align: right;">5.623 ns</td>
+<td style="text-align: right;">6.113 ns</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoroshiro 128+</td>
+<td style="text-align: right;">5.835 ns</td>
+<td style="text-align: right;">0.0745 ns</td>
+<td style="text-align: right;">0.1068 ns</td>
+<td style="text-align: right;">5.632 ns</td>
+<td style="text-align: right;">6.007 ns</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoroshiro 128**</td>
+<td style="text-align: right;">5.965 ns</td>
+<td style="text-align: right;">0.0624 ns</td>
+<td style="text-align: right;">0.0914 ns</td>
+<td style="text-align: right;">5.841 ns</td>
+<td style="text-align: right;">6.186 ns</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>PCG RXS-M-XS 64-bit</td>
+<td style="text-align: right;">6.162 ns</td>
+<td style="text-align: right;">0.0653 ns</td>
+<td style="text-align: right;">0.0957 ns</td>
+<td style="text-align: right;">5.981 ns</td>
+<td style="text-align: right;">6.345 ns</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>SplitMix64</td>
+<td style="text-align: right;">6.751 ns</td>
+<td style="text-align: right;">0.0550 ns</td>
+<td style="text-align: right;">0.0753 ns</td>
+<td style="text-align: right;">6.642 ns</td>
+<td style="text-align: right;">6.948 ns</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoroshiro 128++</td>
+<td style="text-align: right;">6.812 ns</td>
+<td style="text-align: right;">0.5558 ns</td>
+<td style="text-align: right;">0.8318 ns</td>
+<td style="text-align: right;">5.865 ns</td>
+<td style="text-align: right;">7.779 ns</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Romu Trio 64-bit</td>
+<td style="text-align: right;">7.095 ns</td>
+<td style="text-align: right;">0.0581 ns</td>
+<td style="text-align: right;">0.0851 ns</td>
+<td style="text-align: right;">6.964 ns</td>
+<td style="text-align: right;">7.266 ns</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Romu Quad 64-bit</td>
+<td style="text-align: right;">7.684 ns</td>
+<td style="text-align: right;">0.0862 ns</td>
+<td style="text-align: right;">0.1291 ns</td>
+<td style="text-align: right;">7.498 ns</td>
+<td style="text-align: right;">7.907 ns</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>SFC 64-bit</td>
+<td style="text-align: right;">7.842 ns</td>
+<td style="text-align: right;">0.0950 ns</td>
+<td style="text-align: right;">0.1393 ns</td>
+<td style="text-align: right;">7.582 ns</td>
+<td style="text-align: right;">8.023 ns</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>JSF 64-bit</td>
+<td style="text-align: right;">8.376 ns</td>
+<td style="text-align: right;">0.1285 ns</td>
+<td style="text-align: right;">0.1923 ns</td>
+<td style="text-align: right;">8.171 ns</td>
+<td style="text-align: right;">8.872 ns</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 256**</td>
+<td style="text-align: right;">9.460 ns</td>
+<td style="text-align: right;">0.0708 ns</td>
+<td style="text-align: right;">0.0993 ns</td>
+<td style="text-align: right;">9.350 ns</td>
+<td style="text-align: right;">9.676 ns</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 256+</td>
+<td style="text-align: right;">9.494 ns</td>
+<td style="text-align: right;">0.0752 ns</td>
+<td style="text-align: right;">0.1125 ns</td>
+<td style="text-align: right;">9.316 ns</td>
+<td style="text-align: right;">9.661 ns</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 256++</td>
+<td style="text-align: right;">9.692 ns</td>
+<td style="text-align: right;">0.0936 ns</td>
+<td style="text-align: right;">0.1401 ns</td>
+<td style="text-align: right;">9.482 ns</td>
+<td style="text-align: right;">9.940 ns</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Wyrand</td>
+<td style="text-align: right;">11.949 ns</td>
+<td style="text-align: right;">0.1327 ns</td>
+<td style="text-align: right;">0.1986 ns</td>
+<td style="text-align: right;">11.639 ns</td>
+<td style="text-align: right;">12.344 ns</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 512++</td>
+<td style="text-align: right;">17.201 ns</td>
+<td style="text-align: right;">0.1145 ns</td>
+<td style="text-align: right;">0.1713 ns</td>
+<td style="text-align: right;">16.926 ns</td>
+<td style="text-align: right;">17.487 ns</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 512+</td>
+<td style="text-align: right;">17.292 ns</td>
+<td style="text-align: right;">0.2144 ns</td>
+<td style="text-align: right;">0.3005 ns</td>
+<td style="text-align: right;">16.951 ns</td>
+<td style="text-align: right;">17.872 ns</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Xoshiro 512**</td>
+<td style="text-align: right;">17.425 ns</td>
+<td style="text-align: right;">0.2050 ns</td>
+<td style="text-align: right;">0.3069 ns</td>
+<td style="text-align: right;">16.905 ns</td>
+<td style="text-align: right;">17.904 ns</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Gjrand</td>
+<td style="text-align: right;">25.934 ns</td>
+<td style="text-align: right;">0.2945 ns</td>
+<td style="text-align: right;">0.4408 ns</td>
+<td style="text-align: right;">24.915 ns</td>
+<td style="text-align: right;">26.314 ns</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td>NextLong</td>
+<td>Shishua</td>
+<td style="text-align: right;">30.672 ns</td>
+<td style="text-align: right;">0.4714 ns</td>
+<td style="text-align: right;">0.6909 ns</td>
+<td style="text-align: right;">29.746 ns</td>
+<td style="text-align: right;">31.842 ns</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.0306</td>
+<td style="text-align: right;">16 B</td>
+</tr>
+</tbody>
+</table>
+<h1 id="warning">Warning</h1>
+<p>For method that generate an arbitary byte array, like method <code>NextBytes</code>.</p>
+<pre><code class="lang-C#">var rng = new Xoroshiro128plus();
+var bytes = rng.NextBytes(10);
+</code></pre>
+<p>Litdex generate the array using multiple <code>uint</code> or <code>ulong</code>, each <code>uint</code> or <code>ulong</code> will converted into byte array. When converted to byte array, Litdex order the byte based on the system endianess. Then each converted byte array will be concated with other byte array.</p>
+<h1 id="contribute">Contribute</h1>
+<p>Feel free to open new <a href="https://github.com/Shiroechi/Litdex.Security.RNG/issues/new">issue</a> or <a href="https://github.com/Shiroechi/Litdex.Security.RNG/pulls">PR</a>.</p>
+<h1 id="donation">Donation</h1>
+<p>Like this library? Please consider donation</p>
+<p><a href="https://ko-fi.com/X8X81SP2L"><img src="https://www.ko-fi.com/img/githubbutton_sm.svg" alt="ko-fi"></a></p>
 </article>
           </div>
           
@@ -85,7 +806,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/main/Documentation/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/madeyoga/Litdex.Security.RNG/blob/api-documentation/Documentation/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
