@@ -1,0 +1,639 @@
+{
+  "homepages": [],
+  "source_base_path": "G:/Programs/C#/Litdex.Security.RNG/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.IDistribution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.IDistribution.html",
+          "hash": "NrNPDUlP/MV73FcQmQA3jwxSibgrcDHAfVG9qGCMv9g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.IRNG.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.IRNG.html",
+          "hash": "YzhfP68fSqupW0/spy+03ptP1L9jIj7eWfER7q3UvcY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.ISequence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.ISequence.html",
+          "hash": "XZvCeuBn12fHr1+0CZDAzKfntxe4Yl4XhAu4HdWkqkc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.GJrand64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.GJrand64.html",
+          "hash": "3SL/RvW8xS/kLmCaZzBSYLXGFkhMgS130d7SYKyPblA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.JSF32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.JSF32.html",
+          "hash": "DGSrFTtFylfV7W+UkeKgy2EMcX+8V3hb0PcEir7g/6s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.JSF32t.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.JSF32t.html",
+          "hash": "Dd0fQtaD1+L3gF+NOKGy6vssuu67RDg7yQwALW+7X0U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.JSF64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.JSF64.html",
+          "hash": "DT5XsMnn7BgnCDjVYWzGtPREJjVD+ljGl3X6432s6wo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.MiddleSquareWeylSequence.html",
+          "hash": "RrKlpJHZCejUwvIkJnbPVwFX7Tm+riVXbmliFT8aH6A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.PcgRxsMXs64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.PcgRxsMXs64.html",
+          "hash": "wRztnCDv/U9kr3PCmipTkv6/wPuNFnN1GNNFHpcBAzs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.PcgXshRr32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.PcgXshRr32.html",
+          "hash": "cSYPXiWnptM570SfK1N3MvBlU9w5NhFcYrz5r/v4paU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.PcgXshRs32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.PcgXshRs32.html",
+          "hash": "bgnQzMurcFsbb3AxgW3nnGKX+J7CGUexVUllfXQKENk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuDuo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuDuo.html",
+          "hash": "mGwQNonwL62W83A1ph7xzYA4o9S/Gzu/C8C8gxz5xiU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuDuoJr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuDuoJr.html",
+          "hash": "aMxrAhSw6ZOHZTXMkXG0vvw6A8ISlYqHBV/qQfQ15qE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuMono32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuMono32.html",
+          "hash": "wa4lIAPvrrMXAehOEbuZlT1pAsBnd8OcmXvlmg7o7Io="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuQuad.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuQuad.html",
+          "hash": "1TEPY6xZra7WFjExVKcORSTijArqKwEHvjNBdk3i2Zs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuQuad32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuQuad32.html",
+          "hash": "sK1ylnL+xusaDNOkGw+jB0qRB1SbhgDmUjif4U1420s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuTrio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuTrio.html",
+          "hash": "O6m5YzmmFJsiNfaxmziPKGHQ+GJnlWd/zo9pG7mgb2E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.RomuTrio32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.RomuTrio32.html",
+          "hash": "qnhAU7aYVTmtT1zwAPOSCUCFaJiQJbTKLvq5TZLRM7M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.SFC32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.SFC32.html",
+          "hash": "SoL4Ihy7BM6jTg5qxMv7j565blsyAkbQ+zIMJy02+Zo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.SFC64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.SFC64.html",
+          "hash": "U2nRZ1idNDAMxdjJFIEl+j6QO/zq/dtl8mbTZWZZ8L0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Seiran.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Seiran.html",
+          "hash": "i9RopMONCrE6i1GAUKAGMyz9heSxMVojeMVOQoPLxa0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Shioi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Shioi.html",
+          "hash": "aXAJfPTxe6lPLKM8jtyH++UQ8ofwNDb2C1LxxwHPS5M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Shishua.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Shishua.html",
+          "hash": "btorrId5XjX/apTBOTkCwzWazeQVZ5wOqM7uE3ADYSU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.SplitMix64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.SplitMix64.html",
+          "hash": "2S0uywJNN0bF4TkkGCJDaJUJUIeGjutec04wmj0oBow="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Squares.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Squares.html",
+          "hash": "KtqF0v3cdRvbBVPIfgfJ8atFtjUU85ub/ysc25IoDNI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Tyche.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Tyche.html",
+          "hash": "S6skXujQyp4Zi/NDQFIQ1mCQOrRRvfrlRquf8l/7GJA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Tychei.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Tychei.html",
+          "hash": "33nfUtL/I2SWc5ZEi1bcGw2cVSKlx3QtaNR/RcvBIh0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Wyrand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Wyrand.html",
+          "hash": "kSjqZCk8DmYf3QpRSoesQyonZg84CLI+It0/9DrB0n4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128Plus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128Plus.html",
+          "hash": "bTWpqMaEHFVoZ2WPFWlC/OZEmZhVxiRMdz8hRb+j0bE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128PlusPlus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128PlusPlus.html",
+          "hash": "BHwMvIKaZjO2pT2jc9757NcSXl6I2zh+xMMImbAm1mM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128StarStar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoroshiro128StarStar.html",
+          "hash": "F9PokPKvTUBQb34n2tesO2R6F4txsE5o9UR+yKbEj3w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256Plus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256Plus.html",
+          "hash": "9wNXBsHHu48L3QHe5oul010WvKxxKkxyMvWR9qo7VOc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256PlusPlus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256PlusPlus.html",
+          "hash": "f7H1jLX4e5o1NScPrUcLsO6MDhf9P9uRNPDnEUe3+gk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256StarStar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro256StarStar.html",
+          "hash": "uazkOcXbbgt72IEDHg9BxjG1Py1n5r53vu5GSqTcuFs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512Plus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512Plus.html",
+          "hash": "UWvlZ4jaL4gyKPqKNq7Ij+LQkOAgul3QXQpzsjqUtwg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512PlusPlus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512PlusPlus.html",
+          "hash": "wgS+0OlZoXsNbIvrGkMqYJle+G0rEKVfCr9+GWhq01I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512StarStar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.Xoshiro512StarStar.html",
+          "hash": "KqUpumx87a5FwXQ1MFndF1dUZig84J8WHGGfR8dx01o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.PRNG.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.PRNG.html",
+          "hash": "KMiWp6fZJCIKJEqRKv+1Bu/u8qYq+o3E/LFVDnrknh8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.Random.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.Random.html",
+          "hash": "6SZGL807K33E+cA5TlE0ETYm/icz8DQaa00QBJ+OscU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.Random32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.Random32.html",
+          "hash": "yCHfWH3iMDo/Yzwh8i8tm/R7cC4eLCs7OQYvGhLtzQg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.Random64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.Random64.html",
+          "hash": "VOwmkU4+wInn8eMTd4lb+ozh7pw0lHO6zwF4O3bsTts="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Litdex.Security.RNG.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Litdex.Security.RNG.html",
+          "hash": "2q+WYWn//Adb5lvNfajwgEU5cUEcZzIBjUg6AxlkMNg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "z+NmrBDrTxaCqoeKui5wl/04AM+jd1+yUkzLrC6/XrA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "Q/cCfUzVKOpbk3viGGJvS+FjIox/nCQFLs2A8HsgTl4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "PW1wtDs6x5GaepYG89blEcnq1odDfQHK4It9z/lcSPY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "H/hwPztHg/oYmTKKE6/viFGcvl5xiwPhn8ItH12/PYM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 2
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 42,
+          "skipped_file_count": 42
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
